@@ -1,24 +1,24 @@
-#include "SatsukiHana.h"
+#include "SatsukiKaze.hpp"
 
-SatsukiHana::SatsukiHana( void )
+SatsukiKaze::SatsukiKaze( void )
 {
     setSName( "冴月麟(花)" );
     setHighFSpeed( 3.0 );
     setLowFSpeed( 1.5 );
     setMainShotPower( 25 );
-    setSubShotPower( 35 );
+    setSubShotPower( 30 );
     setSubShotFSpeed( 8 );
     setSubShotInterval( 5 );
-    setNFeverFrames_Bomb( 312 );
+    setNFeverFrames_Bomb( 315 );
     setGodMode( false );
 }
 
-SatsukiHana::~SatsukiHana()
+SatsukiKaze::~SatsukiKaze()
 {
 
 }
 
-void SatsukiHana::spellCard( void )
+void SatsukiKaze::spellCard( void )
 {
 
 }

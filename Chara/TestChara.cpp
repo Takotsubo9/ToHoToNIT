@@ -1,4 +1,4 @@
-#include "TestChara.h"
+#include "TestChara.hpp"
 
 TestChara::TestChara( void )
 {

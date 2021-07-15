@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "Character.h"
+#include "Character.hpp"
 
 class TestChara : public Character
 {
