@@ -16,10 +16,10 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
         }
     }
     
-    if(game_window->getIsKeyPressed(SDLK_x))
+    if(game_window->getIsButtonPressed(Buttons::Bomb) || game_window->getIsButtonPressed(Buttons::Pause))
         this->selected_row = TITLE_ITEM_QUIT;
 
-    if(game_window->getIsKeyPressed(SDLK_z)) {
+    if(game_window->getIsButtonPressed(Buttons::Shot)) {
         switch(selected_row) {
             case TITLE_ITEM_QUIT:
                 game_window->Quit();
@@ -28,9 +28,9 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
         }
     }
 
-    if(game_window->getIsKeyPressed(SDLK_DOWN))
+    if(game_window->getIsButtonPressed(Buttons::Down))
         selected_row = (selected_row + 1 + TITLE_ITEM_COUNT) % TITLE_ITEM_COUNT;
-    if(game_window->getIsKeyPressed(SDLK_UP))
+    if(game_window->getIsButtonPressed(Buttons::Up))
     selected_row = (selected_row - 1 + TITLE_ITEM_COUNT) % TITLE_ITEM_COUNT;
 
     return ScreenID::Title;

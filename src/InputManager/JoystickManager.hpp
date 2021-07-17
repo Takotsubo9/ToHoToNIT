@@ -20,7 +20,7 @@ public:
     void TrySetJoyStick();
     bool getEnableJoyStick() { return joystick != nullptr; }
     bool getEnableAxis() { return SDL_JoystickNumAxes(joystick) != 0; }
-    short GetAxis(int num);
+    short getAxis(int num);
     void Polling(SDL_Event e);
     void ClearKeyEvent();
     bool IsButtonDown(int button) { return ButtonDownState[button]; }

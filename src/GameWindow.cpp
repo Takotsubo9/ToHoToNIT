@@ -10,11 +10,13 @@ GameWindow::GameWindow(std::string window_title, int width, int height) {
     SDL_RenderSetLogicalSize(renderer_handle, width, height);
     keyboard_manager = new KeyboardManager();
     joystick_manager = new JoystickManager();
+    operate = new Operate();
     SDL_SetRenderDrawBlendMode(renderer_handle, SDL_BLENDMODE_BLEND);
     is_active = false;
 }
 
 GameWindow::~GameWindow() {
+    delete operate;
     delete joystick_manager;
     delete keyboard_manager;
     SDL_DestroyRenderer(renderer_handle);
@@ -71,12 +73,13 @@ void GameWindow::Run() {
                     this->is_active = false;
                 }
             }
-            std::cout << pollevent.type << std::endl;
+            //std::cout << pollevent.type << std::endl;
         }
         if(this->is_active)
         {
             uint64_t Ticks = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
             if (Ticks - PrevTicks > 1000000 / main_fps) {
+                operate->Polling(keyboard_manager, joystick_manager);
                 SDL_SetRenderDrawColor( renderer_handle, 0x00, 0x00, 0x00, 0xFF );
                 SDL_RenderClear(renderer_handle);
 
