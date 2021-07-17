@@ -6,7 +6,6 @@
 #include <cmath>
 #include <SDL2/SDL.h>
 #include "Screen.hpp"
-#include "Screens/TestScreen.hpp"
 #include "Const/ScreenID.hpp"
 
 class GameWindow;

@@ -17,7 +17,7 @@ private:
     KeyboardManager* keyboard_manager;
     JoystickManager* joystick_manager;
     ImageManager* image_manager;
-    FullScreenMode fullscreen_mode;
+    FullScreenMODE fullscreen_mode;
     SDL_Window* window_handle;
     SDL_Renderer* renderer_handle;
     bool quit;
@@ -27,8 +27,8 @@ public:
     //ウィンドウの
     void Run();
     //ウィンドウのフルスクリーンモードをセットする関数
-    void setFullScreenMode(FullScreenMode fsm);
-    FullScreenMode getFullScreenMode() const {
+    void setFullScreenMode(FullScreenMODE fsm);
+    FullScreenMODE getFullScreenMode() const {
         return fullscreen_mode;
     }
     //引数に与えられたキーが押されているかを返す関数

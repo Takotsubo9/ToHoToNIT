@@ -2,11 +2,10 @@
 
 GameWindow::GameWindow(std::string window_title, int width, int height) {
     main_fps = 60;
-    fullscreen_mode = FullScreenMode::Windowed;
+    fullscreen_mode = FullScreenMODE::Windowed;
     SDL_Init(SDL_INIT_VIDEO|SDL_INIT_JOYSTICK); 
     window_handle = SDL_CreateWindow(window_title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_HIDDEN);
     renderer_handle = SDL_CreateRenderer(window_handle, -1, SDL_RENDERER_ACCELERATED);
-    image_manager = new ImageManager(renderer_handle);
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
     SDL_RenderSetLogicalSize(renderer_handle, width, height);
     keyboard_manager = new KeyboardManager();
@@ -18,17 +17,16 @@ GameWindow::GameWindow(std::string window_title, int width, int height) {
 GameWindow::~GameWindow() {
     delete joystick_manager;
     delete keyboard_manager;
-    delete image_manager;
     SDL_DestroyRenderer(renderer_handle);
     SDL_DestroyWindow(window_handle);
     SDL_Quit();
 }
 
-void GameWindow::setFullScreenMode(FullScreenMode fsm) {
+void GameWindow::setFullScreenMode(FullScreenMODE fsm) {
     if( !(this->fullscreen_mode == fsm) ) {
-        if(fsm == FullScreenMode::Fullscreen) {
+        if(fsm == FullScreenMODE::Fullscreen) {
             SDL_SetWindowFullscreen(window_handle, SDL_WINDOW_FULLSCREEN);
-        } else if (fsm == FullScreenMode::BorderLess){
+        } else if (fsm == FullScreenMODE::BorderLess){
             SDL_SetWindowFullscreen(window_handle, SDL_WINDOW_FULLSCREEN_DESKTOP);
         } else {
             SDL_SetWindowFullscreen(window_handle, 0);
@@ -45,6 +43,14 @@ void GameWindow::Run() {
     uint64_t PrevTicks = 0;
 
     SDL_ShowWindow(this->window_handle);
+
+    SDL_Surface* bootsur = SDL_LoadBMP("image/booting/booting.bmp");
+    SDL_RenderClear(renderer_handle);
+    SDL_BlitSurface( bootsur, NULL, SDL_GetWindowSurface(window_handle), NULL );
+    SDL_UpdateWindowSurface(window_handle);
+    SDL_FreeSurface(bootsur);
+
+    image_manager = new ImageManager(renderer_handle);
 
     quit = false;
     while (!quit) {
@@ -83,6 +89,10 @@ void GameWindow::Run() {
             }
         }
     }
+    
+    
+    delete image_manager;
+    image_manager = nullptr;
 
     SDL_HideWindow(this->window_handle);
 }
