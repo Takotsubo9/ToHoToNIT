@@ -35,7 +35,7 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
     if(game_window->getIsButtonPressed(Buttons::Down))
         selected_row = (selected_row + 1 + TITLE_ITEM_COUNT) % TITLE_ITEM_COUNT;
     if(game_window->getIsButtonPressed(Buttons::Up))
-    selected_row = (selected_row - 1 + TITLE_ITEM_COUNT) % TITLE_ITEM_COUNT;
+        selected_row = (selected_row - 1 + TITLE_ITEM_COUNT) % TITLE_ITEM_COUNT;
 
     return ScreenID::Title;
 }

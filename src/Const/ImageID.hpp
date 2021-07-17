@@ -13,6 +13,8 @@ enum class ImageID {
     title_selected_items,
     option_items,
     option_selected_items,
+    option_fullscreen_mode,
+    option_selected_fullscreen_mode,
 };
 
 //画像IDに対するファイルパス
@@ -23,7 +25,9 @@ const std::map<ImageID, std::string> FilePathList = {
     {ImageID::title_items, "image/title/title_items.bmp"},
     {ImageID::title_selected_items, "image/title/title_selected_items.bmp"},
     {ImageID::option_items, "image/option/option_items.bmp"},
-    {ImageID::option_selected_items, "image/option/option_selected_items.bmp"}
+    {ImageID::option_selected_items, "image/option/option_selected_items.bmp"},
+    {ImageID::option_fullscreen_mode, "image/option/option_fullscreen_mode.bmp"},
+    {ImageID::option_selected_fullscreen_mode, "image/option/option_selected_fullscreen_mode.bmp"}
 };
 
 #endif /* _IMAGEID_H_ */

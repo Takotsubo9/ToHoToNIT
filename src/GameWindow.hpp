@@ -9,6 +9,7 @@
 #include "ScreenManager.hpp"
 #include "ImageManager.hpp"
 #include "Const/FullScreenMode.hpp"
+#include "Config.hpp"
 
 //メインウィンドウのクラス
 class GameWindow {
@@ -24,6 +25,7 @@ private:
     SDL_Renderer* renderer_handle;
     bool quit;
 public:
+    Config config;
     GameWindow(std::string window_title, int width, int height);
     ~GameWindow();
     //ウィンドウの
