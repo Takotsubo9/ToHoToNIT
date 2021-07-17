@@ -6,7 +6,7 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
 
     for(int i=0; i<TITLE_ITEM_COUNT; i++) {
         SDL_Rect srcrect = {0,48*i,220,48};
-        SDL_Rect dstrect = {667-(i*10),292+(i*45),220,48};
+        SDL_Rect dstrect = {667-(i*10),244+(i*45),220,48};
         if(i == selected_row) {
             dstrect.x -= 2;
             dstrect.y -= 2;
