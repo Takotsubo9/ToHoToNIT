@@ -5,6 +5,7 @@
 //新しい画面追加時にここに追加すること
 enum class ScreenID {
     Title,
+    Option,
 };
 
 #endif /* _SCREENID_H_ */

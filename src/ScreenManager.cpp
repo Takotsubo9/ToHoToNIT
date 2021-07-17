@@ -1,5 +1,6 @@
 #include "ScreenManager.hpp"
 #include "Screens/TitleScreen.hpp"
+#include "Screens/OptionScreen.hpp"
 #include "GameWindow.hpp"
 
 ScreenManager::ScreenManager() {
@@ -18,6 +19,8 @@ void ScreenManager::Render(GameWindow* game_window) {
             case ScreenID::Title:
                 this->screen = new TitleScreen();
                 break;
+            case ScreenID::Option:
+                this->screen = new OptionScreen();
             default:
                 break;
         }

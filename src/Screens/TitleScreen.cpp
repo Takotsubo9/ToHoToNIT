@@ -16,13 +16,17 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
         }
     }
     
+    //項目が選択された後の1フレームだけ描画されないということを防ぐために、すべてを描画した後に、キー入力をやるべきです。
     if(game_window->getIsButtonPressed(Buttons::Bomb) || game_window->getIsButtonPressed(Buttons::Pause))
         this->selected_row = TITLE_ITEM_QUIT;
 
     if(game_window->getIsButtonPressed(Buttons::Shot)) {
         switch(selected_row) {
+            case TITLE_ITEM_OPTION:
+                return ScreenID::Option;
             case TITLE_ITEM_QUIT:
                 game_window->Quit();
+                break;
             default:
                 break;
         }
