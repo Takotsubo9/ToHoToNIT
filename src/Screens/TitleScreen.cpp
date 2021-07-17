@@ -12,7 +12,7 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
             dstrect.y -= 2;
             game_window->DrawImage(ImageID::title_selected_items, &srcrect, &dstrect);
         } else {
-            game_window->DrawImage(ImageID::title_items, &srcrect, &dstrect);
+            game_window->DrawImage(ImageID::title_items, &srcrect, &dstrect, 0xC0);
         }
     }
     

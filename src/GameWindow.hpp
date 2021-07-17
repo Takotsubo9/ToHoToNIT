@@ -49,6 +49,10 @@ public:
     void DrawImage(ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect) {
         this->image_manager->Render(renderer_handle, image_id, srcrect, dstrect);
     }
+    //引数に与えられたIDの画像を描画する関数(アルファあり)
+    void DrawImage(ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect, uint8_t alpha) {
+        this->image_manager->Render(renderer_handle, image_id, srcrect, dstrect, alpha);
+    }
     //引数に与えられた色を描画する関数
     void FillRect(uint8_t r, uint8_t g, uint8_t b, uint8_t a, const SDL_Rect* rect) {
         SDL_SetRenderDrawColor(renderer_handle, r, g, b, a );
