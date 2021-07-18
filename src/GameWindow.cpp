@@ -56,7 +56,6 @@ void GameWindow::Run() {
 
     quit = false;
     while (!quit) {
-        SDL_Delay(1);
         while (SDL_PollEvent(&pollevent) != 0) {
             if (pollevent.type == SDL_QUIT) {
                 quit = true;
@@ -73,7 +72,6 @@ void GameWindow::Run() {
                     this->is_active = false;
                 }
             }
-            //std::cout << pollevent.type << std::endl;
         }
         if(this->is_active)
         {
@@ -89,7 +87,11 @@ void GameWindow::Run() {
                 PrevTicks = Ticks;
                 keyboard_manager->ClearKeyEvent();
                 joystick_manager->ClearKeyEvent();
+            } else if (Ticks - PrevTicks + 1 < 1000000 / main_fps) {
+                SDL_Delay(1);
             }
+        } else {
+            SDL_Delay(50);
         }
     }
     
