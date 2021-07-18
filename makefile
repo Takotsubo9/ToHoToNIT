@@ -1,4 +1,4 @@
-CXXFLAGS = -Wall -Wextra -std=gnu++17 -static-libgcc -static-libstdc++
+CXXFLAGS = -Wall -Wextra -static-libgcc -static-libstdc++
 LDFLAGS = -lm -lSDL2
 VPATH = src
 OBJDIR = obj

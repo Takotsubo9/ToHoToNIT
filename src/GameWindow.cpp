@@ -1,6 +1,11 @@
 #include "GameWindow.hpp"
 
 GameWindow::GameWindow(std::string window_title, int width, int height) {
+
+    char* application_path_char = SDL_GetBasePath();
+    this->application_path = std::string(application_path_char);
+    SDL_free(application_path_char);
+
     main_fps = 60;
     fullscreen_mode = FullScreenMODE::Windowed;
     SDL_Init(SDL_INIT_VIDEO|SDL_INIT_JOYSTICK); 
@@ -46,13 +51,13 @@ void GameWindow::Run() {
 
     SDL_ShowWindow(this->window_handle);
 
-    SDL_Surface* bootsur = SDL_LoadBMP("image/booting/booting.bmp");
+    SDL_Surface* bootsur = SDL_LoadBMP((this->application_path+"image/booting/booting.bmp").c_str());
     SDL_RenderClear(renderer_handle);
     SDL_BlitSurface( bootsur, NULL, SDL_GetWindowSurface(window_handle), NULL );
     SDL_UpdateWindowSurface(window_handle);
     SDL_FreeSurface(bootsur);
 
-    image_manager = new ImageManager(renderer_handle);
+    image_manager = new ImageManager(renderer_handle, application_path);
 
     quit = false;
     while (!quit) {

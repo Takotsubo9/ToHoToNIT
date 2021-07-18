@@ -8,10 +8,9 @@
 //画像を管理するクラス
 class ImageManager {
 private:
-    SDL_Texture* LoadTexture(std::string FilePath);
     std::map<ImageID, SDL_Texture*> texture_map;
 public:
-    ImageManager(SDL_Renderer* renderer_handle);
+    ImageManager(SDL_Renderer* renderer_handle, std::string base_path);
     virtual ~ImageManager();
     void Render(SDL_Renderer* renderer_handle, ImageID id, const SDL_Rect* srcrect, const SDL_Rect* dstrect);
     void Render(SDL_Renderer* renderer_handle, ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect, uint8_t alpha);

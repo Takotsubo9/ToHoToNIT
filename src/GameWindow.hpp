@@ -23,6 +23,7 @@ private:
     FullScreenMODE fullscreen_mode;
     SDL_Window* window_handle;
     SDL_Renderer* renderer_handle;
+    std::string application_path;
     bool quit;
 public:
     Config config;

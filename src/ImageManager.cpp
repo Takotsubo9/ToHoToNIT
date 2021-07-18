@@ -1,8 +1,8 @@
 #include "ImageManager.hpp"
 
-ImageManager::ImageManager(SDL_Renderer* renderer_handle) {
+ImageManager::ImageManager(SDL_Renderer* renderer_handle, std::string base_path) {
     for(std::map<ImageID, std::string>::const_iterator it = FilePathList.begin(); it != FilePathList.end(); ++it) {
-        SDL_Surface* sur = SDL_LoadBMP(it->second.c_str());
+        SDL_Surface* sur = SDL_LoadBMP((base_path + it->second).c_str());
         SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer_handle ,sur);
         SDL_FreeSurface(sur);
         this->texture_map[it->first] = tex;
