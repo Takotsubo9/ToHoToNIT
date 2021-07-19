@@ -20,15 +20,37 @@ enum : int {
     TITLE_ITEM_COUNT,//個数カウント用
 };
 
+enum : int {
+    OPTION_ITEM_PLAYER = 0,
+    OPTION_ITEM_BOMB,
+    OPTION_ITEM_BGM_VOLUME,
+    OPTION_ITEM_SE_VOLUME,
+    OPTION_ITEM_MODE,
+    OPTION_ITEM_RESET,
+    OPTION_ITEM_KEYCONFIG,
+    OPTION_ITEM_QUIT,
+    OPTION_ITEM_COUNT,//個数カウント用
+};
+
+enum class TitleScreenPhase {
+    Title,
+    Option,
+    KeyConfig,
+};
+
 //タイトル画面クラス
 class TitleScreen : public Screen {
 private:
     long frames;
-    int selected_row;
+    int selected_row_title;
+    int selected_row_option;
+    TitleScreenPhase phase;
 public:
     TitleScreen() {
         this->frames = 0;
-        this->selected_row = TITLE_ITEM_START;
+        this->selected_row_title = TITLE_ITEM_START;
+        this->selected_row_option = OPTION_ITEM_COUNT;
+        this->phase = TitleScreenPhase::Title;
     }
     ~TitleScreen() {
         
