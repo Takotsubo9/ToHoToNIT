@@ -1,10 +1,11 @@
 #include "Operate.hpp"
+#include "Config.hpp"
 #include "InputManager/KeyboardManager.hpp"
 #include "InputManager/JoystickManager.hpp"
 #include <cmath>
 #include <iostream>
 
-void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joystick_manager) {
+void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joystick_manager, Config* config) {
     this->tmpPressing[Buttons::Up] = keyboard_manager->IsKeyDown(SDLK_UP);
     this->tmpPressing[Buttons::Down] = keyboard_manager->IsKeyDown(SDLK_DOWN);
     this->tmpPressing[Buttons::Left] = keyboard_manager->IsKeyDown(SDLK_LEFT);
@@ -13,6 +14,8 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
     this->tmpPressing[Buttons::Shot] = keyboard_manager->IsKeyDown(SDLK_z);
     this->tmpPressing[Buttons::Pause] = keyboard_manager->IsKeyDown(SDLK_ESCAPE);
     this->tmpPressing[Buttons::Skip] = keyboard_manager->IsKeyDown(SDLK_LCTRL) || keyboard_manager->IsKeyDown(SDLK_RCTRL);
+    this->tmpPressing[Buttons::Slow] = keyboard_manager->IsKeyDown(SDLK_LSHIFT) || keyboard_manager->IsKeyDown(SDLK_RSHIFT);
+
 
     this->NowAxis[0] = 0;
     this->NowAxis[1] = 0;
@@ -40,6 +43,10 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
     }
 
     if(joystick_manager->getEnableJoyStick()) {
+        for(std::map<Buttons, int>::const_iterator it = config->joystick_buttons_map.begin(); it != config->joystick_buttons_map.end(); ++it) {
+            this->tmpPressing[it->first] |= joystick_manager->IsButtonDown(it->second);
+        }
+
         if(joystick_manager->getEnableAxis()) {
 
             this->tmpPressing[Buttons::Right] |= (joystick_manager->getAxis(0) > 24576);

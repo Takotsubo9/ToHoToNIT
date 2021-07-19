@@ -2,6 +2,11 @@
 #define _CONFIG_H_
 
 #include <algorithm>
+#include <map>
+#include <string>
+#include "Const/Buttons.hpp"
+
+const int UNDEFINED_BUTTONS = -1;
 
 class Config {
 private:
@@ -10,8 +15,10 @@ private:
     int bgm_volume;
     int se_volume;
 public:
+    std::map<Buttons, int> joystick_buttons_map;
     Config(){
         this->Reset();
+        this->KeyConfigReset();
     }
     ~Config(){}
     void setPlayerCount(int player_count) {
@@ -51,6 +58,18 @@ public:
         this->bomb_count = 3;
         this->bgm_volume = 100;
         this->se_volume = 100;
+    }
+
+    void KeyConfigReset() {
+        joystick_buttons_map[Buttons::Shot] = 0;
+        joystick_buttons_map[Buttons::Bomb] = 1;
+        joystick_buttons_map[Buttons::Slow] = 0;
+        joystick_buttons_map[Buttons::Up] = UNDEFINED_BUTTONS;
+        joystick_buttons_map[Buttons::Down] = UNDEFINED_BUTTONS;
+        joystick_buttons_map[Buttons::Left] = UNDEFINED_BUTTONS;
+        joystick_buttons_map[Buttons::Right] = UNDEFINED_BUTTONS;
+        joystick_buttons_map[Buttons::Pause] = UNDEFINED_BUTTONS;
+        joystick_buttons_map[Buttons::Skip] = UNDEFINED_BUTTONS;
     }
 };
 

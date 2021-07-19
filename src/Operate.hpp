@@ -3,18 +3,9 @@
 
 #include "InputManager/JoystickManager.hpp"
 #include "InputManager/KeyboardManager.hpp"
+#include "Const/Buttons.hpp"
+#include "Config.hpp"
 #include <map>
-
-enum class Buttons : int {
-    Down,
-    Up,
-    Left,
-    Right,
-    Shot,
-    Bomb,
-    Skip,
-    Pause
-};
 
 //入力を管理するクラス
 class Operate {
@@ -26,7 +17,7 @@ private:
 
     float NowAxis[2];
 public:
-    void Polling(KeyboardManager* KeyboardManager, JoystickManager* JoystickManager);
+    void Polling(KeyboardManager* KeyboardManager, JoystickManager* JoystickManager, Config* config);
     bool IsPressed(Buttons button);
     bool IsDown(Buttons button);
     void GetSelfMovements(float* x, float* y);

@@ -82,7 +82,7 @@ void GameWindow::Run() {
         {
             uint64_t Ticks = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
             if (Ticks - PrevTicks > 1000000 / main_fps) {
-                operate->Polling(keyboard_manager, joystick_manager);
+                operate->Polling(keyboard_manager, joystick_manager, &config);
                 SDL_SetRenderDrawColor( renderer_handle, 0x00, 0x00, 0x00, 0xFF );
                 SDL_RenderClear(renderer_handle);
 
