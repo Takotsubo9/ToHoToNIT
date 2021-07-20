@@ -63,7 +63,7 @@ public:
     void KeyConfigReset() {
         joystick_buttons_map[Buttons::Shot] = 0;
         joystick_buttons_map[Buttons::Bomb] = 1;
-        joystick_buttons_map[Buttons::Slow] = 0;
+        joystick_buttons_map[Buttons::Slow] = 2;
         joystick_buttons_map[Buttons::Up] = UNDEFINED_BUTTONS;
         joystick_buttons_map[Buttons::Down] = UNDEFINED_BUTTONS;
         joystick_buttons_map[Buttons::Left] = UNDEFINED_BUTTONS;

@@ -43,8 +43,10 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
     }
 
     if(joystick_manager->getEnableJoyStick()) {
-        for(std::map<Buttons, int>::const_iterator it = config->joystick_buttons_map.begin(); it != config->joystick_buttons_map.end(); ++it) {
-            this->tmpPressing[it->first] |= joystick_manager->IsButtonDown(it->second);
+        if(this->EnableJoyStickButton) {
+            for(std::map<Buttons, int>::const_iterator it = config->joystick_buttons_map.begin(); it != config->joystick_buttons_map.end(); ++it) {
+                this->tmpPressing[it->first] |= joystick_manager->IsButtonDown(it->second);
+            }
         }
 
         if(joystick_manager->getEnableAxis()) {
@@ -78,14 +80,6 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
     }
 
     this->Pressing = this->tmpPressing;
-}
-
-bool Operate::IsPressed(Buttons button) {
-    return this->Pressed[button];
-}
-
-bool Operate::IsDown(Buttons button) {
-    return this->Pressing[button];
 }
 
 void Operate::GetSelfMovements(float* x, float* y) {

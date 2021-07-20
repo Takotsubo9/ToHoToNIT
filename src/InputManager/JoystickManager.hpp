@@ -26,7 +26,7 @@ public:
     bool IsButtonDown(int button) { return ButtonDownState[button]; }
     bool IsButtonPressed(int button) { return ButtonPressed[button]; }
     bool IsButtonReleased(int button) { return ButtonReleased[button]; }
-    std::vector<int> getButtonEvent() { return ButtonEvent; }
+    const std::vector<int>* getButtonEvent() { return &ButtonEvent; }
 };
 
 #endif /* _JOYSTICKMANAGER_H_ */

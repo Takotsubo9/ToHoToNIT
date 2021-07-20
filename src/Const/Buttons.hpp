@@ -3,15 +3,15 @@
 
 //ボタンのリスト
 enum class Buttons : int {
-    Down,
-    Up,
-    Left,
-    Right,
     Shot,
     Bomb,
     Slow,
+    Pause,
+    Up,
+    Down,
+    Left,
+    Right,
     Skip,
-    Pause
 };
 
 

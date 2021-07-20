@@ -158,22 +158,6 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
             }
         }
 
-        if(game_window->getIsButtonPressed(Buttons::Bomb) || game_window->getIsButtonPressed(Buttons::Pause))
-            this->selected_row_option = OPTION_ITEM_QUIT;
-
-        if(game_window->getIsButtonPressed(Buttons::Shot)) {
-            switch(selected_row_option) {
-                case OPTION_ITEM_RESET:
-                    game_window->config.Reset();
-                    break;
-                case OPTION_ITEM_QUIT:
-                    this->phase = TitleScreenPhase::Title;
-                    break;
-                default:
-                    break;
-            }
-        }
-
         if(game_window->getIsButtonPressed(Buttons::Left)) {
             switch (this->selected_row_option)
             {
@@ -238,11 +222,114 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                     break;
             }
         }
+        
+        if(game_window->getIsButtonPressed(Buttons::Bomb) || game_window->getIsButtonPressed(Buttons::Pause))
+            this->selected_row_option = OPTION_ITEM_QUIT;
+
+        if(game_window->getIsButtonPressed(Buttons::Shot)) {
+            switch(selected_row_option) {
+                case OPTION_ITEM_RESET:
+                    game_window->config.Reset();
+                    break;
+                case OPTION_ITEM_KEYCONFIG:
+                    this->phase = TitleScreenPhase::KeyConfig;
+                    game_window->setJoystickButtonEnable(false);
+                    this->selected_row_keyconfig = KEYCONFIG_ITEM_SHOT;
+                    break;
+                case OPTION_ITEM_QUIT:
+                    this->phase = TitleScreenPhase::Title;
+                    break;
+                default:
+                    break;
+            }
+        }
 
         if(game_window->getIsButtonPressed(Buttons::Down))
             selected_row_option = (selected_row_option + 1 + OPTION_ITEM_COUNT) % OPTION_ITEM_COUNT;
         if(game_window->getIsButtonPressed(Buttons::Up))
             selected_row_option = (selected_row_option - 1 + OPTION_ITEM_COUNT) % OPTION_ITEM_COUNT;
+
+
+    } else if(this->phase == TitleScreenPhase::KeyConfig) {
+
+        for(int i=0;i<KEYCONFIG_ITEM_COUNT;i++) {
+
+            SDL_Rect src_rect = {0,i*48,230,48};
+            SDL_Rect dst_rect = {100, 100 + i*48,230,48};
+            if(i==this->selected_row_keyconfig) {
+                dst_rect.x -= 2;
+                dst_rect.y -= 2;
+                game_window->DrawImage(ImageID::keyconfig_selected_items, &src_rect, &dst_rect);
+            }
+            else
+                game_window->DrawImage(ImageID::keyconfig_items, &src_rect, &dst_rect);
+
+                
+            if (i!=KEYCONFIG_ITEM_QUIT && i!=KEYCONFIG_ITEM_RESET) {
+                if(game_window->config.joystick_buttons_map[static_cast<Buttons>(i)]!=-1) {
+                    src_rect.y = KEYCONFIG_ITEM_COUNT*48;
+                    dst_rect.x = dst_rect.x + 300;
+
+                    if(i==this->selected_row_keyconfig) {
+                        game_window->DrawImage(ImageID::keyconfig_selected_items, &src_rect, &dst_rect);
+                    } else {
+                        game_window->DrawImage(ImageID::keyconfig_items, &src_rect, &dst_rect);
+                    }
+
+                    dst_rect.x = dst_rect.x + 200;
+
+
+
+                        for(int j=0;j<2;j++) {
+                            int num = ((int)(game_window->config.joystick_buttons_map[static_cast<Buttons>(i)] / pow(10, j)) % 10);
+                            src_rect = {32*num,0,32,48};
+                            dst_rect = {dst_rect.x-32*j,dst_rect.y,32,48};
+                            if(i==this->selected_row_keyconfig) {    
+                                game_window->DrawImage(ImageID::number_selected, &src_rect, &dst_rect);
+                            } else {
+                                game_window->DrawImage(ImageID::number, &src_rect, &dst_rect);
+                            }
+                        }
+                }
+            }
+        }
+
+        if(this->selected_row_keyconfig!=KEYCONFIG_ITEM_QUIT && this->selected_row_keyconfig!=KEYCONFIG_ITEM_RESET) {
+            if(game_window->getJoystickButtonEvent()->size() != 0) {
+                int button_num = (*game_window->getJoystickButtonEvent())[0];
+                game_window->config.joystick_buttons_map[static_cast<Buttons>(this->selected_row_keyconfig)] = button_num;
+                for(int j=0;j<KEYCONFIG_ITEM_RESET;j++) {//変なforになってしまい、申し訳ない。
+                    if(j!=this->selected_row_keyconfig) {
+                        if(game_window->config.joystick_buttons_map[static_cast<Buttons>(j)]==button_num) {
+                            game_window->config.joystick_buttons_map[static_cast<Buttons>(j)] = UNDEFINED_BUTTONS;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        if(game_window->getIsButtonPressed(Buttons::Bomb) || game_window->getIsButtonPressed(Buttons::Pause))
+            this->selected_row_keyconfig = KEYCONFIG_ITEM_QUIT;
+
+        if(game_window->getIsButtonPressed(Buttons::Shot)) {
+            switch(selected_row_keyconfig) {
+                case KEYCONFIG_ITEM_RESET:
+                    game_window->config.KeyConfigReset();
+                    break;
+                case KEYCONFIG_ITEM_QUIT:
+                    this->phase = TitleScreenPhase::Option;
+                    game_window->setJoystickButtonEnable(true);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if(game_window->getIsButtonPressed(Buttons::Down))
+            selected_row_keyconfig = (selected_row_keyconfig + 1 + KEYCONFIG_ITEM_COUNT) % KEYCONFIG_ITEM_COUNT;
+        if(game_window->getIsButtonPressed(Buttons::Up))
+            selected_row_keyconfig = (selected_row_keyconfig - 1 + KEYCONFIG_ITEM_COUNT) % KEYCONFIG_ITEM_COUNT;
 
 
     }

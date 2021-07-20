@@ -32,6 +32,21 @@ enum : int {
     OPTION_ITEM_COUNT,//個数カウント用
 };
 
+enum : int {
+    KEYCONFIG_ITEM_SHOT = 0,
+    KEYCONFIG_ITEM_BOMB,
+    KEYCONFIG_ITEM_SLOW,
+    KEYCONFIG_ITEM_PAUSE,
+    KEYCONFIG_ITEM_UP,
+    KEYCONFIG_ITEM_DOWN,
+    KRYCONFIG_ITEM_LEFT,
+    KEYCONFIG_ITEM_RIGHT,
+    KEYCONFIG_ITEM_SKIP,
+    KEYCONFIG_ITEM_RESET,
+    KEYCONFIG_ITEM_QUIT,
+    KEYCONFIG_ITEM_COUNT,//個数カウント用
+};
+
 enum class TitleScreenPhase {
     Title,
     Option,
@@ -44,12 +59,14 @@ private:
     long frames;
     int selected_row_title;
     int selected_row_option;
+    int selected_row_keyconfig;
     TitleScreenPhase phase;
 public:
     TitleScreen() {
         this->frames = 0;
         this->selected_row_title = TITLE_ITEM_START;
         this->selected_row_option = OPTION_ITEM_COUNT;
+        this->selected_row_keyconfig = KEYCONFIG_ITEM_SHOT;
         this->phase = TitleScreenPhase::Title;
     }
     ~TitleScreen() {

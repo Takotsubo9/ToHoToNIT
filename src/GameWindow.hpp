@@ -2,6 +2,7 @@
 #define _GAMEWINDOW_H_
 
 #include <string>
+#include <vector>
 #include <SDL2/SDL.h>
 #include "InputManager/KeyboardManager.hpp"
 #include "InputManager/JoystickManager.hpp"
@@ -64,6 +65,12 @@ public:
     //ウィンドウを閉じる関数
     void Quit() {
         this->quit = true;
+    }
+    const std::vector<int>* getJoystickButtonEvent() {
+        return this->joystick_manager->getButtonEvent();
+    }
+    void setJoystickButtonEnable(bool enable) {
+        this->operate->EnableJoyStickButton = enable;
     }
 };
 

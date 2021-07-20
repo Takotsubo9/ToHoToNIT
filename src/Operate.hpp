@@ -17,9 +17,17 @@ private:
 
     float NowAxis[2];
 public:
+    bool EnableJoyStickButton;
+    Operate() {
+        this->EnableJoyStickButton = true;
+    }
     void Polling(KeyboardManager* KeyboardManager, JoystickManager* JoystickManager, Config* config);
-    bool IsPressed(Buttons button);
-    bool IsDown(Buttons button);
+    bool IsPressed(Buttons button) {
+        return this->Pressed[button];
+    }
+    bool IsDown(Buttons button) {
+        return this->Pressing[button];
+    }
     void GetSelfMovements(float* x, float* y);
 };
 
