@@ -1,5 +1,5 @@
 CXXFLAGS = -Wall -Wextra -static-libgcc -static-libstdc++
-LDFLAGS = -lm -lSDL2
+LDFLAGS = -lm -lSDL2 -lSDL2_image
 VPATH = src
 OBJDIR = obj
 BINDIR = bin

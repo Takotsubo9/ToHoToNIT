@@ -1,4 +1,5 @@
 #include "GameWindow.hpp"
+#include <SDL2/SDL_image.h>
 
 GameWindow::GameWindow(std::string window_title, int width, int height) {
 
@@ -9,6 +10,7 @@ GameWindow::GameWindow(std::string window_title, int width, int height) {
     main_fps = 60;
     fullscreen_mode = FullScreenMODE::Windowed;
     SDL_Init(SDL_INIT_VIDEO|SDL_INIT_JOYSTICK); 
+    IMG_Init(IMG_INIT_PNG);
     window_handle = SDL_CreateWindow(window_title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_HIDDEN);
     renderer_handle = SDL_CreateRenderer(window_handle, -1, SDL_RENDERER_ACCELERATED);
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
@@ -26,6 +28,7 @@ GameWindow::~GameWindow() {
     delete keyboard_manager;
     SDL_DestroyRenderer(renderer_handle);
     SDL_DestroyWindow(window_handle);
+    IMG_Quit();
     SDL_Quit();
 }
 
