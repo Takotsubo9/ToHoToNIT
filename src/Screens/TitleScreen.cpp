@@ -23,6 +23,8 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
 
         if(game_window->getIsButtonPressed(Buttons::Shot)) {
             switch(selected_row_title) {
+                case TITLE_ITEM_START:
+                    return ScreenID::Game;
                 case TITLE_ITEM_OPTION:
                     this->phase = TitleScreenPhase::Option;
                     this->selected_row_option = OPTION_ITEM_PLAYER;
