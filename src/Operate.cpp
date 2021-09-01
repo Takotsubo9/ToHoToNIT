@@ -21,25 +21,21 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
     this->NowAxis[1] = 0;
 
     if(this->tmpPressing[Buttons::Up]) {
-        this->NowAxis[0] = 0;
-        this->NowAxis[1] = -1;
+        this->NowAxis[1] += -1;
     }
     if(this->tmpPressing[Buttons::Right]) {
-        this->NowAxis[0] = 1;
-        this->NowAxis[1] = 0;
+        this->NowAxis[0] += 1;
     }
     if(this->tmpPressing[Buttons::Down]) {
-        this->NowAxis[0] = 0;
-        this->NowAxis[1] = 1;
+        this->NowAxis[1] += 1;
     }
     if(this->tmpPressing[Buttons::Left]) {
-        this->NowAxis[0] = -1;
-        this->NowAxis[1] = 0;
+        this->NowAxis[0] += -1;
     } 
 
     if(this->NowAxis[0] != 0 && this->NowAxis[1] != 0) {
-        this->NowAxis[0] *= sqrt(2);
-        this->NowAxis[1] *= sqrt(2);
+        this->NowAxis[0] /= 1.41;
+        this->NowAxis[1] /= 1.41;
     }
 
     if(joystick_manager->getEnableJoyStick()) {

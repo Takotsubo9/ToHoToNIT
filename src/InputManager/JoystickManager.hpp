@@ -16,7 +16,7 @@ private:
     SDL_Joystick* joystick;
 public:
     JoystickManager();
-    ~JoystickManager();
+    virtual ~JoystickManager();
     void TrySetJoyStick();
     bool getEnableJoyStick() { return joystick != nullptr; }
     bool getEnableAxis() { return SDL_JoystickNumAxes(joystick) != 0; }

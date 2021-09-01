@@ -69,7 +69,7 @@ public:
         this->selected_row_keyconfig = KEYCONFIG_ITEM_SHOT;
         this->phase = TitleScreenPhase::Title;
     }
-    ~TitleScreen() {
+    virtual ~TitleScreen() {
         
     }
     ScreenID Render(GameWindow* game_window);

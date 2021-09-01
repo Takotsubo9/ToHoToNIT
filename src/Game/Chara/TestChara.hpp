@@ -1,3 +1,6 @@
+#ifndef _TESTCHARA_H_
+#define _TESTCHARA_H_
+
 #include <iostream>
 #include <string>
 #include "Character.hpp"
@@ -6,6 +9,8 @@ class TestChara : public Character
 {
 public:
   TestChara( void );
-  ~TestChara();
+  virtual ~TestChara();
   void spellCard( void );
 };
+
+#endif /* _TESTCHARA_H_ */

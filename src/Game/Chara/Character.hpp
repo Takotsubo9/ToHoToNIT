@@ -1,3 +1,6 @@
+#ifndef _CHARACTER_H_
+#define _CHARACTER_H_
+
 #include <iostream>
 #include <string>
 
@@ -36,7 +39,7 @@ protected:
   void setGodMode( bool godMode ){ this->godMode = godMode; }
 public:
   Character( void );
-  ~Character();
+  virtual ~Character();
   std::string getSName( void ){ return sName; }
   float getHighFSpeed( void ){ return highFSpeed; }
   float getLowFSpeed( void ){ return lowFSpeed; }
@@ -58,3 +61,5 @@ public:
 
   virtual void spellCard( void ) = 0;
 };
+
+#endif /* _CHARACTER_H_ */

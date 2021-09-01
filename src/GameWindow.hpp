@@ -29,7 +29,7 @@ private:
 public:
     Config config;
     GameWindow(std::string window_title, int width, int height);
-    ~GameWindow();
+    virtual ~GameWindow();
     //ウィンドウの
     void Run();
     //ウィンドウのフルスクリーンモードをセットする関数

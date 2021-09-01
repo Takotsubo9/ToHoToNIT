@@ -20,7 +20,7 @@ public:
         this->Reset();
         this->KeyConfigReset();
     }
-    ~Config(){}
+    virtual ~Config(){}
     void setPlayerCount(int player_count) {
         this->player_count = ((player_count - 1 + 5) % 5) + 1;
     }

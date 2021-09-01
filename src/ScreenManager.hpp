@@ -17,7 +17,7 @@ private:
     uint64_t PrevTicks = 0;
 public:
     ScreenManager();
-    ~ScreenManager();
+    virtual ~ScreenManager();
     void Render(GameWindow* game_window);
 };
 
