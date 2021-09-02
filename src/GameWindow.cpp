@@ -54,12 +54,13 @@ void GameWindow::Run() {
 
     SDL_ShowWindow(this->window_handle);
 
-    SDL_Surface* bootsur = SDL_LoadBMP((this->application_path+"image/booting/booting.bmp").c_str());
+    SDL_Surface* bootsur = IMG_Load((this->application_path+"image/booting/booting.png").c_str());
     SDL_RenderClear(renderer_handle);
     SDL_BlitSurface( bootsur, NULL, SDL_GetWindowSurface(window_handle), NULL );
     SDL_UpdateWindowSurface(window_handle);
     SDL_FreeSurface(bootsur);
 
+    //画像/音声のロード処理
     image_manager = new ImageManager(renderer_handle, application_path);
 
     quit = false;
