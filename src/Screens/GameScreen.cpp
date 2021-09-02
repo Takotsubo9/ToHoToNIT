@@ -13,8 +13,8 @@ ScreenID GameScreen::Render(GameWindow *game_window) {
 
     float speedrate = game_window->getIsButtonDown(Buttons::Slow) ? this->chara->getLowFSpeed() : this->chara->getHighFSpeed();
 
-    this->x += x * speedrate;
-    this->y += y * speedrate;
+    this->x += x * speedrate * 1.5;
+    this->y += y * speedrate * 1.5;
 
     this->x = std::max(std::min(static_cast<float>(WINDOW_WIDTH-10),this->x),static_cast<float>(0));
     this->y = std::max(std::min(static_cast<float>(WINDOW_HEIGHT-10),this->y),static_cast<float>(0));

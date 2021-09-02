@@ -11,7 +11,7 @@ GameWindow::GameWindow(std::string window_title, int width, int height) {
     fullscreen_mode = FullScreenMODE::Windowed;
     SDL_Init(SDL_INIT_VIDEO|SDL_INIT_JOYSTICK); 
     IMG_Init(IMG_INIT_PNG);
-    window_handle = SDL_CreateWindow(window_title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_HIDDEN);
+    window_handle = SDL_CreateWindow(window_title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_HIDDEN|SDL_WINDOW_RESIZABLE);
     renderer_handle = SDL_CreateRenderer(window_handle, -1, SDL_RENDERER_ACCELERATED);
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
     SDL_RenderSetLogicalSize(renderer_handle, width, height);

@@ -4,6 +4,10 @@
 
 ScreenID TitleScreen::Render(GameWindow* game_window) {
 
+    SDL_Rect bg_src_rect = {0,0,2400,1800};
+    SDL_Rect bg_rect = {0,0,960,720};
+    game_window->DrawImage(ImageID::title_background, &bg_src_rect, &bg_rect);
+
     if(this->phase == TitleScreenPhase::Title) {
         for(int i=0; i<TITLE_ITEM_COUNT; i++) {
             SDL_Rect srcrect = {0,48*i,220,48};
