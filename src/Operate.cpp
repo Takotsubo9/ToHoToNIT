@@ -67,7 +67,7 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
             }            
 
             this->NowAxis[0] = cos(angle) * abs(joystick_manager->getAxis(0) / 32768.0);
-            this->NowAxis[1] = sin(angle) * abs(joystick_manager->getAxis(1) / 32768.0);
+            this->NowAxis[1] = -sin(angle) * abs(joystick_manager->getAxis(1) / 32768.0);
         }
     }
 
