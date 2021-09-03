@@ -1,8 +1,10 @@
 #include "ScreenManager.hpp"
+#include "Screens/TitleScreen.hpp"
+#include "Screens/GameScreen.hpp"
 #include "GameWindow.hpp"
 
 ScreenManager::ScreenManager() {
-    this->screen = new TestScreen();
+    this->screen = new TitleScreen();
 }
 
 ScreenManager::~ScreenManager() {
@@ -14,11 +16,12 @@ void ScreenManager::Render(GameWindow* game_window) {
     if(screen->getScreenID() != id) {
         delete this->screen;
         switch(id) {
-            //ここに遷移用のクラスを列挙する。
-            //case ScreenID::hoge:
-            //  this->screen = new hogehoge();
-            //  break;
-                
+            case ScreenID::Title:
+                this->screen = new TitleScreen();
+                break;
+            case ScreenID::Game:
+                this->screen = new GameScreen();
+                break;
             default:
                 break;
         }
@@ -32,7 +35,7 @@ void ScreenManager::Render(GameWindow* game_window) {
     {
         const SDL_Rect srcrect = {32,0,96,48};
         const SDL_Rect dstrect = {912,696,48,24};
-        game_window->DrawImage(ImageID::FPSText, &srcrect, &dstrect);
+        game_window->DrawImage(ImageID::fps_text, &srcrect, &dstrect, RefPoint::LeftTop);
     }
     //fps小数点以下表示
     {
@@ -40,14 +43,14 @@ void ScreenManager::Render(GameWindow* game_window) {
             int Deg = ((int)(FPS / pow(10, -i-1)) % 10);
             const SDL_Rect srcrect = {32*Deg,0,32,48};
             const SDL_Rect dstrect = {16*i+880,696,16,24};
-            game_window->DrawImage(ImageID::Number, &srcrect, &dstrect);
+            game_window->DrawImage(ImageID::number, &srcrect, &dstrect, RefPoint::LeftTop);
         }
     }
     //fps点の表示
     {
         const SDL_Rect srcrect = {0,0,32,48};
         const SDL_Rect dstrect = {864,696,16,24};
-        game_window->DrawImage(ImageID::FPSText, &srcrect, &dstrect);
+        game_window->DrawImage(ImageID::fps_text, &srcrect, &dstrect, RefPoint::LeftTop);
     }
     //fps整数側表示
     {
@@ -61,7 +64,7 @@ void ScreenManager::Render(GameWindow* game_window) {
             int Deg = ((int)(FPS / pow(10, i)) % 10);
             const SDL_Rect srcrect = {32*Deg,0,32,48};
             const SDL_Rect dstrect = {-16*i+848,696,16,24};
-            game_window->DrawImage(ImageID::Number, &srcrect, &dstrect);
+            game_window->DrawImage(ImageID::number, &srcrect, &dstrect, RefPoint::LeftTop);
         }
     }
 

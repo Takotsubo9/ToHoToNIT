@@ -1,8 +1,9 @@
 #include "ImageManager.hpp"
+#include <SDL2/SDL_image.h>
 
-ImageManager::ImageManager(SDL_Renderer* renderer_handle) {
+ImageManager::ImageManager(SDL_Renderer* renderer_handle, std::string base_path) {
     for(std::map<ImageID, std::string>::const_iterator it = FilePathList.begin(); it != FilePathList.end(); ++it) {
-        SDL_Surface* sur = SDL_LoadBMP(it->second.c_str());
+        SDL_Surface* sur = IMG_Load((base_path + it->second).c_str());
         SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer_handle ,sur);
         SDL_FreeSurface(sur);
         this->texture_map[it->first] = tex;
@@ -15,12 +16,8 @@ ImageManager::~ImageManager() {
     }
 }
 
-void ImageManager::Render(SDL_Renderer* renderer_handle, ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect) {
-    this->Render(renderer_handle, image_id, srcrect, dstrect, 0xFF);
-}
-
-void ImageManager::Render(SDL_Renderer* renderer_handle, ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect, uint8_t alpha) {
+void ImageManager::Render(SDL_Renderer* renderer_handle, ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect, uint8_t alpha, double angle) {
     SDL_Texture* tmp = this->texture_map[image_id];
-    SDL_GetTextureAlphaMod(tmp, &alpha);
-    SDL_RenderCopy(renderer_handle, tmp, srcrect, dstrect);
+    SDL_SetTextureAlphaMod(tmp, alpha);
+    SDL_RenderCopyEx(renderer_handle, tmp, srcrect, dstrect , angle, NULL, SDL_FLIP_NONE);
 }

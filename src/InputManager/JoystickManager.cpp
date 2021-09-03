@@ -20,7 +20,7 @@ void JoystickManager::TrySetJoyStick() {
     }
 }
 
-short JoystickManager::GetAxis(int num) {
+short JoystickManager::getAxis(int num) {
     if(SDL_JoystickGetAttached(joystick))
         if(SDL_JoystickNumAxes(joystick) > num)
             return SDL_JoystickGetAxis(joystick, num);

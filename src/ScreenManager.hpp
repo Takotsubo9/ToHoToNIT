@@ -6,7 +6,6 @@
 #include <cmath>
 #include <SDL2/SDL.h>
 #include "Screen.hpp"
-#include "Screens/TestScreen.hpp"
 #include "Const/ScreenID.hpp"
 
 class GameWindow;
@@ -18,7 +17,7 @@ private:
     uint64_t PrevTicks = 0;
 public:
     ScreenManager();
-    ~ScreenManager();
+    virtual ~ScreenManager();
     void Render(GameWindow* game_window);
 };
 

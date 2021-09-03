@@ -2,7 +2,7 @@
 #define _FULLSCREENMODE_H_
 
 //フルスクリーンのモード
-enum class FullScreenMode {
+enum class FullScreenMODE {
     Windowed,
     Fullscreen,
     BorderLess,

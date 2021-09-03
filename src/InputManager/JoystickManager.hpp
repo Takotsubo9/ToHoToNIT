@@ -16,17 +16,17 @@ private:
     SDL_Joystick* joystick;
 public:
     JoystickManager();
-    ~JoystickManager();
+    virtual ~JoystickManager();
     void TrySetJoyStick();
     bool getEnableJoyStick() { return joystick != nullptr; }
     bool getEnableAxis() { return SDL_JoystickNumAxes(joystick) != 0; }
-    short GetAxis(int num);
+    short getAxis(int num);
     void Polling(SDL_Event e);
     void ClearKeyEvent();
     bool IsButtonDown(int button) { return ButtonDownState[button]; }
     bool IsButtonPressed(int button) { return ButtonPressed[button]; }
     bool IsButtonReleased(int button) { return ButtonReleased[button]; }
-    std::vector<int> getButtonEvent() { return ButtonEvent; }
+    const std::vector<int>* getButtonEvent() { return &ButtonEvent; }
 };
 
 #endif /* _JOYSTICKMANAGER_H_ */
