@@ -16,10 +16,6 @@ ImageManager::~ImageManager() {
     }
 }
 
-void ImageManager::Render(SDL_Renderer* renderer_handle, ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect) {
-    this->Render(renderer_handle, image_id, srcrect, dstrect, 0xFF);
-}
-
 void ImageManager::Render(SDL_Renderer* renderer_handle, ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect, uint8_t alpha) {
     SDL_Texture* tmp = this->texture_map[image_id];
     SDL_SetTextureAlphaMod(tmp, alpha);

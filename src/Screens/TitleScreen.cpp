@@ -1,12 +1,13 @@
 #include "TitleScreen.hpp"
 #include "../GameWindow.hpp"
+#include "../Const/RefPoint.hpp"
 #include <SDL2/SDL.h>
 
 ScreenID TitleScreen::Render(GameWindow* game_window) {
 
     SDL_Rect bg_src_rect = {0,0,2400,1800};
     SDL_Rect bg_rect = {0,0,960,720};
-    game_window->DrawImage(ImageID::title_background, &bg_src_rect, &bg_rect);
+    game_window->DrawImage(ImageID::title_background, &bg_src_rect, &bg_rect, RefPoint::LeftTop);
 
     if(this->phase == TitleScreenPhase::Title) {
         for(int i=0; i<TITLE_ITEM_COUNT; i++) {
@@ -15,9 +16,9 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
             if(i == selected_row_title) {
                 dstrect.x -= 2;
                 dstrect.y -= 2;
-                game_window->DrawImage(ImageID::title_selected_items, &srcrect, &dstrect);
+                game_window->DrawImage(ImageID::title_selected_items, &srcrect, &dstrect, RefPoint::LeftTop);
             } else {
-                game_window->DrawImage(ImageID::title_items, &srcrect, &dstrect, 0xC0);
+                game_window->DrawImage(ImageID::title_items, &srcrect, &dstrect, RefPoint::LeftTop, 0xC0);
             }
         }
 
@@ -57,9 +58,9 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
             if(i == selected_row_option) {
                 dstrect.x -= 2;
                 dstrect.y -= 2;
-                game_window->DrawImage(ImageID::option_selected_items, &srcrect, &dstrect);
+                game_window->DrawImage(ImageID::option_selected_items, &srcrect, &dstrect, RefPoint::LeftTop);
             } else {
-                game_window->DrawImage(ImageID::option_items, &srcrect, &dstrect, 0xC0);
+                game_window->DrawImage(ImageID::option_items, &srcrect, &dstrect, RefPoint::LeftTop, 0xC0);
             }
             
             switch(i) {
@@ -74,10 +75,10 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                         if(j==game_window->config.getPlayerCount()-1) {
                             dst_rect.x -= 2;
                             dst_rect.y -= 2;
-                            game_window->DrawImage(ImageID::number_selected, &src_rect, &dst_rect, active_alpha);
+                            game_window->DrawImage(ImageID::number_selected, &src_rect, &dst_rect, RefPoint::LeftTop, active_alpha);
                         }
                         else
-                            game_window->DrawImage(ImageID::number, &src_rect, &dst_rect, active_alpha);
+                            game_window->DrawImage(ImageID::number, &src_rect, &dst_rect, RefPoint::LeftTop, active_alpha);
                     }
                     break;
                 case OPTION_ITEM_BOMB:
@@ -91,10 +92,10 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                         if(j==game_window->config.getBombCount()) {
                             dst_rect.x -= 2;
                             dst_rect.y -= 2;
-                            game_window->DrawImage(ImageID::number_selected, &src_rect, &dst_rect, active_alpha);
+                            game_window->DrawImage(ImageID::number_selected, &src_rect, &dst_rect, RefPoint::LeftTop, active_alpha);
                         }
                         else
-                            game_window->DrawImage(ImageID::number, &src_rect, &dst_rect, active_alpha);
+                            game_window->DrawImage(ImageID::number, &src_rect, &dst_rect, RefPoint::LeftTop, active_alpha);
                     }
                     break;
                 case OPTION_ITEM_BGM_VOLUME:
@@ -113,10 +114,10 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                             if(i==selected_row_option) {
                                 dst_rect.x -= 2;
                                 dst_rect.y -= 2;
-                                game_window->DrawImage(ImageID::number_selected, &src_rect, &dst_rect, active_alpha);
+                                game_window->DrawImage(ImageID::number_selected, &src_rect, &dst_rect, RefPoint::LeftTop, active_alpha);
                             }
                             else
-                                game_window->DrawImage(ImageID::number, &src_rect, &dst_rect, active_alpha);
+                                game_window->DrawImage(ImageID::number, &src_rect, &dst_rect, RefPoint::LeftTop, active_alpha);
                         }
                     }
                     break;
@@ -136,10 +137,10 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                             if(i==selected_row_option) {
                                 dst_rect.x -= 2;
                                 dst_rect.y -= 2;
-                                game_window->DrawImage(ImageID::number_selected, &src_rect, &dst_rect, active_alpha);
+                                game_window->DrawImage(ImageID::number_selected, &src_rect, &dst_rect, RefPoint::LeftTop, active_alpha);
                             }
                             else
-                                game_window->DrawImage(ImageID::number, &src_rect, &dst_rect, active_alpha);
+                                game_window->DrawImage(ImageID::number, &src_rect, &dst_rect, RefPoint::LeftTop, active_alpha);
                         }
                     }
                     break;
@@ -155,10 +156,10 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                         if(j==static_cast<int>(game_window->getFullScreenMode())) {
                             dst_rect.x -= 2;
                             dst_rect.y -= 2;
-                            game_window->DrawImage(ImageID::option_selected_fullscreen_mode, &src_rect, &dst_rect, active_alpha);
+                            game_window->DrawImage(ImageID::option_selected_fullscreen_mode, &src_rect, &dst_rect, RefPoint::LeftTop, active_alpha);
                         }
                         else
-                            game_window->DrawImage(ImageID::option_fullscreen_mode, &src_rect, &dst_rect, active_alpha);
+                            game_window->DrawImage(ImageID::option_fullscreen_mode, &src_rect, &dst_rect, RefPoint::LeftTop, active_alpha);
                     }
                     break;
             }
@@ -265,10 +266,10 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
             if(i==this->selected_row_keyconfig) {
                 dst_rect.x -= 2;
                 dst_rect.y -= 2;
-                game_window->DrawImage(ImageID::keyconfig_selected_items, &src_rect, &dst_rect);
+                game_window->DrawImage(ImageID::keyconfig_selected_items, &src_rect, &dst_rect, RefPoint::LeftTop);
             }
             else
-                game_window->DrawImage(ImageID::keyconfig_items, &src_rect, &dst_rect);
+                game_window->DrawImage(ImageID::keyconfig_items, &src_rect, &dst_rect, RefPoint::LeftTop);
 
                 
             if (i!=KEYCONFIG_ITEM_QUIT && i!=KEYCONFIG_ITEM_RESET) {
@@ -277,9 +278,9 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                     dst_rect.x = dst_rect.x + 300;
 
                     if(i==this->selected_row_keyconfig) {
-                        game_window->DrawImage(ImageID::keyconfig_selected_items, &src_rect, &dst_rect);
+                        game_window->DrawImage(ImageID::keyconfig_selected_items, &src_rect, &dst_rect, RefPoint::LeftTop);
                     } else {
-                        game_window->DrawImage(ImageID::keyconfig_items, &src_rect, &dst_rect);
+                        game_window->DrawImage(ImageID::keyconfig_items, &src_rect, &dst_rect, RefPoint::LeftTop);
                     }
 
                     dst_rect.x = dst_rect.x + 200;
@@ -291,9 +292,9 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                             src_rect = {32*num,0,32,48};
                             dst_rect = {dst_rect.x-32*j,dst_rect.y,32,48};
                             if(i==this->selected_row_keyconfig) {    
-                                game_window->DrawImage(ImageID::number_selected, &src_rect, &dst_rect);
+                                game_window->DrawImage(ImageID::number_selected, &src_rect, &dst_rect, RefPoint::LeftTop);
                             } else {
-                                game_window->DrawImage(ImageID::number, &src_rect, &dst_rect);
+                                game_window->DrawImage(ImageID::number, &src_rect, &dst_rect, RefPoint::LeftTop);
                             }
                         }
                 }

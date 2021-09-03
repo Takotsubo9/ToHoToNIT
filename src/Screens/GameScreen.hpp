@@ -4,8 +4,8 @@
 #include <SDL2/SDL.h>
 #include "../Screen.hpp"
 #include "../Const/ScreenID.hpp"
-#include "../Game/Chara/Character.hpp"
-#include "../Game/Chara/TestChara.hpp"
+#include "../Const/CharacterID.hpp"
+#include "../Game/Stage/Stage.hpp"
 
 class GameWindow;
 
@@ -13,18 +13,17 @@ class GameWindow;
 class GameScreen : public Screen {
 private:
     long frames;
-    float x;
-    float y;
-    Character* chara; 
+    Stage * stage;
+    Player * player;
+    bool paused;
 public:
     GameScreen() {
         this->frames = 0;
-        this->x = 200;
-        this->y = 200;
-        this->chara = new TestChara();
+        this->paused = false;
+        this->player = new Player(CharacterID::TestChara);
     }
     virtual ~GameScreen() {
-        delete this->chara;
+        delete this->player;
     }
     ScreenID Render(GameWindow* game_window);
     ScreenID getScreenID() { return ScreenID::Game; }
