@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install dependent libraries
+      run: sudo apt install build-essential libsdl2-dev libsdl2-2.0-0 libjpeg-dev libwebp-dev libtiff5-dev libsdl2-image-dev libsdl2-image-2.0-0
+
+    - name: Create makefile
+      run: |
+        cd ${{ github.workspace }}
+        ./create-makefile.sh
+
+    - name: Build
+      run : make
