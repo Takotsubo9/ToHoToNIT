@@ -10,6 +10,29 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
     game_window->DrawImage(ImageID::title_background, &bg_src_rect, &bg_rect, RefPoint::LeftTop);
 
     if(this->phase == TitleScreenPhase::Title) {
+
+        SDL_Rect logo_src_rect[5] = {
+            {0, 0, 108, 108},
+            {108, 0, 108, 108},
+            {216, 0, 108, 108},
+            {0, 108, 108, 108},
+            {108, 108, 108, 108},
+        };
+        SDL_Rect logo_src_eng_rect[2] = {
+            {0, 216, 324, 54},
+            {0, 270, 324, 54},
+        };
+
+        for (int i = 0; i < 5; i++) {
+            SDL_Rect logo_dst_rect = {420 + i * 108, i * 30, 108, 108};
+            double angle = i == 2 ? -20 : 0;
+            game_window->DrawImage(ImageID::title_logo, &logo_src_rect[i], &logo_dst_rect, RefPoint::LeftTop, 0xff, angle);
+        }
+        for (int i = 0; i < 2; i++) {
+            SDL_Rect logo_dst_rect = {480 + i * 200, 110 - i * 72, 324, 54};
+            game_window->DrawImage(ImageID::title_logo, &logo_src_eng_rect[i], &logo_dst_rect, RefPoint::LeftTop, 0xff, -20);
+        }
+
         for(int i=0; i<TITLE_ITEM_COUNT; i++) {
             SDL_Rect srcrect = {0,48*i,220,48};
             SDL_Rect dstrect = {667-(i*10),244+(i*45),220,48};

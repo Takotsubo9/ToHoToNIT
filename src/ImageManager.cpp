@@ -16,8 +16,8 @@ ImageManager::~ImageManager() {
     }
 }
 
-void ImageManager::Render(SDL_Renderer* renderer_handle, ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect, uint8_t alpha) {
+void ImageManager::Render(SDL_Renderer* renderer_handle, ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect, uint8_t alpha, double angle) {
     SDL_Texture* tmp = this->texture_map[image_id];
     SDL_SetTextureAlphaMod(tmp, alpha);
-    SDL_RenderCopy(renderer_handle, tmp, srcrect, dstrect);
+    SDL_RenderCopyEx(renderer_handle, tmp, srcrect, dstrect , angle, NULL, SDL_FLIP_NONE);
 }
