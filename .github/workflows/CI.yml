@@ -16,6 +16,7 @@ jobs:
     - name: Create makefile
       run: |
         cd ${{ github.workspace }}
+        sudo chmod +x ./create-makefile.sh
         ./create-makefile.sh
 
     - name: Build
