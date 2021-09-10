@@ -3,9 +3,12 @@
 
 #include "EnemyBarrage.hpp"
 
+class EnemyBarrage;
+
 class Enemy
 {
 private:
+    EnemyBarrage * ebarrage;
     int enemyID;
     int maxHP;
     int HP;
@@ -21,6 +24,8 @@ public:
     Enemy( int enemyID );
     Enemy( int enemyID, float x, float y );    //使うんだったら使って
     virtual ~Enemy();
+    void setEnemyBarrage( EnemyBarrage * ebarrage ){ this->ebarrage = ebarrage; }
+    EnemyBarrage * getEnemyBarrage( void ){ return ebarrage; }
     void setEnemyID( int enemyID ){ this->enemyID = enemyID; }
     int getEnemyID( void ){ return enemyID; }
     int getMaxHP( void ){ return maxHP; }

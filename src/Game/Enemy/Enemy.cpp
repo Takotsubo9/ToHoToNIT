@@ -1,4 +1,5 @@
 #include"Enemy.hpp"
+#include"EnemyBarrage.hpp"
 
 Enemy::Enemy( void )
 {
@@ -24,7 +25,7 @@ Enemy::~Enemy()
 
 void Enemy::damageHP( int damagedHP )
 {
-    setHP( getHP() + ( damagedHP * getDefense() ) );
+    setHP( getHP() - ( damagedHP * getDefense() ) );
 }
 
 void Enemy::restHP( int restedHP )
