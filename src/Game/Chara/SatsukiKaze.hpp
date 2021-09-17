@@ -1,8 +1,6 @@
 #ifndef _SATSUKIKAZE_H_
 #define _SATSUKIKAZE_H_
 
-#include <iostream>
-#include <string>
 #include "Character.hpp"
 
 class SatsukiKaze : public Character

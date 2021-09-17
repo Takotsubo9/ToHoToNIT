@@ -11,6 +11,7 @@ private:
     PlayerBarrage * pbarrage;
     float x;
     float y;
+    int hitBoxRadius = 5;    //キャラの当たり判定半径(pxl) 全キャラで不変
 public:
     dPlayer() {
         this->x = 100;
@@ -35,6 +36,7 @@ public:
     float getX( void ){ return x; }
     void setY( float y ){ this->y = y; }
     float getY( void ){ return y; }
+    int getHitBoxRadius( void ){ return hitBoxRadius; }
 
     void move(float x, float y, bool isSlow) {
         float speed = isSlow ? this->player->getCharacter()->getLowFSpeed() : this->player->getCharacter()->getHighFSpeed();

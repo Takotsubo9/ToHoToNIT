@@ -1,8 +1,6 @@
 #ifndef _TESTCHARA_H_
 #define _TESTCHARA_H_
 
-#include <iostream>
-#include <string>
 #include "Character.hpp"
 
 class TestChara : public Character
