@@ -2,8 +2,8 @@
 #define _ENEMYBARRAGE_H_
 
 #include<vector>
-#include"EnemyBullet.hpp"
-#include"../Player/dPlayer.hpp"
+#include"../Bullet/EnemyBullet.hpp"
+#include"../../Player/dPlayer.hpp"
 
 class Enemy;
 

@@ -1,7 +1,7 @@
 #ifndef _ENEMYBULLET_H_
 #define _ENEMYBULLET_H_
 
-#include"../../Const/ImageID.hpp"
+#include"../../../Const/ImageID.hpp"
 
 class EnemyBullet
 {
