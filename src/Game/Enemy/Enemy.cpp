@@ -1,5 +1,5 @@
 #include"Enemy.hpp"
-#include"EnemyBarrage.hpp"
+#include"Barrage/EnemyBarrage.hpp"
 
 Enemy::Enemy( void )
 {

@@ -1,7 +1,7 @@
 #ifndef _ENEMY_H_
 #define _ENEMY_H_
 
-#include "EnemyBarrage.hpp"
+#include "Barrage/EnemyBarrage.hpp"
 
 class EnemyBarrage;
 
