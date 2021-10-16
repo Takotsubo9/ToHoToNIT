@@ -1,14 +1,15 @@
 #ifndef _ENEMY_H_
 #define _ENEMY_H_
 
-#include "Barrage/EnemyBarrage.hpp"
+#include"Barrage/EnemyBarrage.hpp"
+#include<vector>
 
 class EnemyBarrage;
 
 class Enemy
 {
 private:
-    EnemyBarrage * ebarrage;
+    std::vector<EnemyBarrage *> ebarrages;
     int enemyID;
     int maxHP;
     int HP;
@@ -24,8 +25,8 @@ public:
     Enemy( int enemyID );
     Enemy( int enemyID, float x, float y );    //使うんだったら使って
     virtual ~Enemy();
-    void setEnemyBarrage( EnemyBarrage * ebarrage ){ this->ebarrage = ebarrage; }
-    EnemyBarrage * getEnemyBarrage( void ){ return ebarrage; }
+    void setEnemyBarrage( EnemyBarrage * ebarrage ){ this->ebarrages.push_back( ebarrage ); }
+    EnemyBarrage * getEnemyBarrage( int num ){ return ebarrages[num]; }
     void setEnemyID( int enemyID ){ this->enemyID = enemyID; }
     int getEnemyID( void ){ return enemyID; }
     int getMaxHP( void ){ return maxHP; }
