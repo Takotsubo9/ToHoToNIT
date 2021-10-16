@@ -19,6 +19,7 @@ enum class ImageID {
     option_selected_fullscreen_mode,
     keyconfig_items,
     keyconfig_selected_items,
+    musicroom_background,
 };
 
 //画像IDに対するファイルパス
@@ -36,6 +37,7 @@ const std::map<ImageID, std::string> FilePathList = {
     {ImageID::option_selected_fullscreen_mode, "image/option/option_selected_fullscreen_mode.png"},
     {ImageID::keyconfig_items, "image/keyconfig/keyconfig_items.png"},
     {ImageID::keyconfig_selected_items, "image/keyconfig/keyconfig_selected_items.png"},
+    {ImageID::musicroom_background, "image/musicroom/musicroom_background.png"},
 };
 
 #endif /* _IMAGEID_H_ */

@@ -57,6 +57,8 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                     this->phase = TitleScreenPhase::Option;
                     this->selected_row_option = OPTION_ITEM_PLAYER;
                     break;
+                case TITLE_ITEM_MUSIC_ROOM:
+                    return ScreenID::MusicRoom;
                 case TITLE_ITEM_QUIT:
                     game_window->Quit();
                     break;
