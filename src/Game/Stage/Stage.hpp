@@ -5,7 +5,7 @@
 #include "../../GameWindow.hpp"
 
 class Stage {
-private:
+protected:
     dPlayer dplayer;
 public:
     Stage(Player * player) {

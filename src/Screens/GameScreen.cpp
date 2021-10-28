@@ -6,6 +6,10 @@
 
 ScreenID GameScreen::Render(GameWindow *game_window) {
 
+    if (!this->paused) {
+        this->stage->Draw(game_window);
+    }
+
     if (game_window->getIsButtonPressed(Buttons::Pause)) {
         if(!this->paused) {
             this->paused = true;

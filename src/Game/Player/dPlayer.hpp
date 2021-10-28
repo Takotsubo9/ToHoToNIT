@@ -1,6 +1,9 @@
 #ifndef _DPLAYER_H_
 #define _DPLAYER_H_
 
+#include <SDL2/SDL.h>
+
+#include "../../GameWindow.hpp"
 #include "Player.hpp"
 
 class PlayerBarrage;
@@ -43,8 +46,9 @@ public:
         this->x += x * 1.5 * speed;
         this->y += y * 1.5 * speed;
     }
-    void draw() {
-
+    void Draw(GameWindow * game_window) {
+        SDL_Rect player_rect = {static_cast<int>(this->x), static_cast<int>(this->y), 30, 40};
+        game_window->FillRect(0xff, 0xff, 0xff, 0xff, &player_rect);
     }
 };
 
