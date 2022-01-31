@@ -7,6 +7,7 @@
 #include <SDL2/SDL.h>
 #include "Screen.hpp"
 #include "Const/ScreenID.hpp"
+#include "FPS.hpp"
 
 class GameWindow;
 
@@ -14,7 +15,7 @@ class GameWindow;
 class ScreenManager {
 private:
     Screen* screen; //Screenクラスを継承したものを回す。
-    uint64_t PrevTicks = 0;
+    FPS fps;
 public:
     ScreenManager();
     virtual ~ScreenManager();
