@@ -17,9 +17,7 @@ class MusicRoomScreen : public Screen {
 private:
     int selected_row;
 public:
-    MusicRoomScreen() {
-        selected_row = MUSIC_ITEM_HOGEHOGE;
-    }
+    MusicRoomScreen();
     virtual ~MusicRoomScreen() {
     }
     ScreenID Render(GameWindow* game_window);

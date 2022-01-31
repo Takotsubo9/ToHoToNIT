@@ -4,6 +4,15 @@
 #include <SDL2/SDL.h>
 #include <cmath>
 
+GameScreen::GameScreen() {
+    this->frames = 0;
+    this->paused = false;
+    this->pause_counter = 0;
+    this->selected_row_pause = PAUSE_ITEM_RESUME_TO_GAME;
+    this->player = new Player(CharacterID::TestChara);
+    this->stage = new TestStage(this->player);
+}
+
 ScreenID GameScreen::Render(GameWindow *game_window) {
 
     SDL_Rect all_rect = {0,0,960,720};

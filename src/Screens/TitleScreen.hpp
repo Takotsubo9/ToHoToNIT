@@ -62,13 +62,7 @@ private:
     int selected_row_keyconfig;
     TitleScreenPhase phase;
 public:
-    TitleScreen() {
-        this->frames = 0;
-        this->selected_row_title = TITLE_ITEM_START;
-        this->selected_row_option = OPTION_ITEM_COUNT;
-        this->selected_row_keyconfig = KEYCONFIG_ITEM_SHOT;
-        this->phase = TitleScreenPhase::Title;
-    }
+    TitleScreen();
     virtual ~TitleScreen() {
         
     }

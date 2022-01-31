@@ -10,7 +10,7 @@
 
 class GameWindow;
 
-static int PAUSE_COUNTER_MAX = 20;
+const int PAUSE_COUNTER_MAX = 20;
 
 enum : int {
     PAUSE_ITEM_RESUME_TO_GAME = 0,
@@ -28,14 +28,7 @@ private:
     int pause_counter;
     int selected_row_pause;
 public:
-    GameScreen() {
-        this->frames = 0;
-        this->paused = false;
-        this->pause_counter = 0;
-        this->selected_row_pause = PAUSE_ITEM_RESUME_TO_GAME;
-        this->player = new Player(CharacterID::TestChara);
-        this->stage = new TestStage(this->player);
-    }
+    GameScreen();
     virtual ~GameScreen() {
         delete this->stage;
         delete this->player;

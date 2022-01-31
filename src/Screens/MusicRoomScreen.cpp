@@ -3,6 +3,9 @@
 #include "../Const/RefPoint.hpp"
 #include <SDL2/SDL.h>
 
+MusicRoomScreen::MusicRoomScreen() {
+    selected_row = MUSIC_ITEM_HOGEHOGE;
+}
 
 ScreenID MusicRoomScreen::Render(GameWindow* game_window) {
     SDL_Rect bg_src_rect = {0,0,1600,1200};

@@ -3,6 +3,14 @@
 #include "../Const/RefPoint.hpp"
 #include <SDL2/SDL.h>
 
+TitleScreen::TitleScreen() {
+    this->frames = 0;
+    this->selected_row_title = TITLE_ITEM_START;
+    this->selected_row_option = OPTION_ITEM_COUNT;
+    this->selected_row_keyconfig = KEYCONFIG_ITEM_SHOT;
+    this->phase = TitleScreenPhase::Title;
+}
+
 ScreenID TitleScreen::Render(GameWindow* game_window) {
 
     SDL_Rect bg_src_rect = {0,0,2400,1800};
