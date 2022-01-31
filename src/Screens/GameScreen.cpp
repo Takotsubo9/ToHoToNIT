@@ -10,6 +10,9 @@ ScreenID GameScreen::Render(GameWindow *game_window) {
         this->stage->Draw(game_window);
     }
 
+    SDL_Rect frame_rect = {0,0,960,720};
+    game_window->DrawImage(ImageID::game_frame, &frame_rect, &frame_rect);
+
     if (game_window->getIsButtonPressed(Buttons::Pause)) {
         if(!this->paused) {
             this->paused = true;

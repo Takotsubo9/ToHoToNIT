@@ -51,7 +51,7 @@ public:
         this->operate->GetSelfMovements(x, y);
     }
     //引数に与えられたIDの画像を描画する関数(アルファあり)
-    void DrawImage(ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect, RefPoint ref, uint8_t alpha = 0xff , double angle = 0) {
+    void DrawImage(ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect, RefPoint ref = RefPoint::LeftTop, uint8_t alpha = 0xff, double angle = 0) {
         SDL_Rect dst = *dstrect;
         switch(ref) {
             case RefPoint::Top:
