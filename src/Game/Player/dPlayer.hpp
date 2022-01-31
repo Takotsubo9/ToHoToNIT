@@ -14,7 +14,7 @@ private:
     PlayerBarrage * pbarrage;
     float x;
     float y;
-    int hitBoxRadius = 5;    //キャラの当たり判定半径(pxl) 全キャラで不変
+    const int hitBoxRadius = 5;    //キャラの当たり判定半径(pxl) 全キャラで不変
 public:
     dPlayer() {
         this->x = 100;

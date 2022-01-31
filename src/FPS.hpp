@@ -5,7 +5,7 @@
 #include <queue>
 #include <iostream>
 
-#define MAX_FPS_VECTOR_COUNT 30
+const int MAX_FPS_VECTOR_COUNT = 30;
 
 class GameWindow;
 
