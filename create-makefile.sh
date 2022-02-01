@@ -3,9 +3,9 @@ for file in `\find -name '*.cpp'`; do
     filelist="${filelist} ${file}"
 done
 
-echo "CXX = g++"
-echo "CXXFLAGS = -Wall -Wextra -static-libgcc -static-libstdc++" > makefile
-echo "LDFLAGS = -lm -lSDL2 -lSDL2_image" >> makefile
+echo "CXX = g++" > makefile
+echo "CXXFLAGS = -Wall -Wextra -static-libgcc -static-libstdc++" >> makefile
+echo "LDFLAGS = -lm -lSDL2 -lSDL2_image -lSDL2_mixer" >> makefile
 echo "SRCS = "${filelist} >> makefile
 echo "OBJECTS = ""$""(SRCS:%cpp=%o)" >> makefile
 echo "all : ""$""(OBJECTS) bin" >> makefile

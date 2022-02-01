@@ -4,6 +4,7 @@
 ## 依存ライブラリ
 * SDL 2.0.20
 * SDL_image 2.0.5
+* SDL_mixer 2.0.4
 
 ## HowToBuild
 ### 環境構築
@@ -17,6 +18,7 @@
 
     * [SDL](https://www.libsdl.org/download-2.0.php)
     * [SDL_image](https://www.libsdl.org/projects/SDL_image/)
+    * [SDL_mixer](https://www.libsdl.org/projects/SDL_mixer/)
 
     からインストールしてください。
 
