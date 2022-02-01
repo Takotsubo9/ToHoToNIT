@@ -1,5 +1,6 @@
 #include "GameWindow.hpp"
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
 
 GameWindow::GameWindow(std::string window_title, int width, int height) {
 
@@ -7,10 +8,28 @@ GameWindow::GameWindow(std::string window_title, int width, int height) {
     this->application_path = std::string(application_path_char);
     SDL_free(application_path_char);
 
+    this->window_handle = NULL;
+    this->renderer_handle = NULL;
+    keyboard_manager = NULL;
+    joystick_manager = NULL;
+    operate = NULL;
+
     main_fps = 60;
     fullscreen_mode = FullScreenMODE::Windowed;
-    SDL_Init(SDL_INIT_VIDEO|SDL_INIT_JOYSTICK); 
-    IMG_Init(IMG_INIT_PNG);
+    if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_JOYSTICK) != 0) {
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to initialize SDL2", NULL);
+        return;
+    }
+    int flags = IMG_INIT_PNG;
+    if((IMG_Init(flags) & flags) != flags) {
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to initialize SDL2_image", NULL);
+        return;
+    }
+    flags = MIX_INIT_OGG|MIX_INIT_OPUS;
+    if((Mix_Init(flags) & flags) != flags) {
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to initialize SDL2_mixer", NULL);
+        return;
+    }
     window_handle = SDL_CreateWindow(window_title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_HIDDEN|SDL_WINDOW_RESIZABLE);
     renderer_handle = SDL_CreateRenderer(window_handle, -1, SDL_RENDERER_ACCELERATED);
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
@@ -23,16 +42,25 @@ GameWindow::GameWindow(std::string window_title, int width, int height) {
 }
 
 GameWindow::~GameWindow() {
-    delete operate;
-    delete joystick_manager;
-    delete keyboard_manager;
-    SDL_DestroyRenderer(renderer_handle);
-    SDL_DestroyWindow(window_handle);
+    if(operate)
+        delete operate;
+    if(joystick_manager)
+        delete joystick_manager;
+    if(keyboard_manager)
+        delete keyboard_manager;
+    if(renderer_handle)
+        SDL_DestroyRenderer(renderer_handle);
+    if(window_handle)
+        SDL_DestroyWindow(window_handle);
+    Mix_Quit();
     IMG_Quit();
     SDL_Quit();
 }
 
 void GameWindow::setFullScreenMode(FullScreenMODE fsm) {
+    if(!window_handle)
+        return;
+
     if( !(this->fullscreen_mode == fsm) ) {
         if(fsm == FullScreenMODE::Fullscreen) {
             SDL_SetWindowFullscreen(window_handle, SDL_WINDOW_FULLSCREEN);
@@ -46,6 +74,9 @@ void GameWindow::setFullScreenMode(FullScreenMODE fsm) {
 }
 
 void GameWindow::Run() {
+    if(!window_handle)
+        return;
+
     ScreenManager screen_manager;
 
     SDL_Event pollevent;
