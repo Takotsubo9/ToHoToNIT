@@ -55,7 +55,7 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
             //以下Axis
             float angle;
             if(joystick_manager->getAxis(0)!=0) {
-                angle = atan(-joystick_manager->getAxis(1)/(double)joystick_manager->getAxis(0));
+                angle = atan(-joystick_manager->getAxis(1)/static_cast<double>(joystick_manager->getAxis(0)));
                 if(joystick_manager->getAxis(0)<0) {
                     angle += M_PI;
                 }

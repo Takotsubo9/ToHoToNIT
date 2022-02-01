@@ -9,6 +9,7 @@
 #include "Operate.hpp"
 #include "ScreenManager.hpp"
 #include "ImageManager.hpp"
+#include "SoundManager.hpp"
 #include "Const/FullScreenMode.hpp"
 #include "Const/RefPoint.hpp"
 #include "Config.hpp"
@@ -22,6 +23,7 @@ private:
     JoystickManager* joystick_manager;
     Operate* operate;
     ImageManager* image_manager;
+    SoundManager* sound_manager;
     FullScreenMODE fullscreen_mode;
     SDL_Window* window_handle;
     SDL_Renderer* renderer_handle;
@@ -102,6 +104,9 @@ public:
     }
     void setJoystickButtonEnable(bool enable) {
         this->operate->EnableJoyStickButton = enable;
+    }
+    void PlaySE(SoundEffectID se_id) {
+        this->sound_manager->PlaySE(se_id);
     }
 };
 

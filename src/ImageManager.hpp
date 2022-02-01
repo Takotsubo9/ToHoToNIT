@@ -12,7 +12,7 @@ private:
 public:
     ImageManager(SDL_Renderer* renderer_handle, std::string base_path);
     virtual ~ImageManager();
-    void Render(SDL_Renderer* renderer_handle, ImageID id, const SDL_Rect* srcrect, const SDL_Rect* dstrect);
+    void Render(SDL_Renderer* renderer_handle, ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect);
     void Render(SDL_Renderer* renderer_handle, ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect, uint8_t alpha, double angle);
 };
 

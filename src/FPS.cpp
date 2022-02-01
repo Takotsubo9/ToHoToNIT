@@ -21,7 +21,7 @@ void FPS::DrawFPS(GameWindow* game_window) {
     //fps小数点以下表示
     {
         for(int i = 0; i < 2; i++) {
-            int Deg = ((int)(FPS / pow(10, -i-1)) % 10);
+            int Deg = (static_cast<int>(FPS / pow(10, -i-1)) % 10);
             const SDL_Rect srcrect = {32*Deg,0,32,48};
             const SDL_Rect dstrect = {16*i+880,696,16,24};
             game_window->DrawImage(ImageID::number, &srcrect, &dstrect, RefPoint::LeftTop);
@@ -42,7 +42,7 @@ void FPS::DrawFPS(GameWindow* game_window) {
             digit++;
         }
         for(int i = 0; i < digit; i++) {
-            int Deg = ((int)(FPS / pow(10, i)) % 10);
+            int Deg = (static_cast<int>(FPS / pow(10, i)) % 10);
             const SDL_Rect srcrect = {32*Deg,0,32,48};
             const SDL_Rect dstrect = {-16*i+848,696,16,24};
             game_window->DrawImage(ImageID::number, &srcrect, &dstrect, RefPoint::LeftTop);

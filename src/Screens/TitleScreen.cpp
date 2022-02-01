@@ -54,10 +54,13 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
         }
 
         //項目が選択された後の1フレームだけ描画されないということを防ぐために、すべてを描画した後に、キー入力をやるべきです。
-        if(game_window->getIsButtonPressed(Buttons::Bomb) || game_window->getIsButtonPressed(Buttons::Pause))
+        if(game_window->getIsButtonPressed(Buttons::Bomb) || game_window->getIsButtonPressed(Buttons::Pause)){
             this->selected_row_title = TITLE_ITEM_QUIT;
+            game_window->PlaySE(SoundEffectID::cancel);
+        }
 
         if(game_window->getIsButtonPressed(Buttons::Shot)) {
+            game_window->PlaySE(SoundEffectID::decide);
             switch(selected_row_title) {
                 case TITLE_ITEM_START:
                     return ScreenID::Game;
@@ -75,10 +78,15 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
             }
         }
 
-        if(game_window->getIsButtonPressed(Buttons::Down))
+        if(game_window->getIsButtonPressed(Buttons::Down)) {
             selected_row_title = (selected_row_title + 1 + TITLE_ITEM_COUNT) % TITLE_ITEM_COUNT;
-        if(game_window->getIsButtonPressed(Buttons::Up))
+            game_window->PlaySE(SoundEffectID::move);
+        }
+
+        if(game_window->getIsButtonPressed(Buttons::Up)) {
             selected_row_title = (selected_row_title - 1 + TITLE_ITEM_COUNT) % TITLE_ITEM_COUNT;
+            game_window->PlaySE(SoundEffectID::move);
+        }
 
     } else if(this->phase == TitleScreenPhase::Option) {
         
@@ -141,7 +149,7 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                             digit++;
                         }
                         for(int j=0;j<digit;j++) {
-                            int Deg = ((int)(vol / pow(10, j)) % 10);
+                            int Deg = (static_cast<int>(vol / pow(10, j)) % 10);
                             SDL_Rect src_rect = {32*Deg,0,32,48};
                             SDL_Rect dst_rect = {-25*j+x+250,y,32,48};
                             if(i==selected_row_option) {
@@ -164,7 +172,7 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                             digit++;
                         }
                         for(int j=0;j<digit;j++) {
-                            int Deg =((int)(vol / pow(10, j)) % 10);
+                            int Deg =(static_cast<int>(vol / pow(10, j)) % 10);
                             SDL_Rect src_rect = {32*Deg,0,32,48};
                             SDL_Rect dst_rect = {-25*j+x+250,y,32,48};
                             if(i==selected_row_option) {
@@ -203,15 +211,19 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
             {
                 case OPTION_ITEM_PLAYER:
                     game_window->config.setPlayerCount(game_window->config.getPlayerCount() - 1);
+                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_BOMB:
                     game_window->config.setBombCount(game_window->config.getBombCount() - 1);
+                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_BGM_VOLUME:
                     game_window->config.setBGMVolume(game_window->config.getBGMVolume() - 1);
+                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_SE_VOLUME:
                     game_window->config.setSEVolume(game_window->config.getSEVolume() - 1);
+                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_MODE:
                     switch(game_window->getFullScreenMode()) {
@@ -225,6 +237,7 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                             game_window->setFullScreenMode(FullScreenMODE::Fullscreen);
                             break;
                     }
+                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 default:
                     break;
@@ -235,15 +248,19 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
             {
                 case OPTION_ITEM_PLAYER:
                     game_window->config.setPlayerCount(game_window->config.getPlayerCount() + 1);
+                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_BOMB:
                     game_window->config.setBombCount(game_window->config.getBombCount() + 1);
+                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_BGM_VOLUME:
                     game_window->config.setBGMVolume(game_window->config.getBGMVolume() + 1);
+                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_SE_VOLUME:
                     game_window->config.setSEVolume(game_window->config.getSEVolume() + 1);
+                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_MODE:
                     switch(game_window->getFullScreenMode()) {
@@ -257,26 +274,32 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                             game_window->setFullScreenMode(FullScreenMODE::Windowed);
                             break;
                     }
+                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 default:
                     break;
             }
         }
         
-        if(game_window->getIsButtonPressed(Buttons::Bomb) || game_window->getIsButtonPressed(Buttons::Pause))
+        if(game_window->getIsButtonPressed(Buttons::Bomb) || game_window->getIsButtonPressed(Buttons::Pause)) {
             this->selected_row_option = OPTION_ITEM_QUIT;
+            game_window->PlaySE(SoundEffectID::cancel);
+        }
 
         if(game_window->getIsButtonPressed(Buttons::Shot)) {
             switch(selected_row_option) {
                 case OPTION_ITEM_RESET:
+                    game_window->PlaySE(SoundEffectID::decide);
                     game_window->config.Reset();
                     break;
                 case OPTION_ITEM_KEYCONFIG:
+                    game_window->PlaySE(SoundEffectID::decide);
                     this->phase = TitleScreenPhase::KeyConfig;
                     game_window->setJoystickButtonEnable(false);
                     this->selected_row_keyconfig = KEYCONFIG_ITEM_SHOT;
                     break;
                 case OPTION_ITEM_QUIT:
+                    game_window->PlaySE(SoundEffectID::cancel);
                     this->phase = TitleScreenPhase::Title;
                     break;
                 default:
@@ -284,10 +307,14 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
             }
         }
 
-        if(game_window->getIsButtonPressed(Buttons::Down))
+        if(game_window->getIsButtonPressed(Buttons::Down)) {
             selected_row_option = (selected_row_option + 1 + OPTION_ITEM_COUNT) % OPTION_ITEM_COUNT;
-        if(game_window->getIsButtonPressed(Buttons::Up))
+            game_window->PlaySE(SoundEffectID::move);
+        }
+        if(game_window->getIsButtonPressed(Buttons::Up)) {
             selected_row_option = (selected_row_option - 1 + OPTION_ITEM_COUNT) % OPTION_ITEM_COUNT;
+            game_window->PlaySE(SoundEffectID::move);
+        }
 
 
     } else if(this->phase == TitleScreenPhase::KeyConfig) {
@@ -318,18 +345,16 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
 
                     dst_rect.x = dst_rect.x + 200;
 
-
-
-                        for(int j=0;j<2;j++) {
-                            int num = ((int)(game_window->config.joystick_buttons_map[static_cast<Buttons>(i)] / pow(10, j)) % 10);
-                            src_rect = {32*num,0,32,48};
-                            dst_rect = {dst_rect.x-32*j,dst_rect.y,32,48};
-                            if(i==this->selected_row_keyconfig) {    
-                                game_window->DrawImage(ImageID::number_selected, &src_rect, &dst_rect, RefPoint::LeftTop);
-                            } else {
-                                game_window->DrawImage(ImageID::number, &src_rect, &dst_rect, RefPoint::LeftTop);
-                            }
+                    for(int j=0;j<2;j++) {
+                        int num = (static_cast<int>(game_window->config.joystick_buttons_map[static_cast<Buttons>(i)] / pow(10, j)) % 10);
+                        src_rect = {32*num,0,32,48};
+                        dst_rect = {dst_rect.x-32*j,dst_rect.y,32,48};
+                        if(i==this->selected_row_keyconfig) {    
+                            game_window->DrawImage(ImageID::number_selected, &src_rect, &dst_rect, RefPoint::LeftTop);
+                        } else {
+                            game_window->DrawImage(ImageID::number, &src_rect, &dst_rect, RefPoint::LeftTop);
                         }
+                    }
                 }
             }
         }
@@ -337,10 +362,11 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
         if(this->selected_row_keyconfig!=KEYCONFIG_ITEM_QUIT && this->selected_row_keyconfig!=KEYCONFIG_ITEM_RESET) {
             if(game_window->getJoystickButtonEvent()->size() != 0) {
                 int button_num = (*game_window->getJoystickButtonEvent())[0];
+                game_window->PlaySE(SoundEffectID::decide);
                 game_window->config.joystick_buttons_map[static_cast<Buttons>(this->selected_row_keyconfig)] = button_num;
-                for(int j=0;j<KEYCONFIG_ITEM_RESET;j++) {//変なforになってしまい、申し訳ない。
+                for(int j = 0; j < KEYCONFIG_ITEM_RESET; j++) {//変なforになってしまい、申し訳ない。
                     if(j!=this->selected_row_keyconfig) {
-                        if(game_window->config.joystick_buttons_map[static_cast<Buttons>(j)]==button_num) {
+                        if(game_window->config.joystick_buttons_map[static_cast<Buttons>(j)] == button_num) {
                             game_window->config.joystick_buttons_map[static_cast<Buttons>(j)] = UNDEFINED_BUTTONS;
                         }
                     }
@@ -349,27 +375,35 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
         }
 
 
-        if(game_window->getIsButtonPressed(Buttons::Bomb) || game_window->getIsButtonPressed(Buttons::Pause))
+        if(game_window->getIsButtonPressed(Buttons::Bomb) || game_window->getIsButtonPressed(Buttons::Pause)) {
             this->selected_row_keyconfig = KEYCONFIG_ITEM_QUIT;
+            game_window->PlaySE(SoundEffectID::cancel);
+        }
 
         if(game_window->getIsButtonPressed(Buttons::Shot)) {
             switch(selected_row_keyconfig) {
                 case KEYCONFIG_ITEM_RESET:
                     game_window->config.KeyConfigReset();
+                    game_window->PlaySE(SoundEffectID::decide);
                     break;
                 case KEYCONFIG_ITEM_QUIT:
                     this->phase = TitleScreenPhase::Option;
                     game_window->setJoystickButtonEnable(true);
+                    game_window->PlaySE(SoundEffectID::cancel);
                     break;
                 default:
                     break;
             }
         }
 
-        if(game_window->getIsButtonPressed(Buttons::Down))
+        if(game_window->getIsButtonPressed(Buttons::Down)) {
             selected_row_keyconfig = (selected_row_keyconfig + 1 + KEYCONFIG_ITEM_COUNT) % KEYCONFIG_ITEM_COUNT;
-        if(game_window->getIsButtonPressed(Buttons::Up))
+            game_window->PlaySE(SoundEffectID::move);
+        }
+        if(game_window->getIsButtonPressed(Buttons::Up)) {
             selected_row_keyconfig = (selected_row_keyconfig - 1 + KEYCONFIG_ITEM_COUNT) % KEYCONFIG_ITEM_COUNT;
+            game_window->PlaySE(SoundEffectID::move);
+        }
 
 
     }

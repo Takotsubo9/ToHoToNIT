@@ -13,9 +13,10 @@ GameWindow::GameWindow(std::string window_title, int width, int height) {
 
     this->window_handle = NULL;
     this->renderer_handle = NULL;
-    keyboard_manager = NULL;
-    joystick_manager = NULL;
-    operate = NULL;
+    this->keyboard_manager = NULL;
+    this->joystick_manager = NULL;
+    this->sound_manager = NULL;
+    this->operate = NULL;
 
     main_fps = 60;
     fullscreen_mode = FullScreenMODE::Windowed;
@@ -28,9 +29,13 @@ GameWindow::GameWindow(std::string window_title, int width, int height) {
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to initialize SDL2_image", NULL);
         return;
     }
-    flags = MIX_INIT_OGG|MIX_INIT_OPUS;
+    flags = MIX_INIT_MP3;
     if((Mix_Init(flags) & flags) != flags) {
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to initialize SDL2_mixer", NULL);
+        return;
+    }
+    if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) == -1) {
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to open audio device", NULL);
         return;
     }
     window_handle = SDL_CreateWindow(window_title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_HIDDEN|SDL_WINDOW_RESIZABLE);
@@ -39,6 +44,7 @@ GameWindow::GameWindow(std::string window_title, int width, int height) {
     SDL_RenderSetLogicalSize(renderer_handle, width, height);
     keyboard_manager = new KeyboardManager();
     joystick_manager = new JoystickManager();
+    sound_manager = new SoundManager(application_path);
     operate = new Operate();
     SDL_SetRenderDrawBlendMode(renderer_handle, SDL_BLENDMODE_BLEND);
     is_active = false;
@@ -47,6 +53,8 @@ GameWindow::GameWindow(std::string window_title, int width, int height) {
 GameWindow::~GameWindow() {
     if(operate)
         delete operate;
+    if(sound_manager)
+        delete sound_manager;
     if(joystick_manager)
         delete joystick_manager;
     if(keyboard_manager)
@@ -55,6 +63,7 @@ GameWindow::~GameWindow() {
         SDL_DestroyRenderer(renderer_handle);
     if(window_handle)
         SDL_DestroyWindow(window_handle);
+    Mix_CloseAudio();
     Mix_Quit();
     IMG_Quit();
     SDL_Quit();
