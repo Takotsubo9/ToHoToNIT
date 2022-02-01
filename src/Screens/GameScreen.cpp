@@ -34,14 +34,18 @@ ScreenID GameScreen::Render(GameWindow *game_window) {
             uint8_t alpha = 0xff;
             if(i >= 1 && (i - 1) != selected_row_pause)
                 alpha = 0x80;
+            else {
+                dst.w *= 1.1;
+                dst.h *= 1.1;
+            }
             game_window->DrawImage(ImageID::game_pause_menu, &src, &dst, RefPoint::Center, alpha);
         }
     }
 
     game_window->DrawImage(ImageID::game_frame, &all_rect, &all_rect);
 
-    if (game_window->getIsButtonPressed(Buttons::Pause) && !this->paused) {
-        this->paused = true;
+    if (game_window->getIsButtonPressed(Buttons::Pause)) {
+        this->paused = !this->paused;
         selected_row_pause = PAUSE_ITEM_RESUME_TO_GAME;
     }
 
