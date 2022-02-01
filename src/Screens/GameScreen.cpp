@@ -15,15 +15,16 @@ GameScreen::GameScreen() {
 
 ScreenID GameScreen::Render(GameWindow *game_window) {
 
-    SDL_Rect all_rect = {0,0,960,720};
-    if (!this->paused) {
-        this->stage->Draw(game_window);
-    }
-
     if(this->paused) 
         pause_counter = std::min(pause_counter + 1, PAUSE_COUNTER_MAX);
     else
         pause_counter = std::max(pause_counter - 1, 0);
+
+    SDL_Rect all_rect = {0,0,960,720};
+    if (pause_counter == 0) {
+        this->stage->Draw(game_window);
+    }
+
 
     if(pause_counter != 0) {
         game_window->FillRect(0x00, 0x40, 0x80, static_cast<uint8_t>(0x70 * (static_cast<double>(pause_counter) / PAUSE_COUNTER_MAX)), &all_rect);
