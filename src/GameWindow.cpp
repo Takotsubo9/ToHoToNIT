@@ -20,7 +20,7 @@ GameWindow::GameWindow(std::string window_title, int width, int height) {
 
     main_fps = 60;
     fullscreen_mode = FullScreenMODE::Windowed;
-    if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_JOYSTICK) != 0) {
+    if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO|SDL_INIT_JOYSTICK) != 0) {
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to initialize SDL2", NULL);
         return;
     }
