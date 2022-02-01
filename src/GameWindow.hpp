@@ -108,6 +108,12 @@ public:
     void PlaySE(SoundEffectID se_id) {
         this->sound_manager->PlaySE(se_id);
     }
+    void SetSEVolume(int se_volume) {
+        this->sound_manager->SetSEVolume(se_volume);
+    }
+    void SetBGMVolume(int bgm_volume) {
+        this->sound_manager->SetBGMVolume(bgm_volume);
+    }
 };
 
 #endif /* _GAMEWINDOW_H_ */

@@ -219,10 +219,12 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                     break;
                 case OPTION_ITEM_BGM_VOLUME:
                     game_window->config.setBGMVolume(game_window->config.getBGMVolume() - 1);
+                    game_window->SetBGMVolume(game_window->config.getBGMVolume());
                     game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_SE_VOLUME:
                     game_window->config.setSEVolume(game_window->config.getSEVolume() - 1);
+                    game_window->SetSEVolume(game_window->config.getSEVolume());
                     game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_MODE:
@@ -256,10 +258,12 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                     break;
                 case OPTION_ITEM_BGM_VOLUME:
                     game_window->config.setBGMVolume(game_window->config.getBGMVolume() + 1);
+                    game_window->SetBGMVolume(game_window->config.getBGMVolume());
                     game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_SE_VOLUME:
                     game_window->config.setSEVolume(game_window->config.getSEVolume() + 1);
+                    game_window->SetSEVolume(game_window->config.getSEVolume());
                     game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_MODE:

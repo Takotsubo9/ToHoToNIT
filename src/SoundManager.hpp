@@ -13,6 +13,8 @@ public:
     SoundManager(std::string base_path);
     virtual ~SoundManager();
     void PlaySE(SoundEffectID se_id);
+    void SetSEVolume(int se_volume);
+    void SetBGMVolume(int bgm_volume);
 };
 
 #endif /* _SOUND_MANAGER_H_ */
