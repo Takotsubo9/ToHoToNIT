@@ -1,7 +1,7 @@
 #ifndef _IMAGEID_H_
 #define _IMAGEID_H_
 
-#include <map>
+#include <unordered_map>
 #include <string>
 
 //画像のID
@@ -25,7 +25,7 @@ enum class ImageID {
 };
 
 //画像IDに対するファイルパス
-const std::map<ImageID, std::string> FilePathList = {
+const std::unordered_map<ImageID, std::string> FilePathList = {
     {ImageID::number, "image/number.png"},
     {ImageID::number_selected, "image/number_selected.png"},
     {ImageID::fps_text, "image/fps_text.png"},

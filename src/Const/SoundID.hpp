@@ -1,7 +1,7 @@
 #ifndef _SOUNDID_H_
 #define _SOUNDID_H_
 
-#include <map>
+#include <unordered_map>
 #include <string>
 
 //SEのID
@@ -12,7 +12,7 @@ enum class SoundEffectID {
 };
 
 //SEのIDに対するファイルパス
-const std::map<SoundEffectID, std::string> SEFilePathList = {
+const std::unordered_map<SoundEffectID, std::string> SEFilePathList = {
     {SoundEffectID::decide, "sound/se/decide.mp3"},
     {SoundEffectID::move, "sound/se/move.mp3"},
     {SoundEffectID::cancel, "sound/se/cancel.mp3"},
@@ -24,7 +24,7 @@ enum class BGMID {
 };
 
 //BGMのIDに対するファイルパス
-const std::map<BGMID, std::string> BGMFilePathList = {
+const std::unordered_map<BGMID, std::string> BGMFilePathList = {
     
 };
 

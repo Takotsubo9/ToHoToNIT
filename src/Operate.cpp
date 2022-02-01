@@ -40,7 +40,7 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
 
     if(joystick_manager->getEnableJoyStick()) {
         if(this->EnableJoyStickButton) {
-            for(std::map<Buttons, int>::const_iterator it = config->joystick_buttons_map.begin(); it != config->joystick_buttons_map.end(); ++it) {
+            for(std::unordered_map<Buttons, int>::const_iterator it = config->joystick_buttons_map.begin(); it != config->joystick_buttons_map.end(); ++it) {
                 this->tmpPressing[it->first] |= joystick_manager->IsButtonDown(it->second);
             }
         }

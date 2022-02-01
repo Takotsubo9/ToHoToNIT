@@ -2,13 +2,13 @@
 #define _IMAGE_MANAGER_H_
 
 #include <SDL2/SDL.h>
-#include <map>
+#include <unordered_map>
 #include "Const/ImageID.hpp"
 
 //画像を管理するクラス
 class ImageManager {
 private:
-    std::map<ImageID, SDL_Texture*> texture_map;
+    std::unordered_map<ImageID, SDL_Texture*> texture_map;
 public:
     ImageManager(SDL_Renderer* renderer_handle, std::string base_path);
     virtual ~ImageManager();

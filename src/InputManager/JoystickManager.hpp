@@ -2,16 +2,16 @@
 #define _JOYSTICKMANAGER_H_
 
 #include <iostream>
-#include <map>
+#include <unordered_map>
 #include <vector>
 #include <SDL2/SDL.h>
 
 //ジョイスティックの入力を管理するクラス
 class JoystickManager {
 private:
-    std::map<int, bool> ButtonDownState;
-    std::map<int, bool> ButtonPressed;
-    std::map<int, bool> ButtonReleased;
+    std::unordered_map<int, bool> ButtonDownState;
+    std::unordered_map<int, bool> ButtonPressed;
+    std::unordered_map<int, bool> ButtonReleased;
     std::vector<int> ButtonEvent;
     SDL_Joystick* joystick;
 public:

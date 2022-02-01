@@ -3,12 +3,12 @@
 
 #include "Const/SoundID.hpp"
 #include <SDL2/SDL_mixer.h>
-#include <map>
+#include <unordered_map>
 
 class SoundManager {
 private:
-    std::map<SoundEffectID, Mix_Chunk*> se_map;
-    std::map<BGMID, Mix_Music*> bgm_map;
+    std::unordered_map<SoundEffectID, Mix_Chunk*> se_map;
+    std::unordered_map<BGMID, Mix_Music*> bgm_map;
 public:
     SoundManager(std::string base_path);
     virtual ~SoundManager();

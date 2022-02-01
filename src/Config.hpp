@@ -2,7 +2,7 @@
 #define _CONFIG_H_
 
 #include <algorithm>
-#include <map>
+#include <unordered_map>
 #include <string>
 #include "Const/Buttons.hpp"
 
@@ -15,7 +15,7 @@ private:
     int bgm_volume;
     int se_volume;
 public:
-    std::map<Buttons, int> joystick_buttons_map;
+    std::unordered_map<Buttons, int> joystick_buttons_map;
     Config(){
         this->Reset();
         this->KeyConfigReset();
