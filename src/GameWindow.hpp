@@ -24,7 +24,6 @@ private:
     Operate* operate;
     ImageManager* image_manager;
     SoundManager* sound_manager;
-    FullScreenMODE fullscreen_mode;
     SDL_Window* window_handle;
     SDL_Renderer* renderer_handle;
     std::string application_path;
@@ -37,8 +36,8 @@ public:
     void Run();
     //ウィンドウのフルスクリーンモードをセットする関数
     void setFullScreenMode(FullScreenMODE fsm);
-    FullScreenMODE getFullScreenMode() const {
-        return fullscreen_mode;
+    FullScreenMODE getFullScreenMode() {
+        return config.getFullScreenMode();
     }
     //引数に与えられたボタンが押されたかを返す関数
     bool getIsButtonPressed(Buttons button) {

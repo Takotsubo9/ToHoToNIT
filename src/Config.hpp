@@ -5,22 +5,27 @@
 #include <unordered_map>
 #include <string>
 #include "Const/Buttons.hpp"
+#include "Const/FullScreenMode.hpp"
 
 const int UNDEFINED_BUTTONS = -1;
 
 class Config {
 private:
-    int player_count;
-    int bomb_count;
-    int bgm_volume;
-    int se_volume;
+    uint8_t player_count;
+    uint8_t bomb_count;
+    uint8_t bgm_volume;
+    uint8_t se_volume;
+    FullScreenMODE fullscreen_mode;
 public:
-    std::unordered_map<Buttons, int> joystick_buttons_map;
+    std::unordered_map<Buttons, int32_t> joystick_buttons_map;
     Config(){
+        this->fullscreen_mode = FullScreenMODE::Windowed;
         this->Reset();
         this->KeyConfigReset();
     }
-    virtual ~Config(){}
+    virtual ~Config(){
+
+    }
     void setPlayerCount(int player_count) {
         this->player_count = ((player_count - 1 + 5) % 5) + 1;
     }
@@ -35,6 +40,10 @@ public:
     
     void setSEVolume(int se_volume) {
         this->se_volume = std::max(0, std::min(100, se_volume));
+    }
+
+    void setFullScreenMode(FullScreenMODE fsm) {
+        this->fullscreen_mode = fsm;
     }
 
     int getPlayerCount() {
@@ -53,24 +62,14 @@ public:
         return se_volume;
     }
 
-    void Reset() {
-        this->player_count = 3;
-        this->bomb_count = 3;
-        this->bgm_volume = 100;
-        this->se_volume = 100;
+    FullScreenMODE getFullScreenMode() {
+        return fullscreen_mode;
     }
 
-    void KeyConfigReset() {
-        joystick_buttons_map[Buttons::Shot] = 0;
-        joystick_buttons_map[Buttons::Bomb] = 1;
-        joystick_buttons_map[Buttons::Slow] = 2;
-        joystick_buttons_map[Buttons::Up] = UNDEFINED_BUTTONS;
-        joystick_buttons_map[Buttons::Down] = UNDEFINED_BUTTONS;
-        joystick_buttons_map[Buttons::Left] = UNDEFINED_BUTTONS;
-        joystick_buttons_map[Buttons::Right] = UNDEFINED_BUTTONS;
-        joystick_buttons_map[Buttons::Pause] = UNDEFINED_BUTTONS;
-        joystick_buttons_map[Buttons::Skip] = UNDEFINED_BUTTONS;
-    }
+    void Reset();
+    void KeyConfigReset();
+    void Export(std::string base_path);
+    void Import(std::string base_path);
 };
 
 #endif /* _CONFIG_H_ */

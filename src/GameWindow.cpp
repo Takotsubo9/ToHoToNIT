@@ -18,8 +18,9 @@ GameWindow::GameWindow(std::string window_title, int width, int height) {
     this->sound_manager = NULL;
     this->operate = NULL;
 
+    this->config.Import(application_path);
+
     main_fps = 60;
-    fullscreen_mode = FullScreenMODE::Windowed;
     if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO|SDL_INIT_JOYSTICK) != 0) {
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to initialize SDL2", NULL);
         return;
@@ -39,18 +40,22 @@ GameWindow::GameWindow(std::string window_title, int width, int height) {
         return;
     }
     window_handle = SDL_CreateWindow(window_title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_HIDDEN|SDL_WINDOW_RESIZABLE);
+    this->setFullScreenMode(config.getFullScreenMode());
     renderer_handle = SDL_CreateRenderer(window_handle, -1, SDL_RENDERER_ACCELERATED);
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
     SDL_RenderSetLogicalSize(renderer_handle, width, height);
     keyboard_manager = new KeyboardManager();
     joystick_manager = new JoystickManager();
     sound_manager = new SoundManager(application_path);
+    sound_manager->SetBGMVolume(config.getBGMVolume());
+    sound_manager->SetSEVolume(config.getSEVolume());
     operate = new Operate();
     SDL_SetRenderDrawBlendMode(renderer_handle, SDL_BLENDMODE_BLEND);
     is_active = false;
 }
 
 GameWindow::~GameWindow() {
+    config.Export(application_path);
     if(operate)
         delete operate;
     if(sound_manager)
@@ -73,16 +78,14 @@ void GameWindow::setFullScreenMode(FullScreenMODE fsm) {
     if(!window_handle)
         return;
 
-    if( !(this->fullscreen_mode == fsm) ) {
-        if(fsm == FullScreenMODE::Fullscreen) {
-            SDL_SetWindowFullscreen(window_handle, SDL_WINDOW_FULLSCREEN);
-        } else if (fsm == FullScreenMODE::BorderLess){
-            SDL_SetWindowFullscreen(window_handle, SDL_WINDOW_FULLSCREEN_DESKTOP);
-        } else {
-            SDL_SetWindowFullscreen(window_handle, 0);
-        }
-        this->fullscreen_mode = fsm;
+    if(fsm == FullScreenMODE::Fullscreen) {
+        SDL_SetWindowFullscreen(window_handle, SDL_WINDOW_FULLSCREEN);
+    } else if (fsm == FullScreenMODE::BorderLess){
+        SDL_SetWindowFullscreen(window_handle, SDL_WINDOW_FULLSCREEN_DESKTOP);
+    } else {
+        SDL_SetWindowFullscreen(window_handle, 0);
     }
+    this->config.setFullScreenMode(fsm);
 }
 
 void GameWindow::Run() {
