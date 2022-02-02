@@ -53,7 +53,7 @@ void Config::Import(std::string base_path) {
         return;
     
     char readfile[33] = {0};
-    SDL_RWread(rw, readfile, 1, 32);
+    SDL_RWread(rw, readfile, 1, SDL_strlen(fileinfo));
     if(SDL_strcmp(readfile, fileinfo) == 0) {
         player_count = SDL_ReadU8(rw);
         bomb_count = SDL_ReadU8(rw);
