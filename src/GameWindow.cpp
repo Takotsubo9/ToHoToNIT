@@ -9,7 +9,7 @@
 #include "GameWindow.hpp"
 
 GameWindow::GameWindow(std::string window_title, int width, int height) {
-
+    SDL_SetHint(SDL_HINT_ACCELEROMETER_AS_JOYSTICK, "0");
     this->application_path = "";
 #ifndef __ANDROID__
     char* application_path_char = SDL_GetBasePath();
