@@ -27,10 +27,11 @@ void SoundManager::PlaySE(SoundEffectID se_id) {
 
 void SoundManager::SetSEVolume(int se_volume) {
     for(std::unordered_map<SoundEffectID, Mix_Chunk*>::iterator it = this->se_map.begin(); it != this->se_map.end(); ++it) {
-        Mix_VolumeChunk(it->second, se_volume * 128 / 100);
+        if (it->second != NULL)
+            Mix_VolumeChunk(it->second, se_volume * 128.0 / 100.0);
     }
 }
 
 void SoundManager::SetBGMVolume(int bgm_volume) {
-    Mix_VolumeMusic(bgm_volume * 128 / 100);
+    Mix_VolumeMusic(bgm_volume * 128.0 / 100.0);
 }

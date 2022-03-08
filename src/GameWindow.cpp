@@ -10,12 +10,15 @@
 
 GameWindow::GameWindow(std::string window_title, int width, int height) {
 
+    this->application_path = "";
+#ifndef __ANDROID__
     char* application_path_char = SDL_GetBasePath();
     if (!application_path_char) {
         application_path_char = SDL_strdup("./");
     }
     this->application_path = std::string(application_path_char);
     SDL_free(application_path_char);
+#endif
 
     this->window_handle = NULL;
     this->renderer_handle = NULL;

@@ -13,6 +13,7 @@ JoystickManager::~JoystickManager() {
 
 void JoystickManager::TrySetJoyStick() {
     if(joystick != nullptr) {
+        SDL_JoystickClose(joystick);
         joystick = nullptr;
     }
     if(SDL_NumJoysticks() > 0) {
