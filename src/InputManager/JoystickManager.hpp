@@ -24,7 +24,7 @@ public:
     virtual ~JoystickManager();
     void TrySetJoyStick();
     bool getEnableJoyStick() { return joystick != nullptr; }
-    bool getEnableAxis() { return SDL_JoystickNumAxes(joystick) != 0; }
+    bool getEnableAxis() { return SDL_JoystickNumAxes(joystick) >= 2; }
     short getAxis(int num);
     void Polling(SDL_Event e);
     void ClearKeyEvent();

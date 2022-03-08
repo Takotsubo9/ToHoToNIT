@@ -3,6 +3,7 @@
 
 #include "InputManager/JoystickManager.hpp"
 #include "InputManager/KeyboardManager.hpp"
+#include "InputManager/TouchManager.hpp"
 #include "Const/Buttons.hpp"
 #include "Config.hpp"
 #include <map>
@@ -21,7 +22,7 @@ public:
     Operate() {
         this->EnableJoyStickButton = true;
     }
-    void Polling(KeyboardManager* KeyboardManager, JoystickManager* JoystickManager, Config* config);
+    void Polling(KeyboardManager* keyboard_manager, JoystickManager* joystick_manager, TouchManager* touch_manager, Config* config);
     bool IsPressed(Buttons button) {
         return this->Pressed[button];
     }

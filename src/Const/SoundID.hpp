@@ -12,11 +12,7 @@ enum class SoundEffectID {
 };
 
 //SEのIDに対するファイルパス
-const std::unordered_map<SoundEffectID, std::string> SEFilePathList = {
-    {SoundEffectID::decide, "sound/se/decide.mp3"},
-    {SoundEffectID::move, "sound/se/move.mp3"},
-    {SoundEffectID::cancel, "sound/se/cancel.mp3"},
-};
+extern const std::unordered_map<SoundEffectID, std::string> SEFilePathList;
 
 //BGMのID
 enum class BGMID {
@@ -24,8 +20,6 @@ enum class BGMID {
 };
 
 //BGMのIDに対するファイルパス
-const std::unordered_map<BGMID, std::string> BGMFilePathList = {
-    
-};
+extern const std::unordered_map<BGMID, std::string> BGMFilePathList;
 
 #endif /* _SOUNDID_H_ */

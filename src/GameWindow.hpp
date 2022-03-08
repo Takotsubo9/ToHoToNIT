@@ -11,6 +11,7 @@
 #include <vector>
 #include "InputManager/KeyboardManager.hpp"
 #include "InputManager/JoystickManager.hpp"
+#include "InputManager/TouchManager.hpp"
 #include "Operate.hpp"
 #include "ScreenManager.hpp"
 #include "ImageManager.hpp"
@@ -26,6 +27,7 @@ private:
     bool is_active;
     KeyboardManager* keyboard_manager;
     JoystickManager* joystick_manager;
+    TouchManager* touch_manager;
     Operate* operate;
     ImageManager* image_manager;
     SoundManager* sound_manager;
@@ -33,6 +35,7 @@ private:
     SDL_Renderer* renderer_handle;
     std::string application_path;
     bool quit;
+    void TouchGuide();
 public:
     Config config;
     GameWindow(std::string window_title, int width, int height);

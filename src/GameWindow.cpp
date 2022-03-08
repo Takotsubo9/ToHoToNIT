@@ -7,6 +7,7 @@
 #endif
 
 #include "GameWindow.hpp"
+#include "Const/TouchRect.hpp"
 
 GameWindow::GameWindow(std::string window_title, int width, int height) {
     SDL_SetHint(SDL_HINT_ACCELEROMETER_AS_JOYSTICK, "0");
@@ -24,6 +25,7 @@ GameWindow::GameWindow(std::string window_title, int width, int height) {
     this->renderer_handle = NULL;
     this->keyboard_manager = NULL;
     this->joystick_manager = NULL;
+    this->touch_manager = NULL;
     this->sound_manager = NULL;
     this->operate = NULL;
 
@@ -55,6 +57,7 @@ GameWindow::GameWindow(std::string window_title, int width, int height) {
     SDL_RenderSetLogicalSize(renderer_handle, width, height);
     keyboard_manager = new KeyboardManager();
     joystick_manager = new JoystickManager();
+    touch_manager = new TouchManager();
     sound_manager = new SoundManager(application_path);
     sound_manager->SetBGMVolume(config.getBGMVolume());
     sound_manager->SetSEVolume(config.getSEVolume());
@@ -69,6 +72,8 @@ GameWindow::~GameWindow() {
         delete operate;
     if(sound_manager)
         delete sound_manager;
+    if(touch_manager)
+        delete touch_manager;
     if(joystick_manager)
         delete joystick_manager;
     if(keyboard_manager)
@@ -137,6 +142,11 @@ void GameWindow::Run() {
                 case SDL_JOYBUTTONDOWN:
                     joystick_manager->Polling(pollevent);
                     break;
+                case SDL_FINGERDOWN:
+                case SDL_FINGERMOTION:
+                case SDL_FINGERUP:
+                    touch_manager->Polling(pollevent);
+                    break;
                 case SDL_WINDOWEVENT:
                     if(pollevent.window.event == SDL_WINDOWEVENT_FOCUS_GAINED) {
                         this->is_active = true;
@@ -150,16 +160,23 @@ void GameWindow::Run() {
         {
             uint64_t Ticks = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
             if (Ticks - PrevTicks > 1000000 / main_fps) {
-                operate->Polling(keyboard_manager, joystick_manager, &config);
+                operate->Polling(keyboard_manager, joystick_manager, touch_manager, &config);
                 SDL_SetRenderDrawColor( renderer_handle, 0x00, 0x00, 0x00, 0xFF );
                 SDL_RenderClear(renderer_handle);
 
                 screen_manager.Render(this);
+                
+#ifdef __ANDROID__
+                this->TouchGuide();
+#endif
+
+                SDL_SetRenderDrawColor(renderer_handle, 0, 0, 0, 0xff);
                 SDL_RenderPresent(renderer_handle);
                 
                 PrevTicks = Ticks;
                 keyboard_manager->ClearKeyEvent();
                 joystick_manager->ClearKeyEvent();
+                touch_manager->ClearKeyEvent();
             } else if (Ticks - PrevTicks + 1 < 1000000 / main_fps) {
                 SDL_Delay(1);
             }
@@ -173,4 +190,12 @@ void GameWindow::Run() {
     image_manager = nullptr;
 
     SDL_HideWindow(this->window_handle);
+}
+
+void GameWindow::TouchGuide() {
+    this->FillRect(0xff, 0x00, 0x00, 0x20, &TouchRectList[Buttons::Shot]);
+    this->FillRect(0x00, 0xff, 0x00, 0x20, &TouchRectList[Buttons::Bomb]);
+    this->FillRect(0x00, 0x00, 0x00, 0x20, &TouchRectList[Buttons::Pause]);
+    this->FillRect(0x00, 0x00, 0xff, 0x20, &TouchRectList[Buttons::Slow]);
+    this->FillRect(0xff, 0x00, 0xff, 0x20, &TouchRectList[Buttons::Skip]);
 }
