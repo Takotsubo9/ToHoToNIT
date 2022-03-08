@@ -1,5 +1,10 @@
-#include "ImageManager.hpp"
+#ifdef __ANDROID__
+#include <SDL_image.h>
+#else
 #include <SDL2/SDL_image.h>
+#endif
+
+#include "ImageManager.hpp"
 
 ImageManager::ImageManager(SDL_Renderer* renderer_handle, std::string base_path) {
     for(std::unordered_map<ImageID, std::string>::const_iterator it = FilePathList.begin(); it != FilePathList.end(); ++it) {

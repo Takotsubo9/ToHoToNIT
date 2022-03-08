@@ -1,7 +1,11 @@
 #ifndef _DPLAYER_H_
 #define _DPLAYER_H_
 
+#ifdef __ANDROID__
+#include <SDL.h>
+#else
 #include <SDL2/SDL.h>
+#endif
 
 #include "../../GameWindow.hpp"
 #include "Player.hpp"

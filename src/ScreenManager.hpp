@@ -1,10 +1,15 @@
 #ifndef _SCREEN_MANAGER_H_
 #define _SCREEN_MANAGER_H_
 
+#ifdef __ANDROID__
+#include <SDL.h>
+#else
+#include <SDL2/SDL.h>
+#endif
+
 #include <iostream>
 #include <chrono>
 #include <cmath>
-#include <SDL2/SDL.h>
 #include "Screen.hpp"
 #include "Const/ScreenID.hpp"
 #include "FPS.hpp"

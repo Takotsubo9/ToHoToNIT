@@ -1,5 +1,10 @@
-#include "Config.hpp"
+#ifdef __ANDROID__
+#include <SDL.h>
+#else
 #include <SDL2/SDL.h>
+#endif
+
+#include "Config.hpp"
 #include <iostream>
 
 const char* fileinfo = "Touhou-Koumatou Config File 1.00";

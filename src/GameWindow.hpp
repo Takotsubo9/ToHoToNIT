@@ -1,9 +1,14 @@
 #ifndef _GAMEWINDOW_H_
 #define _GAMEWINDOW_H_
 
+#ifdef __ANDROID__
+#include <SDL.h>
+#else
+#include <SDL2/SDL.h>
+#endif
+
 #include <string>
 #include <vector>
-#include <SDL2/SDL.h>
 #include "InputManager/KeyboardManager.hpp"
 #include "InputManager/JoystickManager.hpp"
 #include "Operate.hpp"

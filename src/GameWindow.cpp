@@ -1,6 +1,12 @@
-#include "GameWindow.hpp"
+#ifdef __ANDROID__
+#include <SDL_image.h>
+#include <SDL_mixer.h>
+#else
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
+#endif
+
+#include "GameWindow.hpp"
 
 GameWindow::GameWindow(std::string window_title, int width, int height) {
 

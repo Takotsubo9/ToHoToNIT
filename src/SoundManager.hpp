@@ -1,8 +1,13 @@
 #ifndef _SOUND_MANAGER_H_
 #define _SOUND_MANAGER_H_
 
-#include "Const/SoundID.hpp"
+#ifdef __ANDROID__
+#include <SDL_mixer.h>
+#else
 #include <SDL2/SDL_mixer.h>
+#endif
+
+#include "Const/SoundID.hpp"
 #include <unordered_map>
 
 class SoundManager {

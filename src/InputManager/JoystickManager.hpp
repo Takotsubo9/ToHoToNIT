@@ -1,10 +1,15 @@
 #ifndef _JOYSTICKMANAGER_H_
 #define _JOYSTICKMANAGER_H_
 
+#ifdef __ANDROID__
+#include <SDL.h>
+#else
+#include <SDL2/SDL.h>
+#endif
+
 #include <iostream>
 #include <unordered_map>
 #include <vector>
-#include <SDL2/SDL.h>
 
 //ジョイスティックの入力を管理するクラス
 class JoystickManager {

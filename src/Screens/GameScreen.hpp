@@ -1,7 +1,12 @@
 #ifndef _GAME_SCREEN_H_
 #define _GAME_SCREEN_H_
 
+#ifdef __ANDROID__
+#include <SDL.h>
+#else
 #include <SDL2/SDL.h>
+#endif
+
 #include "../Screen.hpp"
 #include "../Const/ScreenID.hpp"
 #include "../Const/CharacterID.hpp"

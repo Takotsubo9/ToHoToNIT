@@ -1,10 +1,15 @@
 #ifndef _KEYBOARDMANAGER_H_
 #define _KEYBOARDMANAGER_H_
 
+#ifdef __ANDROID__
+#include <SDL.h>
+#else
+#include <SDL2/SDL.h>
+#endif
+
 #include <iostream>
 #include <string>
 #include <unordered_map>
-#include <SDL2/SDL.h>
 
 //キーボードの入力を管理するクラス
 class KeyboardManager {

@@ -1,7 +1,12 @@
+#ifdef __ANDROID__
+#include <SDL.h>
+#else
+#include <SDL2/SDL.h>
+#endif
+
 #include "MusicRoomScreen.hpp"
 #include "../GameWindow.hpp"
 #include "../Const/RefPoint.hpp"
-#include <SDL2/SDL.h>
 
 MusicRoomScreen::MusicRoomScreen() {
     selected_row = MUSIC_ITEM_HOGEHOGE;
