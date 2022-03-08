@@ -121,20 +121,29 @@ void GameWindow::Run() {
     quit = false;
     while (!quit) {
         while (SDL_PollEvent(&pollevent) != 0) {
-            if (pollevent.type == SDL_QUIT) {
-                quit = true;
-            } else if(pollevent.type == SDL_KEYDOWN || pollevent.type == SDL_KEYUP) {
-                keyboard_manager->Polling(pollevent);
-            } else if(pollevent.type == SDL_JOYDEVICEADDED || pollevent.type == SDL_JOYDEVICEREMOVED) {
-                joystick_manager->TrySetJoyStick();
-            } else if(pollevent.type == SDL_JOYBUTTONUP || pollevent.type == SDL_JOYBUTTONDOWN) {
-                joystick_manager->Polling(pollevent);
-            } else if(pollevent.type == SDL_WINDOWEVENT) {
-                if(pollevent.window.event == SDL_WINDOWEVENT_FOCUS_GAINED) {
-                    this->is_active = true;
-                } else if(pollevent.window.event == SDL_WINDOWEVENT_FOCUS_LOST) {
-                    this->is_active = false;
-                }
+            switch(pollevent.type) {
+                case SDL_QUIT:
+                    quit = true;
+                    break;
+                case SDL_KEYDOWN:
+                case SDL_KEYUP:
+                    keyboard_manager->Polling(pollevent);
+                    break;
+                case SDL_JOYDEVICEADDED:
+                case SDL_JOYDEVICEREMOVED:
+                    joystick_manager->TrySetJoyStick();
+                    break;
+                case SDL_JOYBUTTONUP:
+                case SDL_JOYBUTTONDOWN:
+                    joystick_manager->Polling(pollevent);
+                    break;
+                case SDL_WINDOWEVENT:
+                    if(pollevent.window.event == SDL_WINDOWEVENT_FOCUS_GAINED) {
+                        this->is_active = true;
+                    } else if(pollevent.window.event == SDL_WINDOWEVENT_FOCUS_LOST) {
+                        this->is_active = false;
+                    }
+                    break;
             }
         }
         if(this->is_active)
