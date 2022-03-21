@@ -22,7 +22,7 @@ void ScreenManager::Render(GameWindow* game_window) {
                 this->screen = new TitleScreen();
                 break;
             case ScreenID::Game:
-                this->screen = new GameScreen();
+                this->screen = new GameScreen(game_window->config);
                 break;
             case ScreenID::MusicRoom:
                 this->screen = new MusicRoomScreen();

@@ -33,7 +33,7 @@ private:
     int pause_counter;
     int selected_row_pause;
 public:
-    GameScreen();
+    GameScreen(Config& config);
     virtual ~GameScreen() {
         delete this->stage;
         delete this->player;

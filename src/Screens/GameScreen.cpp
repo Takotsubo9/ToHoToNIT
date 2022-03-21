@@ -8,12 +8,12 @@
 #include "../GameWindow.hpp"
 #include <cmath>
 
-GameScreen::GameScreen() {
+GameScreen::GameScreen(Config& config) {
     this->frames = 0;
     this->paused = false;
     this->pause_counter = 0;
     this->selected_row_pause = PAUSE_ITEM_RESUME_TO_GAME;
-    this->player = new Player(CharacterID::TestChara);
+    this->player = new Player(CharacterID::TestChara, config);
     this->stage = new TestStage(this->player);
 }
 

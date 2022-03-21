@@ -1,6 +1,7 @@
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
 
+#include "../../Config.hpp"
 #include "../../Const/CharacterID.hpp"
 #include "../Chara/Character.hpp"
 #include "../Chara/SatsukiHana.hpp"
@@ -17,19 +18,7 @@ private:
     int Graze;
     int Point;
 public:
-    Player(CharacterID charaID) {
-        switch(charaID) {
-            case CharacterID::SatsukiHana:
-                this->chara = new SatsukiHana();
-                break;
-            case CharacterID::SatsukiKaze:
-                this->chara = new SatsukiKaze();
-                break;
-            default:
-                this->chara = new TestChara();
-                break;
-        }
-    }
+    Player(CharacterID charaID, Config& config);
     virtual ~Player() {
         delete this->chara;
     }
