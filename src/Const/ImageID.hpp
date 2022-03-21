@@ -11,6 +11,8 @@ enum class ImageID {
     fps_text,
     game_frame,
     game_pause_menu,
+    game_power_gauge,
+    game_status,
     title_items,
     title_selected_items,
     title_background,

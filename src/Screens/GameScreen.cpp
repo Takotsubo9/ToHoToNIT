@@ -52,6 +52,52 @@ ScreenID GameScreen::Render(GameWindow *game_window) {
 
     game_window->DrawImage(ImageID::game_frame, &all_rect, &all_rect);
 
+    SDL_Rect src_rect = {0, 0, static_cast<int>(this->player->getPower() * 1.5), 32};
+    SDL_Rect dst_rect = {740, 294, src_rect.w, src_rect.h};
+    game_window->DrawImage(ImageID::game_power_gauge, &src_rect, &dst_rect);
+
+    src_rect.x = 0;
+    dst_rect.x = 630;
+    //文字系widthは点以外130
+    src_rect.w = 130;
+    dst_rect.w = 130;
+    src_rect.h = 36;
+    dst_rect.h = 36;
+    for(int i = 0; i < 7; i++) {
+        src_rect.y = i * 36;
+        dst_rect.y = i * 48 + 50;
+        if(i >= 2)
+            dst_rect.y += 25;
+        if(i >= 4)
+            dst_rect.y += 25;
+        if(i == 6) {
+            //点は40
+            src_rect.w = 40;
+            dst_rect.w = 40;
+        }
+        game_window->DrawImage(ImageID::game_status, &src_rect, &dst_rect);
+    }
+
+    //星は45x45
+    src_rect.w = 45;
+    dst_rect.w = 45;
+
+    //Player星の場所
+    src_rect.x = 40;
+    dst_rect.y = 170;
+    for(unsigned int i = 0; i < this->player->getPlayerCount(); i++) {
+        dst_rect.x = i * 30 + 740;
+        game_window->DrawImage(ImageID::game_status, &src_rect, &dst_rect);
+    }
+
+    //Bomb星の場所
+    src_rect.x = 85;
+    dst_rect.y += 48;
+    for(unsigned int i = 0; i < this->player->getBombCount(); i++) {
+        dst_rect.x = i * 30 + 740;
+        game_window->DrawImage(ImageID::game_status, &src_rect, &dst_rect);
+    }
+
     if (game_window->getIsButtonPressed(Buttons::Pause)) {
         this->paused = !this->paused;
         selected_row_pause = PAUSE_ITEM_RESUME_TO_GAME;
