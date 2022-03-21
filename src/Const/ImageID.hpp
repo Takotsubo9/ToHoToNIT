@@ -12,6 +12,7 @@ enum class ImageID {
     game_frame,
     game_pause_menu,
     game_power_gauge,
+    game_power_max_text,
     game_status,
     title_items,
     title_selected_items,

@@ -26,6 +26,9 @@ public:
     Character * getCharacter(){
         return this->chara;
     }
+    unsigned long getAllPoint() {
+        return this->AllPoint;
+    }
     unsigned int getPlayerCount() {
         return this->PlayerCount;
     }
