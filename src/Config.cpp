@@ -36,7 +36,7 @@ void Config::Export(std::string base_path) {
     std::string cfgfile_path = base_path + "Touhou-Koumatou.cfg";
     SDL_RWops* rw = SDL_RWFromFile(cfgfile_path.c_str(), "w");
     if(rw) {
-        SDL_RWwrite(rw, config_file_info, 1, SDL_strlen(fileinfo));
+        SDL_RWwrite(rw, config_file_info, 1, SDL_strlen(config_file_info));
         SDL_WriteU8(rw, player_count);
         SDL_WriteU8(rw, bomb_count);
         SDL_WriteU8(rw, bgm_volume);
@@ -63,7 +63,7 @@ void Config::Import(std::string base_path) {
         return;
     
     char readfile[33] = {0};
-    SDL_RWread(rw, readfile, 1, SDL_strlen(fileinfo));
+    SDL_RWread(rw, readfile, 1, SDL_strlen(config_file_info));
     if(SDL_strcmp(readfile, config_file_info) == 0) {
         player_count = SDL_ReadU8(rw);
         bomb_count = SDL_ReadU8(rw);
