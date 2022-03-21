@@ -7,8 +7,10 @@
 #include "Config.hpp"
 #include <iostream>
 
-const char* fileinfo = "Touhou-Koumatou Config File 1.00";
+//コンフィグファイルのバージョン情報
+const char* config_file_info = "Touhou-Koumatou Config File 1.00";
 
+//コンフィグの初期化
 void Config::Reset() {
     this->player_count = 3;
     this->bomb_count = 3;
@@ -16,6 +18,7 @@ void Config::Reset() {
     this->se_volume = 100;
 }
 
+//キーコンの初期化
 void Config::KeyConfigReset() {
     joystick_buttons_map[Buttons::Shot] = 0;
     joystick_buttons_map[Buttons::Bomb] = 1;
@@ -28,11 +31,12 @@ void Config::KeyConfigReset() {
     joystick_buttons_map[Buttons::Skip] = UNDEFINED_BUTTONS;
 }
 
+//コンフィグ情報のファイル出力
 void Config::Export(std::string base_path) {
     std::string cfgfile_path = base_path + "Touhou-Koumatou.cfg";
     SDL_RWops* rw = SDL_RWFromFile(cfgfile_path.c_str(), "w");
     if(rw) {
-        SDL_RWwrite(rw, fileinfo, 1, SDL_strlen(fileinfo));
+        SDL_RWwrite(rw, config_file_info, 1, SDL_strlen(fileinfo));
         SDL_WriteU8(rw, player_count);
         SDL_WriteU8(rw, bomb_count);
         SDL_WriteU8(rw, bgm_volume);
@@ -51,6 +55,7 @@ void Config::Export(std::string base_path) {
     }
 }
 
+//ファイルからコンフィグの読み込み
 void Config::Import(std::string base_path) {
     std::string cfgfile_path = base_path + "Touhou-Koumatou.cfg";
     SDL_RWops* rw = SDL_RWFromFile(cfgfile_path.c_str(), "r");
@@ -59,7 +64,7 @@ void Config::Import(std::string base_path) {
     
     char readfile[33] = {0};
     SDL_RWread(rw, readfile, 1, SDL_strlen(fileinfo));
-    if(SDL_strcmp(readfile, fileinfo) == 0) {
+    if(SDL_strcmp(readfile, config_file_info) == 0) {
         player_count = SDL_ReadU8(rw);
         bomb_count = SDL_ReadU8(rw);
         bgm_volume = SDL_ReadU8(rw);
@@ -75,6 +80,7 @@ void Config::Import(std::string base_path) {
         joystick_buttons_map[Buttons::Pause] = SDL_ReadLE32(rw);
         joystick_buttons_map[Buttons::Skip] = SDL_ReadLE32(rw);
     } else {
+        //コンフィグファイルのバージョンが違った際に警告を表示し、読み込まないようにする
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING, "Touhou-Koumatou", "The version of the configuration file is different.\nThe configuration file will not be loaded.", NULL);
     }
 

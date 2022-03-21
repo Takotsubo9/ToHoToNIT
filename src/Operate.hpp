@@ -13,13 +13,15 @@ class Operate {
 private:
     std::map<Buttons, bool> Pressed;
     std::map<Buttons, bool> Pressing;
-
     std::map<Buttons, bool> tmpPressing;
-
+    unsigned int width;
+    unsigned int height;
     float NowAxis[2];
 public:
     bool EnableJoyStickButton;
-    Operate() {
+    Operate(unsigned int width, unsigned int height) {
+        this->width = width;
+        this->height = height;
         this->EnableJoyStickButton = true;
     }
     void Polling(KeyboardManager* keyboard_manager, JoystickManager* joystick_manager, TouchManager* touch_manager, Config* config);

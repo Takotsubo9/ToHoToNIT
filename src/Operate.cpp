@@ -1,13 +1,14 @@
 #include "Operate.hpp"
 #include "Config.hpp"
-#include "Const/WindowSize.hpp"
 #include "Const/TouchRect.hpp"
 #include "InputManager/KeyboardManager.hpp"
 #include "InputManager/JoystickManager.hpp"
 #include <cmath>
 #include <iostream>
 
+//すべてのInputManagerより、自機の動きやどのボタンが押されたかをセットする
 void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joystick_manager, TouchManager* touch_manager, Config* config) {
+    //キーボードより押されているボタンの取得
     this->tmpPressing[Buttons::Up] = keyboard_manager->IsKeyDown(SDLK_UP);
     this->tmpPressing[Buttons::Down] = keyboard_manager->IsKeyDown(SDLK_DOWN);
     this->tmpPressing[Buttons::Left] = keyboard_manager->IsKeyDown(SDLK_LEFT);
@@ -18,7 +19,7 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
     this->tmpPressing[Buttons::Skip] = keyboard_manager->IsKeyDown(SDLK_LCTRL) || keyboard_manager->IsKeyDown(SDLK_RCTRL);
     this->tmpPressing[Buttons::Slow] = keyboard_manager->IsKeyDown(SDLK_LSHIFT) || keyboard_manager->IsKeyDown(SDLK_RSHIFT);
 
-
+    //キーボードの押下情報より、現在の方向を取得
     this->NowAxis[0] = 0;
     this->NowAxis[1] = 0;
 
@@ -35,12 +36,14 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
         this->NowAxis[0] += -1;
     } 
 
+    //斜めだった場合、sqrt(2)で割る
     if(this->NowAxis[0] != 0 && this->NowAxis[1] != 0) {
         this->NowAxis[0] /= 1.41;
         this->NowAxis[1] /= 1.41;
     }
 
     {
+        //タブレットやスマホ用のタッチ操作での方向やボタンを取得
         std::vector<SDL_FingerID> finger_list = touch_manager->GetFingerIDList();
         for(SDL_FingerID& id : finger_list) {
             Point now_point = touch_manager->GetTouchingPos(id);
@@ -89,7 +92,7 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
                 };
                 for(size_t i = 0; i < touch_buttons.size(); i++) {
                     SDL_Rect rect = TouchRectList[touch_buttons[i]];
-                    if(first_point.x >= (rect.x / static_cast<double>(WINDOW_WIDTH)) && first_point.x <= ((rect.x + rect.w) / static_cast<double>(WINDOW_WIDTH)) && first_point.y >= (rect.y / static_cast<double>(WINDOW_HEIGHT)) && first_point.y <= ((rect.y + rect.h) / static_cast<double>(WINDOW_HEIGHT)) && now_point.x >= (rect.x / static_cast<double>(WINDOW_WIDTH)) && now_point.x <= ((rect.x + rect.w) / static_cast<double>(WINDOW_WIDTH)) && now_point.y >= (rect.y / static_cast<double>(WINDOW_HEIGHT)) && now_point.y <= ((rect.y + rect.h) / static_cast<double>(WINDOW_HEIGHT)))
+                    if(first_point.x >= (rect.x / static_cast<double>(this->width)) && first_point.x <= ((rect.x + rect.w) / static_cast<double>(this->width)) && first_point.y >= (rect.y / static_cast<double>(this->height)) && first_point.y <= ((rect.y + rect.h) / static_cast<double>(this->height)) && now_point.x >= (rect.x / static_cast<double>(this->width)) && now_point.x <= ((rect.x + rect.w) / static_cast<double>(this->width)) && now_point.y >= (rect.y / static_cast<double>(this->height)) && now_point.y <= ((rect.y + rect.h) / static_cast<double>(this->height)))
                         this->tmpPressing[touch_buttons[i]] |= true;
                 }
             }
@@ -97,6 +100,7 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
     }
 
     if(joystick_manager->getEnableJoyStick()) {
+        //ジョイスティックの情報を取得
         if(this->EnableJoyStickButton) {
             for(std::unordered_map<Buttons, int>::const_iterator it = config->joystick_buttons_map.begin(); it != config->joystick_buttons_map.end(); ++it) {
                 this->tmpPressing[it->first] |= joystick_manager->IsButtonDown(it->second);
@@ -129,6 +133,7 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
         }
     }
 
+    //前回押されていなくて、今回押されていた場合は、初回なのでPressedに格納
     for(int i=0;i<8;i++) {
         Pressed[static_cast<Buttons>(i)] = (!Pressing[static_cast<Buttons>(i)] && tmpPressing[static_cast<Buttons>(i)]);
     }
@@ -136,6 +141,7 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
     this->Pressing = this->tmpPressing;
 }
 
+//自機の動きを返す
 void Operate::GetSelfMovements(float* x, float* y) {
     *x = this->NowAxis[0];
     *y = this->NowAxis[1];

@@ -1,6 +1,7 @@
 #include "GameWindow.hpp"
 #include "FPS.hpp"
 
+//FPS値のアップデートを行う
 void FPS::Update() {
     uint64_t Ticks = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
     ticks_queue.push(Ticks);
@@ -9,6 +10,7 @@ void FPS::Update() {
     }
 }
 
+//FPS値を右下に描画する
 void FPS::DrawFPS(GameWindow* game_window) {
     double FPS = this->GetFPS();
 

@@ -12,7 +12,9 @@
 
 class SoundManager {
 private:
+    //SEを格納する用のmap
     std::unordered_map<SoundEffectID, Mix_Chunk*> se_map;
+    //BGMを格納する用のmap
     std::unordered_map<BGMID, Mix_Music*> bgm_map;
 public:
     SoundManager(std::string base_path);

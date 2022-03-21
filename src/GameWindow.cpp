@@ -9,10 +9,13 @@
 #include "GameWindow.hpp"
 #include "Const/TouchRect.hpp"
 
-GameWindow::GameWindow(std::string window_title, int width, int height) {
+GameWindow::GameWindow(std::string window_title, unsigned int width, unsigned int height) {
+    //加速度センサをジョイスティックとして使う機能をオフ
     SDL_SetHint(SDL_HINT_ACCELEROMETER_AS_JOYSTICK, "0");
     this->application_path = "";
 #ifndef __ANDROID__
+    //Android以外の場合、実行ファイルが配置されているパスを取得し、保存しておく
+    //カレントディレクトリが実行ファイル配置場所と違う場所で実行された場合にテクスチャのロードができなくなるのを防止
     char* application_path_char = SDL_GetBasePath();
     if (!application_path_char) {
         application_path_char = SDL_strdup("./");
@@ -29,39 +32,56 @@ GameWindow::GameWindow(std::string window_title, int width, int height) {
     this->sound_manager = NULL;
     this->operate = NULL;
 
+    //起動前にコンフィグを読み込んでおく
     this->config.Import(application_path);
 
     main_fps = 60;
+    //SDLの初期化
     if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO|SDL_INIT_JOYSTICK) != 0) {
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to initialize SDL2", NULL);
         return;
     }
+    //SDL_imageの初期化
     int flags = IMG_INIT_PNG;
     if((IMG_Init(flags) & flags) != flags) {
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to initialize SDL2_image", NULL);
         return;
     }
+    //SDL_mixerの初期化
     flags = MIX_INIT_MP3;
     if((Mix_Init(flags) & flags) != flags) {
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to initialize SDL2_mixer", NULL);
         return;
     }
+    //音声出力の開始
     if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) == -1) {
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to open audio device", NULL);
         return;
     }
+    //ウィンドウを作成する
     window_handle = SDL_CreateWindow(window_title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_HIDDEN|SDL_WINDOW_RESIZABLE);
+    //.cfgから読み込んだフルスクリーンモードをセット
     this->setFullScreenMode(config.getFullScreenMode());
+    //レンダラーの作成(できるだけHWアクセラレーションを有効化する)
     renderer_handle = SDL_CreateRenderer(window_handle, -1, SDL_RENDERER_ACCELERATED);
+    
+    //スケーリングアルゴリズムをlinearに
+    //nearestより重くなるかもしれないが、きれいを優先
+    //あとでconfigなどで設定できるようにするのもいいかも
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+    //レンダラーのサイズを設定
     SDL_RenderSetLogicalSize(renderer_handle, width, height);
+
+    //InputManager系のインスタンス生成
     keyboard_manager = new KeyboardManager();
     joystick_manager = new JoystickManager();
     touch_manager = new TouchManager();
     sound_manager = new SoundManager(application_path);
+    //コンフィグから読み込んだボリュームの設定
     sound_manager->SetBGMVolume(config.getBGMVolume());
     sound_manager->SetSEVolume(config.getSEVolume());
-    operate = new Operate();
+
+    operate = new Operate(width, height);
     SDL_SetRenderDrawBlendMode(renderer_handle, SDL_BLENDMODE_BLEND);
     is_active = false;
 }
@@ -192,6 +212,7 @@ void GameWindow::Run() {
     SDL_HideWindow(this->window_handle);
 }
 
+//Android用のタッチガイド
 void GameWindow::TouchGuide() {
     this->FillRect(0xff, 0x00, 0x00, 0x20, &TouchRectList[Buttons::Shot]);
     this->FillRect(0x00, 0xff, 0x00, 0x20, &TouchRectList[Buttons::Bomb]);

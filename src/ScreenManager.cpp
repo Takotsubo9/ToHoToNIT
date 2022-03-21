@@ -16,6 +16,7 @@ void ScreenManager::Render(GameWindow* game_window) {
     ScreenID id = screen->Render(game_window);
     if(screen->getScreenID() != id) {
         delete this->screen;
+        //Screenを追加した場合には、ここにIDとScreenを追加
         switch(id) {
             case ScreenID::Title:
                 this->screen = new TitleScreen();
@@ -30,6 +31,7 @@ void ScreenManager::Render(GameWindow* game_window) {
         }
     }
 
+    //FPSを描画する
     this->fps.Update();
     this->fps.DrawFPS(game_window);
 }

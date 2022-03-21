@@ -7,6 +7,7 @@
 #include "ImageManager.hpp"
 
 ImageManager::ImageManager(SDL_Renderer* renderer_handle, std::string base_path) {
+    //FilePathListに格納されたテクスチャファイルを読み込む(PNG)
     for(std::unordered_map<ImageID, std::string>::const_iterator it = FilePathList.begin(); it != FilePathList.end(); ++it) {
         SDL_Surface* sur = IMG_Load((base_path + it->second).c_str());
         SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer_handle ,sur);
@@ -16,11 +17,13 @@ ImageManager::ImageManager(SDL_Renderer* renderer_handle, std::string base_path)
 }
 
 ImageManager::~ImageManager() {
+    //読み込まれたテクスチャを全解放する
     for(std::unordered_map<ImageID, SDL_Texture*>::iterator it = this->texture_map.begin(); it != this->texture_map.end(); ++it) {
         SDL_DestroyTexture(it->second);
     }
 }
 
+//引数に渡されたRectやalpha値や角度をもとにSDL_Rendererに描画する
 void ImageManager::Render(SDL_Renderer* renderer_handle, ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect, uint8_t alpha, double angle) {
     SDL_Texture* tmp = this->texture_map[image_id];
     SDL_SetTextureAlphaMod(tmp, alpha);

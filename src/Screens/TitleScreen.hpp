@@ -12,6 +12,7 @@
 
 class GameWindow;
 
+//タイトルの選択リスト
 enum : int {
     TITLE_ITEM_START = 0,
     TITLE_ITEM_EXTRA_START,
@@ -25,6 +26,7 @@ enum : int {
     TITLE_ITEM_COUNT,//個数カウント用
 };
 
+//オプションでの選択リスト
 enum : int {
     OPTION_ITEM_PLAYER = 0,
     OPTION_ITEM_BOMB,
@@ -37,6 +39,7 @@ enum : int {
     OPTION_ITEM_COUNT,//個数カウント用
 };
 
+//キーコンでの選択リスト
 enum : int {
     KEYCONFIG_ITEM_SHOT = 0,
     KEYCONFIG_ITEM_BOMB,
@@ -52,6 +55,8 @@ enum : int {
     KEYCONFIG_ITEM_COUNT,//個数カウント用
 };
 
+//タイトル画面でのフェーズ
+//タイトル/オプション/キーコンを同じスクリーンとして扱う
 enum class TitleScreenPhase {
     Title,
     Option,

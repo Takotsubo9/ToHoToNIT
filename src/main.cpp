@@ -9,11 +9,11 @@
 #endif
 
 #include "GameWindow.hpp"
-#include "Const/WindowSize.hpp"
 
 int main(int argc, char* argv[]) {
 
-    GameWindow gw("Touhou-Koumatou", WINDOW_WIDTH, WINDOW_HEIGHT);
+    //960x720のGameWindowのインスタンスを作って、Run
+    GameWindow gw("Touhou-Koumatou", 960, 720);
     gw.Run();
     
     return 0;

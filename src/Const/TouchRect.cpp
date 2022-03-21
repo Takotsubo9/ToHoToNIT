@@ -1,5 +1,7 @@
 #include "TouchRect.hpp"
 
+//ボタンとタッチ場所に関するRectリスト
+//タッチガイドとOperate用
 std::unordered_map<Buttons, const SDL_Rect> TouchRectList = {
     {Buttons::Shot, {760, 580, 100, 100}},
     {Buttons::Bomb, {860, 580, 100, 100}},

@@ -6,7 +6,6 @@
 
 #include "GameScreen.hpp"
 #include "../GameWindow.hpp"
-#include "../Const/WindowSize.hpp"
 #include <cmath>
 
 GameScreen::GameScreen() {
@@ -20,17 +19,21 @@ GameScreen::GameScreen() {
 
 ScreenID GameScreen::Render(GameWindow *game_window) {
 
+    //ポーズのアニメーション用にカウンターをいろいろ
     if(this->paused) 
         pause_counter = std::min(pause_counter + 1, PAUSE_COUNTER_MAX);
     else
         pause_counter = std::max(pause_counter - 1, 0);
 
     SDL_Rect all_rect = {0,0,960,720};
+
+    //ポーズアニメーションのカウンターが0の際のみ、ステージの描画
+    //(暫定の実装)
     if (pause_counter == 0) {
         this->stage->Draw(game_window);
     }
 
-
+    //ポーズアニメーションのカウンターが0じゃない際にポーズ用のやつを描画
     if(pause_counter != 0) {
         game_window->FillRect(0x00, 0x40, 0x80, static_cast<uint8_t>(0x70 * (static_cast<double>(pause_counter) / PAUSE_COUNTER_MAX)), &all_rect);
         for(int i = 0; i < PAUSE_ITEM_COUNT + 1; i++) {

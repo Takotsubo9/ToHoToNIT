@@ -38,7 +38,7 @@ private:
     void TouchGuide();
 public:
     Config config;
-    GameWindow(std::string window_title, int width, int height);
+    GameWindow(std::string window_title,unsigned int width, unsigned int height);
     virtual ~GameWindow();
     //ウィンドウの
     void Run();

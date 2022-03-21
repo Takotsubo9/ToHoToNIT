@@ -10,12 +10,11 @@
 #include <queue>
 #include <iostream>
 
-const int MAX_FPS_VECTOR_COUNT = 30;
-
 class GameWindow;
 
 class FPS {
 private:
+    const int MAX_FPS_VECTOR_COUNT = 30;
     std::queue<uint64_t> ticks_queue;
 public:
     void Update();

@@ -17,13 +17,15 @@ TitleScreen::TitleScreen() {
 }
 
 ScreenID TitleScreen::Render(GameWindow* game_window) {
-
+    //タイトル画面共通のBGテクスチャの描画
     SDL_Rect bg_src_rect = {0,0,2400,1800};
     SDL_Rect bg_rect = {0,0,960,720};
     game_window->DrawImage(ImageID::title_background, &bg_src_rect, &bg_rect, RefPoint::LeftTop);
 
     if(this->phase == TitleScreenPhase::Title) {
+        //タイトル画面
 
+        //ロゴの描画
         SDL_Rect logo_src_rect[5] = {
             {0, 0, 108, 108},
             {108, 0, 108, 108},
@@ -46,6 +48,7 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
             game_window->DrawImage(ImageID::title_logo, &logo_src_eng_rect[i], &logo_dst_rect, RefPoint::LeftTop, 0xff, -20);
         }
 
+        //選択アイテムの描画
         for(int i=0; i<TITLE_ITEM_COUNT; i++) {
             SDL_Rect srcrect = {0,48*i,220,48};
             SDL_Rect dstrect = {667-(i*10),244+(i*45),220,48};
@@ -94,7 +97,8 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
         }
 
     } else if(this->phase == TitleScreenPhase::Option) {
-        
+        //オプション画面
+        //オプションの選択リストの描画
         for(int i=0; i<OPTION_ITEM_COUNT; i++) {
             const int x = 100;
             const int y = 100+(i*45);
@@ -212,25 +216,22 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
         }
 
         if(game_window->getIsButtonPressed(Buttons::Left)) {
+                    game_window->PlaySE(SoundEffectID::move);
             switch (this->selected_row_option)
             {
                 case OPTION_ITEM_PLAYER:
                     game_window->config.setPlayerCount(game_window->config.getPlayerCount() - 1);
-                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_BOMB:
                     game_window->config.setBombCount(game_window->config.getBombCount() - 1);
-                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_BGM_VOLUME:
                     game_window->config.setBGMVolume(game_window->config.getBGMVolume() - 1);
                     game_window->SetBGMVolume(game_window->config.getBGMVolume());
-                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_SE_VOLUME:
                     game_window->config.setSEVolume(game_window->config.getSEVolume() - 1);
                     game_window->SetSEVolume(game_window->config.getSEVolume());
-                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_MODE:
                     switch(game_window->getFullScreenMode()) {
@@ -244,32 +245,28 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                             game_window->setFullScreenMode(FullScreenMODE::Fullscreen);
                             break;
                     }
-                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 default:
                     break;
             }
+            game_window->PlaySE(SoundEffectID::move);
         }
         else if(game_window->getIsButtonPressed(Buttons::Right)) {
             switch (this->selected_row_option)
             {
                 case OPTION_ITEM_PLAYER:
                     game_window->config.setPlayerCount(game_window->config.getPlayerCount() + 1);
-                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_BOMB:
                     game_window->config.setBombCount(game_window->config.getBombCount() + 1);
-                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_BGM_VOLUME:
                     game_window->config.setBGMVolume(game_window->config.getBGMVolume() + 1);
                     game_window->SetBGMVolume(game_window->config.getBGMVolume());
-                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_SE_VOLUME:
                     game_window->config.setSEVolume(game_window->config.getSEVolume() + 1);
                     game_window->SetSEVolume(game_window->config.getSEVolume());
-                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 case OPTION_ITEM_MODE:
                     switch(game_window->getFullScreenMode()) {
@@ -283,11 +280,11 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                             game_window->setFullScreenMode(FullScreenMODE::Windowed);
                             break;
                     }
-                    game_window->PlaySE(SoundEffectID::move);
                     break;
                 default:
                     break;
             }
+            game_window->PlaySE(SoundEffectID::move);
         }
         
         if(game_window->getIsButtonPressed(Buttons::Bomb) || game_window->getIsButtonPressed(Buttons::Pause)) {
@@ -327,7 +324,8 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
 
 
     } else if(this->phase == TitleScreenPhase::KeyConfig) {
-
+        //キーコン画面
+        //キーコンの選択リストの描画
         for(int i=0;i<KEYCONFIG_ITEM_COUNT;i++) {
 
             SDL_Rect src_rect = {0,i*48,230,48};
@@ -416,7 +414,6 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
 
 
     }
-
 
     return ScreenID::Title;
 }
