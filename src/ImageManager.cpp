@@ -8,18 +8,18 @@
 
 ImageManager::ImageManager(SDL_Renderer* renderer_handle, std::string base_path) {
     //FilePathListに格納されたテクスチャファイルを読み込む(PNG)
-    for(std::unordered_map<ImageID, std::string>::const_iterator it = FilePathList.begin(); it != FilePathList.end(); ++it) {
-        SDL_Surface* sur = IMG_Load((base_path + it->second).c_str());
+    for(const auto& it : FilePathList) {
+        SDL_Surface* sur = IMG_Load((base_path + it.second).c_str());
         SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer_handle ,sur);
         SDL_FreeSurface(sur);
-        this->texture_map[it->first] = tex;
+        this->texture_map[it.first] = tex;
     }
 }
 
 ImageManager::~ImageManager() {
     //読み込まれたテクスチャを全解放する
-    for(std::unordered_map<ImageID, SDL_Texture*>::iterator it = this->texture_map.begin(); it != this->texture_map.end(); ++it) {
-        SDL_DestroyTexture(it->second);
+    for(const auto& it : this->texture_map) {
+        SDL_DestroyTexture(it.second);
     }
 }
 
