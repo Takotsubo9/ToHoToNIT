@@ -6,6 +6,12 @@
 #include <cmath>
 #include <iostream>
 
+Operate::Operate(unsigned int width, unsigned int height) {
+    this->width = width;
+    this->height = height;
+    this->EnableJoyStickButton = true;
+}
+
 //すべてのInputManagerより、自機の動きやどのボタンが押されたかをセットする
 void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joystick_manager, TouchManager* touch_manager, Config* config) {
     //キーボードより押されているボタンの取得

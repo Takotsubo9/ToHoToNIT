@@ -18,11 +18,7 @@ private:
     FullScreenMODE fullscreen_mode;
 public:
     std::unordered_map<Buttons, int32_t> joystick_buttons_map;
-    Config(){
-        this->fullscreen_mode = FullScreenMODE::Windowed;
-        this->Reset();
-        this->KeyConfigReset();
-    }
+    Config();
     virtual ~Config(){
 
     }

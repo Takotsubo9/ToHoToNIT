@@ -19,11 +19,7 @@ private:
     float NowAxis[2];
 public:
     bool EnableJoyStickButton;
-    Operate(unsigned int width, unsigned int height) {
-        this->width = width;
-        this->height = height;
-        this->EnableJoyStickButton = true;
-    }
+    Operate(unsigned int width, unsigned int height);
     void Polling(KeyboardManager* keyboard_manager, JoystickManager* joystick_manager, TouchManager* touch_manager, Config* config);
     bool IsPressed(Buttons button) {
         return this->Pressed[button];

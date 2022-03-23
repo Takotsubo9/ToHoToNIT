@@ -10,6 +10,12 @@
 //コンフィグファイルのバージョン情報
 const char* config_file_info = "Touhou-Koumatou Config File 1.00";
 
+Config::Config() {
+    this->fullscreen_mode = FullScreenMODE::Windowed;
+    this->Reset();
+    this->KeyConfigReset();
+}
+
 //コンフィグの初期化
 void Config::Reset() {
     this->player_count = 3;
