@@ -5,8 +5,10 @@ dPlayer::dPlayer() {
     this->y = 600;
 }
 
-void dPlayer::move(float x, float y, bool isSlow) {
-    float speed = isSlow ? this->player->getCharacter()->getLowFSpeed() : this->player->getCharacter()->getHighFSpeed();
+void dPlayer::move(GameWindow* game_window) {
+    float x, y;
+    game_window->getMovement(&x, &y);
+    float speed = game_window->getIsButtonDown(Buttons::Slow) ? this->player->getCharacter()->getLowFSpeed() : this->player->getCharacter()->getHighFSpeed();
     this->x += x * 1.5 * speed;
     this->y += y * 1.5 * speed;
     this->x = std::max(std::min(static_cast<double>(this->x), (32 + 385) * 1.5), 32 * 1.5);

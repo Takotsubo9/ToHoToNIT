@@ -42,7 +42,7 @@ public:
     float getY( void ){ return y; }
     int getHitBoxRadius( void ){ return hitBoxRadius; }
 
-    void move(float x, float y, bool isSlow);
+    void move(GameWindow * game_window);
     void Draw(GameWindow * game_window);
 };
 
