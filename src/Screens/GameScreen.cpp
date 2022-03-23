@@ -163,7 +163,8 @@ ScreenID GameScreen::Render(GameWindow *game_window) {
 
     if (game_window->getIsButtonPressed(Buttons::Pause)) {
         this->paused = !this->paused;
-        selected_row_pause = PAUSE_ITEM_RESUME_TO_GAME;
+        if (this->paused)
+            selected_row_pause = PAUSE_ITEM_RESUME_TO_GAME;
     }
 
     if(this->paused) {
