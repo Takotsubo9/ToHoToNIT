@@ -6,6 +6,7 @@ TestChara::TestChara( void )
     setHighFSpeed( 3.0 );
     setLowFSpeed( 1.5 );
     setNFeverFrames_Bomb( 0 );
+    setImageID(ImageID::game_chara_test);
 }
 
 TestChara::~TestChara()

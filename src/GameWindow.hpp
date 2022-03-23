@@ -60,7 +60,7 @@ public:
         this->operate->GetSelfMovements(x, y);
     }
     //引数に与えられたIDの画像を描画する関数(アルファあり)
-    void DrawImage(ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect, RefPoint ref = RefPoint::LeftTop, uint8_t alpha = 0xff, double angle = 0) {
+    void DrawImage(ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect, RefPoint ref = RefPoint::LeftTop, uint8_t alpha = 0xff, double angle = 0, SDL_RendererFlip flip = SDL_FLIP_NONE) {
         SDL_Rect dst = *dstrect;
         switch(ref) {
             case RefPoint::Top:
@@ -95,7 +95,7 @@ public:
                 break;
         }
 
-        this->image_manager->Render(renderer_handle, image_id, srcrect, &dst, alpha, angle);
+        this->image_manager->Render(renderer_handle, image_id, srcrect, &dst, alpha, angle, flip);
     }
     //引数に与えられた色を描画する関数
     void FillRect(uint8_t r, uint8_t g, uint8_t b, uint8_t a, const SDL_Rect* rect) {

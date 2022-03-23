@@ -14,6 +14,7 @@ enum class ImageID {
     game_power_gauge,
     game_power_max_text,
     game_status,
+    game_chara_test,
     title_items,
     title_selected_items,
     title_background,

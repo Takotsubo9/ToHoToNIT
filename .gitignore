@@ -4,5 +4,6 @@
 /.vs/*
 /.vscode/*
 *.exo
+*.xcf
 makefile
 *.o

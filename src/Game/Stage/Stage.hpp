@@ -14,6 +14,7 @@ public:
     virtual ~Stage() {
         
     }
+    virtual void Update(GameWindow * game_window) = 0;
     virtual void Draw(GameWindow * game_window) = 0;
 };
 

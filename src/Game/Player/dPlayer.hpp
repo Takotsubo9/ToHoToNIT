@@ -18,6 +18,8 @@ private:
     PlayerBarrage * pbarrage;
     float x;
     float y;
+    int frame_count;
+    int move_frame_count;
     const int hitBoxRadius = 5;    //キャラの当たり判定半径(pxl) 全キャラで不変
 public:
     dPlayer();
@@ -42,7 +44,7 @@ public:
     float getY( void ){ return y; }
     int getHitBoxRadius( void ){ return hitBoxRadius; }
 
-    void move(GameWindow * game_window);
+    void Update(GameWindow * game_window);
     void Draw(GameWindow * game_window);
 };
 

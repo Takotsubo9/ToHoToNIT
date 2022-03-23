@@ -31,8 +31,9 @@ ScreenID GameScreen::Render(GameWindow *game_window) {
     //ポーズアニメーションのカウンターが0の際のみ、ステージの描画
     //(暫定の実装)
     if (pause_counter == 0) {
-        this->stage->Draw(game_window);
+        this->stage->Update(game_window);
     }
+    this->stage->Draw(game_window);
 
     //ポーズアニメーションのカウンターが0じゃない際にポーズ用のやつを描画
     if(pause_counter != 0) {

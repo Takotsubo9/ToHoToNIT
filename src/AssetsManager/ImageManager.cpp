@@ -24,8 +24,8 @@ ImageManager::~ImageManager() {
 }
 
 //引数に渡されたRectやalpha値や角度をもとにSDL_Rendererに描画する
-void ImageManager::Render(SDL_Renderer* renderer_handle, ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect, uint8_t alpha, double angle) {
+void ImageManager::Render(SDL_Renderer* renderer_handle, ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect, uint8_t alpha, double angle, SDL_RendererFlip flip) {
     SDL_Texture* tmp = this->texture_map[image_id];
     SDL_SetTextureAlphaMod(tmp, alpha);
-    SDL_RenderCopyEx(renderer_handle, tmp, srcrect, dstrect , angle, NULL, SDL_FLIP_NONE);
+    SDL_RenderCopyEx(renderer_handle, tmp, srcrect, dstrect , angle, NULL, flip);
 }

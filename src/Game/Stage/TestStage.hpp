@@ -12,7 +12,7 @@ public:
     virtual ~TestStage() {
 
     }
-
+    void Update(GameWindow* game_window);
     void Draw(GameWindow* game_window);
 };
 
