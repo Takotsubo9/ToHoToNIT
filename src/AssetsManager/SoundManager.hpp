@@ -7,7 +7,7 @@
 #include <SDL2/SDL_mixer.h>
 #endif
 
-#include "Const/SoundID.hpp"
+#include "../Const/SoundID.hpp"
 #include <unordered_map>
 
 class SoundManager {

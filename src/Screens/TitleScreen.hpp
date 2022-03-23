@@ -7,7 +7,7 @@
 #include <SDL2/SDL.h>
 #endif
 
-#include "../Screen.hpp"
+#include "Screen.hpp"
 #include "../Const/ScreenID.hpp"
 
 class GameWindow;

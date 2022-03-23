@@ -10,7 +10,7 @@
 #include <iostream>
 #include <chrono>
 #include <cmath>
-#include "Screen.hpp"
+#include "Screens/Screen.hpp"
 #include "Const/ScreenID.hpp"
 #include "FPS.hpp"
 

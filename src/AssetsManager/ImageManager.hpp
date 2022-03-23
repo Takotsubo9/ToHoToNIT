@@ -8,7 +8,7 @@
 #endif
 
 #include <unordered_map>
-#include "Const/ImageID.hpp"
+#include "../Const/ImageID.hpp"
 
 //画像を管理するクラス
 class ImageManager {

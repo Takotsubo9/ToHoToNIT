@@ -7,7 +7,7 @@
 #include <SDL2/SDL.h>
 #endif
 
-#include "../Screen.hpp"
+#include "Screen.hpp"
 #include "../Const/ScreenID.hpp"
 #include "../Const/CharacterID.hpp"
 #include "../Game/Stage/Stage.hpp"
