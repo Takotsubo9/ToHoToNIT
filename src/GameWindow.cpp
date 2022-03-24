@@ -12,6 +12,7 @@
 GameWindow::GameWindow(std::string window_title, unsigned int width, unsigned int height) {
     //加速度センサをジョイスティックとして使う機能をオフ
     SDL_SetHint(SDL_HINT_ACCELEROMETER_AS_JOYSTICK, "0");
+    SDL_SetHint(SDL_HINT_ORIENTATIONS, "LandscapeLeft LandscapeRight");
     this->application_path = "";
 #ifndef __ANDROID__
     //Android以外の場合、実行ファイルが配置されているパスを取得し、保存しておく
