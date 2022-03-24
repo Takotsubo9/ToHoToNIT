@@ -59,6 +59,9 @@ public:
     void getMovement(float* x, float* y) {
         this->operate->GetSelfMovements(x, y);
     }
+    std::string& getApplicationPath() {
+        return this->application_path;
+    }
     //引数に与えられたIDの画像を描画する関数(アルファあり)
     void DrawImage(ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect, RefPoint ref = RefPoint::LeftTop, uint8_t alpha = 0xff, double angle = 0, SDL_RendererFlip flip = SDL_FLIP_NONE) {
         SDL_Rect dst = *dstrect;

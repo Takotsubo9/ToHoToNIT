@@ -306,6 +306,7 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                     break;
                 case OPTION_ITEM_QUIT:
                     game_window->PlaySE(SoundEffectID::cancel);
+                    game_window->config.Export(game_window->getApplicationPath());
                     this->phase = TitleScreenPhase::Title;
                     break;
                 default:
