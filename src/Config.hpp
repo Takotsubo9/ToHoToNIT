@@ -6,6 +6,7 @@
 #include <string>
 #include "Const/Buttons.hpp"
 #include "Const/FullScreenMode.hpp"
+#include "Const/CharacterID.hpp"
 
 const int UNDEFINED_BUTTONS = -1;
 
@@ -16,6 +17,7 @@ private:
     uint8_t bgm_volume;
     uint8_t se_volume;
     FullScreenMODE fullscreen_mode;
+    CharacterID selected_chara;
 public:
     std::unordered_map<Buttons, int32_t> joystick_buttons_map;
     Config();
@@ -42,6 +44,10 @@ public:
         this->fullscreen_mode = fsm;
     }
 
+    void setSelectedCharacterID(CharacterID chara) {
+        this->selected_chara = chara;
+    }
+
     int getPlayerCount() {
         return player_count;
     }
@@ -60,6 +66,10 @@ public:
 
     FullScreenMODE getFullScreenMode() {
         return fullscreen_mode;
+    }
+
+    CharacterID getSelectedCharacterID() {
+        return selected_chara;
     }
 
     void Reset();

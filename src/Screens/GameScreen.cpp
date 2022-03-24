@@ -14,7 +14,7 @@ GameScreen::GameScreen(Config& config) {
     this->paused = false;
     this->pause_counter = 0;
     this->selected_row_pause = PAUSE_ITEM_RESUME_TO_GAME;
-    this->player = new Player(CharacterID::TestChara, config);
+    this->player = new Player(config);
     this->stage = new TestStage(this->player);
 }
 

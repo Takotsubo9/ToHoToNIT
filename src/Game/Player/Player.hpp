@@ -4,6 +4,10 @@
 #include "../../Config.hpp"
 #include "../../Const/CharacterID.hpp"
 #include "../Chara/Character.hpp"
+#include "../Chara/MarisaMa.hpp"
+#include "../Chara/MarisaKoi.hpp"
+#include "../Chara/ReimuRei.hpp"
+#include "../Chara/ReimuYume.hpp"
 #include "../Chara/SatsukiHana.hpp"
 #include "../Chara/SatsukiKaze.hpp"
 #include "../Chara/TestChara.hpp"
@@ -13,13 +17,15 @@ class Player {
 private:
     Character* chara;
     unsigned long AllPoint;
+    unsigned int DefaultPlayerCount;
+    unsigned int DefaultBombCount;
     unsigned int PlayerCount;
     unsigned int BombCount;
     unsigned int Power;
     unsigned int Graze;
     unsigned int Point;
 public:
-    Player(CharacterID charaID, Config& config);
+    Player(Config& config);
     virtual ~Player() {
         delete this->chara;
     }

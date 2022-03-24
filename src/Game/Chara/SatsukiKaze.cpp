@@ -6,6 +6,7 @@ SatsukiKaze::SatsukiKaze( void )
     setHighFSpeed( 3.0 );
     setLowFSpeed( 1.5 );
     setNFeverFrames_Bomb( 315 );
+    setImageID(ImageID::game_chara_satsuki);
 }
 
 SatsukiKaze::~SatsukiKaze()

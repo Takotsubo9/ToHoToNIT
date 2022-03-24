@@ -5,6 +5,7 @@ dPlayer::dPlayer() {
     this->y = 600;
     this->move_frame_count = 0;
     this->frame_count = 0;
+    this->flip = SDL_FLIP_NONE;
 }
 
 void dPlayer::Update(GameWindow* game_window) {
@@ -30,10 +31,10 @@ void dPlayer::Update(GameWindow* game_window) {
 void dPlayer::Draw(GameWindow* game_window) {
     SDL_Rect player_rect = {static_cast<int>(this->x), static_cast<int>(this->y), 48, 67};
     SDL_Rect src_rect = {(frame_count / 5) * 48,0,48,67};
-    SDL_RendererFlip flip = SDL_FLIP_NONE;
     if(move_frame_count < 0) {
         src_rect.y = 67;
         src_rect.x = 48 * (-move_frame_count / 2);
+        flip = SDL_FLIP_NONE;
     } else if(move_frame_count > 0) {
         src_rect.y = 67;
         src_rect.x = 48 * (move_frame_count / 2);

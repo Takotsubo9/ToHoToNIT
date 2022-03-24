@@ -20,6 +20,7 @@ private:
     float y;
     int frame_count;
     int move_frame_count;
+    SDL_RendererFlip flip;
     const int hitBoxRadius = 5;    //キャラの当たり判定半径(pxl) 全キャラで不変
 public:
     dPlayer();

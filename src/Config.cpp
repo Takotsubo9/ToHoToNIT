@@ -22,6 +22,7 @@ void Config::Reset() {
     this->bomb_count = 3;
     this->bgm_volume = 100;
     this->se_volume = 100;
+    this->selected_chara = CharacterID::TestChara;
 }
 
 //キーコンの初期化
