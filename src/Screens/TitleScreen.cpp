@@ -216,7 +216,6 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
         }
 
         if(game_window->getIsButtonPressed(Buttons::Left)) {
-                    game_window->PlaySE(SoundEffectID::move);
             switch (this->selected_row_option)
             {
                 case OPTION_ITEM_PLAYER:
