@@ -13,7 +13,7 @@ class Operate {
 private:
     std::map<Buttons, bool> Pressed;
     std::map<Buttons, bool> Pressing;
-    std::map<Buttons, bool> tmpPressing;
+    std::map<Buttons, int> PressingCount;
     unsigned int width;
     unsigned int height;
     float NowAxis[2];
