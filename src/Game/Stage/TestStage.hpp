@@ -5,10 +5,7 @@
 
 class TestStage : public Stage {
 public:
-    TestStage(Player * player) : Stage(player) {
-
-    }
-
+    TestStage(Player * player);
     virtual ~TestStage() {
 
     }

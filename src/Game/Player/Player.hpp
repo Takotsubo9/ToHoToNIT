@@ -53,6 +53,18 @@ public:
     void setPower(unsigned int power) {
         this->Power = std::min(static_cast<unsigned int>(128), std::max(static_cast<unsigned int>(0), power));
     }
+    void setPlayerCount(unsigned int player_count) {
+        this->PlayerCount = std::min(static_cast<unsigned int>(8), std::max(static_cast<unsigned int>(0), player_count));
+    }
+    void setBombCount(unsigned int bomb_count) {
+        this->BombCount = std::min(static_cast<unsigned int>(8), std::max(static_cast<unsigned int>(0), bomb_count));
+    }
+    void incleaseGraze() {
+        this->Graze++;
+    }
+    void incleasePoint() {
+        this->Point++;
+    }
 };
 
 #endif /* _PLAYER_H_ */

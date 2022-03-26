@@ -10,6 +10,7 @@ const std::unordered_map<ImageID, std::string> FilePathList = {
     {ImageID::game_power_gauge, "image/game/power_gauge.png"},
     {ImageID::game_power_max_text, "image/game/power_max_text.png"},
     {ImageID::game_status, "image/game/status.png"},
+    {ImageID::game_item, "image/game/item.png"},
     {ImageID::game_chara_marisa, "image/game/chara/marisa.png"},
     {ImageID::game_chara_reimu, "image/game/chara/reimu.png"},
     {ImageID::game_chara_satsuki, "image/game/chara/satsuki.png"},

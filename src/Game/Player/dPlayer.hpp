@@ -22,6 +22,7 @@ private:
     int move_frame_count;
     SDL_RendererFlip flip;
     const int hitBoxRadius = 5;    //キャラの当たり判定半径(pxl) 全キャラで不変
+    const int grazeBoxRadius = 10; //キャラのGraze当たり判定半径(pxl) 全キャラで不変
 public:
     dPlayer();
     virtual ~dPlayer() {
@@ -44,6 +45,7 @@ public:
     void setY( float y ){ this->y = y; }
     float getY( void ){ return y; }
     int getHitBoxRadius( void ){ return hitBoxRadius; }
+    int getGrazeBoxRadius( void ){ return grazeBoxRadius; }
 
     void Update(GameWindow * game_window);
     void Draw(GameWindow * game_window);

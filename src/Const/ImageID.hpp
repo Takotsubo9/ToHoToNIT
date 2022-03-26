@@ -14,6 +14,7 @@ enum class ImageID {
     game_power_gauge,
     game_power_max_text,
     game_status,
+    game_item,
     game_chara_marisa,
     game_chara_reimu,
     game_chara_satsuki,

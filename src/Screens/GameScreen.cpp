@@ -32,6 +32,7 @@ ScreenID GameScreen::Render(GameWindow *game_window) {
     //(暫定の実装)
     if (pause_counter == 0) {
         this->stage->Update(game_window);
+        this->stage->Judge(game_window);
     }
     this->stage->Draw(game_window);
 

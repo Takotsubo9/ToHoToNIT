@@ -9,6 +9,7 @@ enum class SoundEffectID {
     decide,
     move,
     cancel,
+    get_item,
 };
 
 //SEのIDに対するファイルパス
