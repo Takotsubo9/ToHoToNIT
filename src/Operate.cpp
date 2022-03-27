@@ -72,19 +72,8 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
                     tmpPressing[Buttons::Up] |= true;
                 }
 
-                float angle;
-                if(dx != 0) {
-                    angle = std::atan(-dy/static_cast<double>(dx));
-                    if(dx<0) {
-                        angle += M_PI;
-                    }
-                } else {
-                    angle = M_PI / 2.0;
-                    if(dy > 0) {
-                        angle += M_PI;
-                    } 
-                }
-
+                double angle = std::atan2(-dy, dx);
+                
                 this->NowAxis[0] = std::cos(angle) * std::min(std::abs(dx / 0.1), 1.0);
                 this->NowAxis[1] = -std::sin(angle) * std::min(std::abs(dy / 0.1), 1.0);
             }
@@ -122,19 +111,7 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
             tmpPressing[Buttons::Up] |= (joystick_manager->getAxis(1) < -24576);
 
             //以下Axis
-            float angle;
-            if(joystick_manager->getAxis(0)!=0) {
-                angle = std::atan(-joystick_manager->getAxis(1)/static_cast<double>(joystick_manager->getAxis(0)));
-                if(joystick_manager->getAxis(0)<0) {
-                    angle += M_PI;
-                }
-            } else {
-                angle = M_PI / 2.0;
-                if(joystick_manager->getAxis(1)>0) {
-                    angle += M_PI;
-                } 
-            }
-
+            double angle = std::atan2(-joystick_manager->getAxis(1), joystick_manager->getAxis(0));
             this->NowAxis[0] = std::cos(angle) * std::abs(joystick_manager->getAxis(0) / 32768.0);
             this->NowAxis[1] = -std::sin(angle) * std::abs(joystick_manager->getAxis(1) / 32768.0);
         }
