@@ -55,7 +55,7 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
         for(SDL_FingerID& id : finger_list) {
             Point now_point = touch_manager->GetTouchingPos(id);
             Point first_point = touch_manager->GetFirstTouchPos(id);
-            if(first_point.x < 0.5 && now_point.x < 0.5) {
+            if(first_point.x < 0.5) {
                 //十字キー側
                 float dx = now_point.x - first_point.x;
                 float dy = now_point.y - first_point.y;
