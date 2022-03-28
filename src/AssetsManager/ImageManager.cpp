@@ -1,16 +1,21 @@
 #ifdef __ANDROID__
+#include <SDL.h>
 #include <SDL_image.h>
 #else
+#include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #endif
 
+#include <string>
 #include "ImageManager.hpp"
 
 ImageManager::ImageManager(SDL_Renderer* renderer_handle, std::string base_path) {
     //FilePathListに格納されたテクスチャファイルを読み込む(PNG)
     for(const auto& it : FilePathList) {
         SDL_Surface* sur = IMG_Load((base_path + it.second).c_str());
-        SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer_handle ,sur);
+        SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer_handle , sur);
+        if(sur == NULL || tex == NULL)
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING, "Touhou-Koumatou", (std::string("Failed to open texture file\n") + it.second).c_str(), NULL);
         SDL_FreeSurface(sur);
         this->texture_map[it.first] = tex;
     }

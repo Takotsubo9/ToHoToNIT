@@ -1,3 +1,11 @@
+#ifdef __ANDROID__
+#include <SDL.h>
+#include <SDL_mixer.h>
+#else
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
+#endif
+
 #include "SoundManager.hpp"
 #include <iostream>
 
@@ -5,11 +13,15 @@ SoundManager::SoundManager(std::string base_path) {
     //SEFilePathListに記載されたSEをすべて読み込む
     for(const auto& it : SEFilePathList) {
         Mix_Chunk* cnk = Mix_LoadWAV((base_path + it.second).c_str());
+        if(cnk == NULL)
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING, "Touhou-Koumatou", (std::string("Failed to open sound file\n") + it.second).c_str(), NULL);
         this->se_map[it.first] = cnk;
     }
     //BGMFilePathListに記載されたBGMをすべて読み込む
     for(const auto& it : BGMFilePathList) {
         Mix_Music* mus = Mix_LoadMUS((base_path + it.second).c_str());
+        if(mus == NULL)
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING, "Touhou-Koumatou", (std::string("Failed to open music file\n") + it.second).c_str(), NULL);
         this->bgm_map[it.first] = mus;
     }
 }
