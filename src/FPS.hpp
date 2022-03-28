@@ -7,16 +7,16 @@
 #include <SDL2/SDL.h>
 #endif
 
-#include <queue>
-#include <iostream>
-
 class GameWindow;
 
 class FPS {
 private:
-    const size_t MAX_FPS_VECTOR_COUNT = 30;
-    std::queue<uint64_t> ticks_queue;
+    static const double update_frame;
+    uint64_t first;
+    uint64_t second;
+    uint16_t frames;
 public:
+    FPS();
     void Update();
     void DrawFPS(GameWindow* game_window);
     double GetFPS();

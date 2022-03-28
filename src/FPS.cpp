@@ -1,13 +1,26 @@
 #include "GameWindow.hpp"
 #include "FPS.hpp"
 
+const double FPS::update_frame = 30;
+
+inline uint64_t getNowTime() {
+    return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+}
+
+FPS::FPS() {
+    this->first = 0;
+    this->second = getNowTime();
+    this->frames = 0;
+}
+
 //FPS値のアップデートを行う
 void FPS::Update() {
-    uint64_t Ticks = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-    ticks_queue.push(Ticks);
-    if(ticks_queue.size() > MAX_FPS_VECTOR_COUNT) {
-        ticks_queue.pop();
+    if(frames == this->update_frame) {
+        this->first = this->second;
+        this->second = getNowTime();
+        frames = 0;
     }
+    frames++;
 }
 
 //FPS値を右下に描画する
@@ -43,6 +56,8 @@ void FPS::DrawFPS(GameWindow* game_window) {
             num /= 10;
             digit++;
         }
+        if(digit == 0)
+            digit++;
         for(int i = 0; i < digit; i++) {
             int Deg = (static_cast<int>(FPS / pow(10, i)) % 10);
             const SDL_Rect srcrect = {32*Deg,0,32,48};
@@ -53,11 +68,8 @@ void FPS::DrawFPS(GameWindow* game_window) {
 }
 
 double FPS::GetFPS() {
-    
-    
-    if( ticks_queue.size() <= 1 )
+    if (this->second - this->first == 0)
         return 0;
-    
-    double frame = static_cast<double>(ticks_queue.back() - ticks_queue.front());
-    return 1000000.0 / (frame / (ticks_queue.size() - 1));
+
+    return 1000.0 / ((this->second - this->first) / this->update_frame);
 }
