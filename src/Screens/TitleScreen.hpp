@@ -13,46 +13,46 @@
 class GameWindow;
 
 //タイトルの選択リスト
-enum : int {
-    TITLE_ITEM_START = 0,
-    TITLE_ITEM_EXTRA_START,
-    TITLE_ITEM_SCARLET_START,
-    TITLE_ITEM_PRACTICE_START,
-    TITLE_ITEM_REPLAY,
-    TITLE_ITEM_SCORE,
-    TITLE_ITEM_MUSIC_ROOM,
-    TITLE_ITEM_OPTION,
-    TITLE_ITEM_QUIT,
-    TITLE_ITEM_COUNT,//個数カウント用
+enum class TitleScreenItem : int {
+    START = 0,
+    EXTRA_START,
+    SCARLET_START,
+    PRACTICE_START,
+    REPLAY,
+    SCORE,
+    MUSIC_ROOM,
+    OPTION,
+    QUIT,
+    COUNT,//個数カウント用
 };
 
 //オプションでの選択リスト
-enum : int {
-    OPTION_ITEM_PLAYER = 0,
-    OPTION_ITEM_BOMB,
-    OPTION_ITEM_BGM_VOLUME,
-    OPTION_ITEM_SE_VOLUME,
-    OPTION_ITEM_MODE,
-    OPTION_ITEM_RESET,
-    OPTION_ITEM_KEYCONFIG,
-    OPTION_ITEM_QUIT,
-    OPTION_ITEM_COUNT,//個数カウント用
+enum class OptionScreenItem : int {
+    PLAYER = 0,
+    BOMB,
+    BGM_VOLUME,
+    SE_VOLUME,
+    FULLSCREEN_MODE,
+    RESET,
+    KEYCONFIG,
+    QUIT,
+    COUNT,//個数カウント用
 };
 
 //キーコンでの選択リスト
-enum : int {
-    KEYCONFIG_ITEM_SHOT = 0,
-    KEYCONFIG_ITEM_BOMB,
-    KEYCONFIG_ITEM_SLOW,
-    KEYCONFIG_ITEM_PAUSE,
-    KEYCONFIG_ITEM_UP,
-    KEYCONFIG_ITEM_DOWN,
-    KRYCONFIG_ITEM_LEFT,
-    KEYCONFIG_ITEM_RIGHT,
-    KEYCONFIG_ITEM_SKIP,
-    KEYCONFIG_ITEM_RESET,
-    KEYCONFIG_ITEM_QUIT,
-    KEYCONFIG_ITEM_COUNT,//個数カウント用
+enum KeyConfigScreenItem : int {
+    SHOT = 0,
+    BOMB,
+    SLOW,
+    PAUSE,
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT,
+    SKIP,
+    RESET,
+    QUIT,
+    COUNT,//個数カウント用
 };
 
 //タイトル画面でのフェーズ
@@ -67,9 +67,9 @@ enum class TitleScreenPhase {
 class TitleScreen : public Screen {
 private:
     long frames;
-    int selected_row_title;
-    int selected_row_option;
-    int selected_row_keyconfig;
+    TitleScreenItem selected_row_title;
+    OptionScreenItem selected_row_option;
+    KeyConfigScreenItem selected_row_keyconfig;
     TitleScreenPhase phase;
 public:
     TitleScreen();

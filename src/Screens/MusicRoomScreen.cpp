@@ -8,8 +8,17 @@
 #include "../GameWindow.hpp"
 #include "../Const/RefPoint.hpp"
 
+MusicRoomScreenItem& operator++(MusicRoomScreenItem& item) {
+    return item = static_cast<MusicRoomScreenItem>((static_cast<int>(item) + 1 + static_cast<int>(MusicRoomScreenItem::COUNT)) % static_cast<int>(MusicRoomScreenItem::COUNT));
+}
+
+MusicRoomScreenItem& operator--(MusicRoomScreenItem& item) {
+    return item = static_cast<MusicRoomScreenItem>((static_cast<int>(item) - 1 + static_cast<int>(MusicRoomScreenItem::COUNT)) % static_cast<int>(MusicRoomScreenItem::COUNT));
+}
+
+
 MusicRoomScreen::MusicRoomScreen() {
-    selected_row = MUSIC_ITEM_HOGEHOGE;
+    selected_row = MusicRoomScreenItem::HOGEHOGE;
 }
 
 ScreenID MusicRoomScreen::Render(GameWindow* game_window) {

@@ -12,15 +12,15 @@
 
 class GameWindow;
 
-enum : int {
-    MUSIC_ITEM_HOGEHOGE = 0,
-    MUSIC_ITEM_COUNT,//個数カウント用
+enum class MusicRoomScreenItem : int {
+    HOGEHOGE = 0,
+    COUNT,//個数カウント用
 };
 
 //ゲーム画面クラス
 class MusicRoomScreen : public Screen {
 private:
-    int selected_row;
+    MusicRoomScreenItem selected_row;
 public:
     MusicRoomScreen();
     virtual ~MusicRoomScreen() {
