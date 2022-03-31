@@ -13,7 +13,7 @@ jobs:
     - name: Install dependent libraries
       run: |
         sudo apt update
-        sudo apt install build-essential libsdl2-dev libjpeg-dev libwebp-dev libtiff5-dev libsdl2-image-dev libmikmod-dev libfishsound1-dev libsmpeg-dev liboggz2-dev libflac-dev libfluidsynth-dev libsdl2-mixer-dev
+        sudo apt install build-essential libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev
 
     - name: Create makefile
       run: |
