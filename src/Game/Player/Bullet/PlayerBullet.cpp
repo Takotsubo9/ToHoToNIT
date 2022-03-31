@@ -1,5 +1,5 @@
 #include <cmath>
-#include"PlayerBullet.hpp"
+#include "PlayerBullet.hpp"
 const double PI = 3.141593;
 
 PlayerBullet::PlayerBullet(void)

@@ -2,8 +2,8 @@
 #define _PLAYERBARRAGE_H_
 
 #include<vector>
-#include"PlayerBullet.hpp"
-#include"../Enemy/Enemy.hpp"
+#include "../Bullet/PlayerBullet.hpp"
+#include "../../Enemy/Enemy.hpp"
 
 class dPlayer;
 
