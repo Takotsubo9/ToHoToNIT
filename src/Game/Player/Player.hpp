@@ -3,14 +3,14 @@
 
 #include "../../Config.hpp"
 #include "../../Const/CharacterID.hpp"
-#include "../Chara/Character.hpp"
-#include "../Chara/MarisaMa.hpp"
-#include "../Chara/MarisaKoi.hpp"
-#include "../Chara/ReimuRei.hpp"
-#include "../Chara/ReimuYume.hpp"
-#include "../Chara/SatsukiHana.hpp"
-#include "../Chara/SatsukiKaze.hpp"
-#include "../Chara/TestChara.hpp"
+#include "Chara/Character.hpp"
+#include "Chara/MarisaMa.hpp"
+#include "Chara/MarisaKoi.hpp"
+#include "Chara/ReimuRei.hpp"
+#include "Chara/ReimuYume.hpp"
+#include "Chara/SatsukiHana.hpp"
+#include "Chara/SatsukiKaze.hpp"
+#include "Chara/TestChara.hpp"
 #include <cmath>
 
 class Player {
