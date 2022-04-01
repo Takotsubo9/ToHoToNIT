@@ -18,7 +18,7 @@ protected:
 public:
     PlayerBullet(void);
     PlayerBullet(float x, float y, float angle);
-    PlayerBullet(int enemyBulletID, float x, float y, float angle);
+    PlayerBullet(int playerBulletID, float x, float y, float angle);
     virtual ~PlayerBullet();
 
     void setPlayerBulletID(int playerBulletID) { this->playerBulletID = playerBulletID; }

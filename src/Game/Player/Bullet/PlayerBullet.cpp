@@ -14,9 +14,9 @@ PlayerBullet::PlayerBullet(float x, float y, float angle)
     setAngle(angle);
 }
 
-PlayerBullet::PlayerBullet(int elayerBulletID, float x, float y, float angle)
+PlayerBullet::PlayerBullet(int playerBulletID, float x, float y, float angle)
 {
-    setPlayerBulletID(elayerBulletID);
+    setPlayerBulletID(playerBulletID);
     setX(x);
     setY(y);
     setAngle(angle);
