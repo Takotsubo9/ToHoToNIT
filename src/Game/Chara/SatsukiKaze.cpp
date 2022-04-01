@@ -1,12 +1,8 @@
 #include "SatsukiKaze.hpp"
 
-SatsukiKaze::SatsukiKaze( void )
+SatsukiKaze::SatsukiKaze( void ) : Character( "冴月麟(風)", 3.0, 1.5, 315, ImageID::game_chara_satsuki )
 {
-    setSName( "冴月麟(花)" );
-    setHighFSpeed( 3.0 );
-    setLowFSpeed( 1.5 );
-    setNFeverFrames_Bomb( 315 );
-    setImageID(ImageID::game_chara_satsuki);
+
 }
 
 SatsukiKaze::~SatsukiKaze()

@@ -1,12 +1,8 @@
 #include "ReimuYume.hpp"
 
-ReimuYume::ReimuYume( void )
+ReimuYume::ReimuYume( void ) : Character( "博麗霊夢(夢)", 4.0, 2.0, 204, ImageID::game_chara_reimu )
 {
-    setSName( "博麗霊夢(夢)" );
-    setHighFSpeed( 4.0 );
-    setLowFSpeed( 2.0 );
-    setNFeverFrames_Bomb( 204 );
-    setImageID(ImageID::game_chara_reimu);
+
 }
 
 ReimuYume::~ReimuYume()

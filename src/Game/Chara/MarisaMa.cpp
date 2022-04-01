@@ -1,12 +1,8 @@
 #include "MarisaMa.hpp"
 
-MarisaMa::MarisaMa( void )
+MarisaMa::MarisaMa( void ) : Character( "霧雨魔理沙(魔)", 5.0, 2.5, 314, ImageID::game_chara_marisa )
 {
-    setSName( "霧雨魔理沙(魔)" );
-    setHighFSpeed( 5.0 );
-    setLowFSpeed( 2.5 );
-    setNFeverFrames_Bomb( 314 );
-    setImageID(ImageID::game_chara_marisa);
+
 }
 
 MarisaMa::~MarisaMa()

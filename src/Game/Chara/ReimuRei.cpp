@@ -1,12 +1,8 @@
 #include "ReimuRei.hpp"
 
-ReimuRei::ReimuRei( void )
+ReimuRei::ReimuRei( void ) : Character( "博麗霊夢(霊)", 4.0, 2.0, 366, ImageID::game_chara_reimu )
 {
-    setSName( "博麗霊夢(霊)" );
-    setHighFSpeed( 4.0 );
-    setLowFSpeed( 2.0 );
-    setNFeverFrames_Bomb( 366 );
-    setImageID(ImageID::game_chara_reimu);
+
 }
 
 ReimuRei::~ReimuRei()
