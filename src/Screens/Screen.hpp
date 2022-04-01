@@ -11,7 +11,6 @@
 
 class GameWindow;
 
-
 //画面の基底クラス
 //新しい画面を追加する場合、このクラスを継承すること
 class Screen {

@@ -25,9 +25,7 @@ private:
     const int grazeBoxRadius = 10; //キャラのGraze当たり判定半径(pxl) 全キャラで不変
 public:
     dPlayer();
-    virtual ~dPlayer() {
-
-    }
+    virtual ~dPlayer();
     void setPlayer(Player * player) {
         this->player = player;
     }

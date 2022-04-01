@@ -21,6 +21,10 @@ MusicRoomScreen::MusicRoomScreen() {
     selected_row = MusicRoomScreenItem::HOGEHOGE;
 }
 
+MusicRoomScreen::~MusicRoomScreen() {
+    
+}
+
 ScreenID MusicRoomScreen::Render(GameWindow* game_window) {
     //とりあえず、BGの描画
     SDL_Rect bg_src_rect = {0,0,1600,1200};

@@ -8,6 +8,10 @@ dPlayer::dPlayer() {
     this->flip = SDL_FLIP_NONE;
 }
 
+dPlayer::~dPlayer() {
+    
+}
+
 void dPlayer::Update(GameWindow* game_window) {
     float x, y;
     game_window->getMovement(&x, &y);

@@ -18,6 +18,11 @@ GameScreen::GameScreen(Config& config) {
     this->stage = new TestStage(this->player);
 }
 
+GameScreen::~GameScreen() {
+    delete this->stage;
+    delete this->player;
+}
+
 ScreenID GameScreen::Render(GameWindow *game_window) {
 
     //ポーズのアニメーション用にカウンターをいろいろ

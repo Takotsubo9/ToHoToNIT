@@ -33,3 +33,7 @@ Player::Player(Config& config) {
     this->Point = 0;
     this->Power = 0;
 }
+
+Player::~Player() {
+    delete this->chara;
+}

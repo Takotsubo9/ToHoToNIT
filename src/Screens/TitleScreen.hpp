@@ -73,9 +73,7 @@ private:
     TitleScreenPhase phase;
 public:
     TitleScreen();
-    virtual ~TitleScreen() {
-        
-    }
+    virtual ~TitleScreen();
     ScreenID Render(GameWindow* game_window);
     ScreenID getScreenID() { return ScreenID::Title; }
 };

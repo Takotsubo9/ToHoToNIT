@@ -18,7 +18,7 @@ private:
     float speed;
 public:
     Item(ItemID item_id, float x, float y, float target_x, float target_y, float inclease, float speed);
-    virtual ~Item() {}
+    virtual ~Item();
     int getX() { return x; }
     int getY() { return y; }
     void Update();

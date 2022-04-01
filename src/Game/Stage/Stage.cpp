@@ -4,6 +4,10 @@ Stage::Stage(Player * player) {
     dplayer.setPlayer(player);
 }
 
+Stage::~Stage() {
+    
+}
+
 void Stage::Judge(GameWindow* game_window) {
     //もろもろの当たり判定を判定する関数
     for(auto item = this->item_list.begin(); item != this->item_list.end();) {

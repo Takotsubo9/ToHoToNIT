@@ -6,9 +6,7 @@
 class TestStage : public Stage {
 public:
     TestStage(Player * player);
-    virtual ~TestStage() {
-
-    }
+    virtual ~TestStage();
     void Update(GameWindow* game_window);
     void Draw(GameWindow* game_window);
 };

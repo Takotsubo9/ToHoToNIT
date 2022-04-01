@@ -21,9 +21,7 @@ private:
 public:
     std::unordered_map<Buttons, int32_t> joystick_buttons_map;
     Config();
-    virtual ~Config(){
-
-    }
+    virtual ~Config();
     void setPlayerCount(int player_count) {
         this->player_count = ((player_count - 1 + 5) % 5) + 1;
     }

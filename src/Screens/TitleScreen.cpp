@@ -41,6 +41,10 @@ TitleScreen::TitleScreen() {
     this->phase = TitleScreenPhase::Title;
 }
 
+TitleScreen::~TitleScreen() {
+    
+}
+
 ScreenID TitleScreen::Render(GameWindow* game_window) {
     //タイトル画面共通のBGテクスチャの描画
     SDL_Rect bg_src_rect = {0,0,2400,1800};

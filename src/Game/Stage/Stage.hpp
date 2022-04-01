@@ -12,9 +12,7 @@ protected:
     std::vector<Item> item_list;
 public:
     Stage(Player * player);
-    virtual ~Stage() {
-        
-    }
+    virtual ~Stage();
     //Update->Judge->Drawの順で呼ぶ
     //場所のアップデート
     virtual void Update(GameWindow * game_window) = 0;

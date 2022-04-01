@@ -1,6 +1,11 @@
 #include "TestStage.hpp"
 
 TestStage::TestStage(Player * player) : Stage(player) {
+    
+}
+
+TestStage::~TestStage() {
+
 }
 
 void TestStage::Update(GameWindow* game_window) {

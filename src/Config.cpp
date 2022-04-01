@@ -16,6 +16,10 @@ Config::Config() {
     this->KeyConfigReset();
 }
 
+Config::~Config() {
+    
+}
+
 //コンフィグの初期化
 void Config::Reset() {
     this->player_count = 3;

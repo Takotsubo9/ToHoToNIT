@@ -18,6 +18,10 @@ Item::Item(ItemID item_id, float x, float y, float target_x, float target_y, flo
     this->speed = speed;
 }
 
+Item::~Item() {
+    
+}
+
 void Item::Update() {
     if (this->to_target) {
         float rad = std::atan2(target_y - y, target_x - x);

@@ -26,9 +26,7 @@ private:
     unsigned int Point;
 public:
     Player(Config& config);
-    virtual ~Player() {
-        delete this->chara;
-    }
+    virtual ~Player();
     Character * getCharacter(){
         return this->chara;
     }

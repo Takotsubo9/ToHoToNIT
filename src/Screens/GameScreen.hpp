@@ -34,10 +34,7 @@ private:
     int selected_row_pause;
 public:
     GameScreen(Config& config);
-    virtual ~GameScreen() {
-        delete this->stage;
-        delete this->player;
-    }
+    virtual ~GameScreen();
     ScreenID Render(GameWindow* game_window);
     ScreenID getScreenID() { return ScreenID::Game; }
 };

@@ -23,8 +23,7 @@ private:
     MusicRoomScreenItem selected_row;
 public:
     MusicRoomScreen();
-    virtual ~MusicRoomScreen() {
-    }
+    virtual ~MusicRoomScreen();
     ScreenID Render(GameWindow* game_window);
     ScreenID getScreenID() { return ScreenID::MusicRoom; }
 };
