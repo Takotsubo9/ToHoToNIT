@@ -2,18 +2,6 @@
 #include "PlayerBullet.hpp"
 const double PI = 3.141593;
 
-PlayerBullet::PlayerBullet(void)
-{
-
-}
-
-PlayerBullet::PlayerBullet(float x, float y, float angle)
-{
-    setX(x);
-    setY(y);
-    setAngle(angle);
-}
-
 PlayerBullet::PlayerBullet(int playerBulletID, float x, float y, float angle)
 {
     setPlayerBulletID(playerBulletID);

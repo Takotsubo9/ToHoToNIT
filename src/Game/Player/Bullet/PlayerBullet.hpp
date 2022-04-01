@@ -16,8 +16,6 @@ protected:
     void setBulletHitBoxRadius(int bulletHitBoxRadius) { this->bulletHitBoxRadius = bulletHitBoxRadius; }
     void setAttackPower( int attackPower ){ this->attackPower = attackPower; }
 public:
-    PlayerBullet(void);
-    PlayerBullet(float x, float y, float angle);
     PlayerBullet(int playerBulletID, float x, float y, float angle);
     virtual ~PlayerBullet();
 
