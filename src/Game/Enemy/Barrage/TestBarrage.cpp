@@ -23,7 +23,7 @@ void TestBarrage::apperBullet( int quantity )
 
 void TestBarrage::straightToPlayerBullet( void )
 {
-    for( int i; i < getEBulletSize(); i++ )
+    for( int i = 0; i < getEBulletSize(); i++ )
     {
         getEBullet( i )->updatePlaceWithVector( 20, 0 );
     }
