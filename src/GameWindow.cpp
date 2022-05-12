@@ -1,4 +1,4 @@
-#if defined(__ANDROID__) && !defined(__TERMUX__) 
+#if defined(__ANDROID__) && !defined(__TERMUX__)
 #include <SDL_image.h>
 #include <SDL_mixer.h>
 #else
@@ -187,7 +187,7 @@ void GameWindow::Run() {
 
                 screen_manager.Render(this);
                 
-#if defined(__ANDROID__) && !defined(__TERMUX__) 
+#if defined(__ANDROID__)
                 this->TouchGuide();
 #endif
 

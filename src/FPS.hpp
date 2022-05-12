@@ -1,7 +1,7 @@
 #ifndef _FPS_HPP_
 #define _FPS_HPP_
 
-#if defined(__ANDROID__) && !defined(__TERMUX__) 
+#if defined(__ANDROID__) && !defined(__TERMUX__)
 #include <SDL.h>
 #else
 #include <SDL2/SDL.h>

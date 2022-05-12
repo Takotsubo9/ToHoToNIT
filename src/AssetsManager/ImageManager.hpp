@@ -1,7 +1,7 @@
 #ifndef _IMAGE_MANAGER_H_
 #define _IMAGE_MANAGER_H_
 
-#if defined(__ANDROID__) && !defined(__TERMUX__) 
+#if defined(__ANDROID__) && !defined(__TERMUX__)
 #include <SDL.h>
 #else
 #include <SDL2/SDL.h>
