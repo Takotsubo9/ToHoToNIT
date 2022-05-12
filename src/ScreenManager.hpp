@@ -1,7 +1,7 @@
 #ifndef _SCREEN_MANAGER_H_
 #define _SCREEN_MANAGER_H_
 
-#ifdef __ANDROID__
+#if defined(__ANDROID__) && !defined(__TERMUX__) 
 #include <SDL.h>
 #else
 #include <SDL2/SDL.h>

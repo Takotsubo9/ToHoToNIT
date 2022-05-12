@@ -1,4 +1,4 @@
-#ifdef __ANDROID__
+#if defined(__ANDROID__) && !defined(__TERMUX__) 
 #include <SDL.h>
 #include <SDL_image.h>
 #else
