@@ -1,3 +1,4 @@
+#include <string>
 #if defined(__ANDROID__) && !defined(__TERMUX__)
 #include <SDL.h>
 #else
@@ -5,7 +6,6 @@
 #endif
 
 #include "Config.hpp"
-#include <iostream>
 
 //コンフィグファイルのバージョン情報
 const char* config_file_info = "Touhou-Koumatou Config File 1.00";

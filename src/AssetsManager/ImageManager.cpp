@@ -1,3 +1,4 @@
+#include <string>
 #if defined(__ANDROID__) && !defined(__TERMUX__)
 #include <SDL.h>
 #include <SDL_image.h>
@@ -6,7 +7,6 @@
 #include <SDL2/SDL_image.h>
 #endif
 
-#include <string>
 #include "ImageManager.hpp"
 
 ImageManager::ImageManager(SDL_Renderer* renderer_handle, std::string base_path) {

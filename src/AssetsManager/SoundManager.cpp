@@ -1,3 +1,4 @@
+#include <iostream>
 #if defined(__ANDROID__) && !defined(__TERMUX__)
 #include <SDL.h>
 #include <SDL_mixer.h>
@@ -7,7 +8,6 @@
 #endif
 
 #include "SoundManager.hpp"
-#include <iostream>
 
 SoundManager::SoundManager(std::string base_path) {
     //SEFilePathListに記載されたSEをすべて読み込む

@@ -1,13 +1,13 @@
 #ifndef _IMAGE_MANAGER_H_
 #define _IMAGE_MANAGER_H_
 
+#include <unordered_map>
 #if defined(__ANDROID__) && !defined(__TERMUX__)
 #include <SDL.h>
 #else
 #include <SDL2/SDL.h>
 #endif
 
-#include <unordered_map>
 #include "../Const/ImageID.hpp"
 
 //画像を管理するクラス

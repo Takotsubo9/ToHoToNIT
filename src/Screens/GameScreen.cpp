@@ -1,3 +1,5 @@
+#include <cmath>
+#include <cstdio>
 #if defined(__ANDROID__) && !defined(__TERMUX__)
 #include <SDL.h>
 #else
@@ -6,8 +8,6 @@
 
 #include "GameScreen.hpp"
 #include "../GameWindow.hpp"
-#include <cmath>
-#include <cstdio>
 
 GameScreen::GameScreen(Config& config) {
     this->frames = 0;

@@ -1,3 +1,4 @@
+#include <string>
 #if defined(__ANDROID__) && !defined(__TERMUX__)
 #include <SDL.h>
 #else

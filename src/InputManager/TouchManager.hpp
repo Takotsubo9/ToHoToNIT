@@ -1,14 +1,13 @@
 #ifndef _TOUCH_MANAGER_H_
 #define _TOUCH_MANAGER_H_
 
+#include <unordered_map>
+#include <vector>
 #if defined(__ANDROID__) && !defined(__TERMUX__)
 #include <SDL.h>
 #else
 #include <SDL2/SDL.h>
 #endif
-
-#include <unordered_map>
-#include <vector>
 
 struct Point {
     float x, y;

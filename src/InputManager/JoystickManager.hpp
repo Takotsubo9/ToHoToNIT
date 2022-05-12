@@ -1,15 +1,14 @@
 #ifndef _JOYSTICKMANAGER_H_
 #define _JOYSTICKMANAGER_H_
 
+#include <iostream>
+#include <unordered_map>
+#include <vector>
 #if defined(__ANDROID__) && !defined(__TERMUX__)
 #include <SDL.h>
 #else
 #include <SDL2/SDL.h>
 #endif
-
-#include <iostream>
-#include <unordered_map>
-#include <vector>
 
 //ジョイスティックの入力を管理するクラス
 class JoystickManager {

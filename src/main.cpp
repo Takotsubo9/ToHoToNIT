@@ -2,6 +2,7 @@
 #define SDL_MAIN_HANDLED
 #endif
 
+#include <string>
 #if defined(__ANDROID__) && !defined(__TERMUX__)
 #include <SDL.h>
 #else
@@ -9,7 +10,6 @@
 #endif
 
 #include "GameWindow.hpp"
-#include <string>
 
 int main(int argc, char* argv[]) {
 

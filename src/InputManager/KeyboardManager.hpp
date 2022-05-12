@@ -1,15 +1,14 @@
 #ifndef _KEYBOARDMANAGER_H_
 #define _KEYBOARDMANAGER_H_
 
+#include <iostream>
+#include <string>
+#include <unordered_map>
 #if defined(__ANDROID__) && !defined(__TERMUX__)
 #include <SDL.h>
 #else
 #include <SDL2/SDL.h>
 #endif
-
-#include <iostream>
-#include <string>
-#include <unordered_map>
 
 //キーボードの入力を管理するクラス
 class KeyboardManager {

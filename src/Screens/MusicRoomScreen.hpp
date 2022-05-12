@@ -1,6 +1,7 @@
 #ifndef _MUSIC_ROOM_SCREEN_H_
 #define _MUSIC_ROOM_SCREEN_H_
 
+#include <string>
 #if defined(__ANDROID__) && !defined(__TERMUX__)
 #include <SDL.h>
 #else

@@ -1,6 +1,7 @@
 #ifndef _SOUND_MANAGER_H_
 #define _SOUND_MANAGER_H_
 
+#include <unordered_map>
 #if defined(__ANDROID__) && !defined(__TERMUX__)
 #include <SDL_mixer.h>
 #else
@@ -8,7 +9,6 @@
 #endif
 
 #include "../Const/SoundID.hpp"
-#include <unordered_map>
 
 class SoundManager {
 private:
