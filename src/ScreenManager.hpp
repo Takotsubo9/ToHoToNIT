@@ -1,15 +1,15 @@
 #ifndef _SCREEN_MANAGER_H_
 #define _SCREEN_MANAGER_H_
 
+
+#include <iostream>
+#include <chrono>
+#include <cmath>
 #if defined(__ANDROID__) && !defined(__TERMUX__)
 #include <SDL.h>
 #else
 #include <SDL2/SDL.h>
 #endif
-
-#include <iostream>
-#include <chrono>
-#include <cmath>
 #include "Screens/Screen.hpp"
 #include "Const/ScreenID.hpp"
 #include "FPS.hpp"
