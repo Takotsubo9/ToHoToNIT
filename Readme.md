@@ -2,9 +2,9 @@
 東方紅魔塔とは、有志の``SNIT SOFT``による東方紅魔郷のリメイク作品です。
 
 ## 依存ライブラリ
-* SDL 2.0.20
-* SDL_image 2.0.5
-* SDL_mixer 2.0.4
+* SDL 2.24.0
+* SDL_image 2.6.2
+* SDL_mixer 2.6.2
 
 ## HowToBuild
 ### 環境構築
@@ -16,9 +16,9 @@
     
     SDL関係については、
 
-    * [SDL](https://www.libsdl.org/download-2.0.php)
-    * [SDL_image](https://www.libsdl.org/projects/SDL_image/)
-    * [SDL_mixer](https://www.libsdl.org/projects/SDL_mixer/)
+    * [SDL](https://github.com/libsdl-org/SDL)
+    * [SDL_image](https://github.com/libsdl-org/SDL_image)
+    * [SDL_mixer](https://github.com/libsdl-org/SDL_mixer)
 
     からインストールしてください。
 
