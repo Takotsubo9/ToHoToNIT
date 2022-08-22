@@ -2,7 +2,7 @@
 #include "Screens/TitleScreen.hpp"
 #include "Screens/GameScreen.hpp"
 #include "Screens/MusicRoomScreen.hpp"
-#include "Screens/CharacterSelectScreen.hpp"
+#include "Screens/ModeSelectScreen.hpp"
 #include "GameWindow.hpp"
 
 ScreenManager::ScreenManager() {
@@ -28,8 +28,8 @@ void ScreenManager::Render(GameWindow* game_window) {
             case ScreenID::MusicRoom:
                 this->screen = new MusicRoomScreen();
                 break;
-            case ScreenID::CharacterSelect:
-                this->screen = new CharacterSelectScreen();
+            case ScreenID::ModeSelect:
+                this->screen = new ModeSelectScreen();
                 break;
             default:
                 break;

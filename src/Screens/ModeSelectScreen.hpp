@@ -1,5 +1,5 @@
-#ifndef _CHARACTER_SELECT_SCREEN_HPP_
-#define _CHARACTER_SELECT_SCREEN_HPP_
+#ifndef _MODE_SELECT_SCREEN_HPP_
+#define _MODE_SELECT_SCREEN_HPP_
 
 #include <string>
 #if defined(__ANDROID__) && !defined(__TERMUX__)
@@ -15,14 +15,14 @@
 class GameWindow;
 class Config;
 
-class CharacterSelectScreen : public Screen {
+class ModeSelectScreen : public Screen {
 private:
     long frames;
 public:
-    CharacterSelectScreen();
-    virtual ~CharacterSelectScreen();
+    ModeSelectScreen();
+    virtual ~ModeSelectScreen();
     ScreenID Render(GameWindow* game_window);
-    ScreenID getScreenID() { return ScreenID::CharacterSelect; }
+    ScreenID getScreenID() { return ScreenID::ModeSelect; }
 };
 
-#endif
+#endif /* _MODE_SELECT_SCREEN_ */

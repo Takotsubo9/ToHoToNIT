@@ -8,7 +8,7 @@ enum class ScreenID {
     Game,
     Score,
     MusicRoom,
-    CharacterSelect,
+    ModeSelect,
 };
 
 #endif /* _SCREENID_H_ */
