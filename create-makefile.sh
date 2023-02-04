@@ -1,5 +1,5 @@
 #!/bin/bash
-for file in `\find -name '*.cpp'`; do
+for file in `\find ./ -name '*.cpp'`; do
     filelist="${filelist} ${file}"
 done
 
