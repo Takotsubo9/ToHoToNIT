@@ -115,7 +115,7 @@ ScreenID GameScreen::Render(GameWindow *game_window) {
 
     //cの書き方って感じの書き方ですが、許して
     //最高得点を取得する関数がまだ存在しないので、0
-    sprintf(buf, "%09d", 0);
+    snprintf(buf, 10, "%09d", 0);
     dst_rect.y = 54;
     for(int i = 0; i < 9; i++) {
         src_rect.x = (buf[i] - '0') * 32;
@@ -124,7 +124,7 @@ ScreenID GameScreen::Render(GameWindow *game_window) {
     }
 
     //得点
-    sprintf(buf, "%09ld", this->player->getAllPoint());
+    snprintf(buf, 10, "%09ld", this->player->getAllPoint());
     dst_rect.y = 100;
     for(int i = 0; i < 9; i++) {
         src_rect.x = (buf[i] - '0') * 32;
@@ -132,7 +132,7 @@ ScreenID GameScreen::Render(GameWindow *game_window) {
         game_window->DrawImage(ImageID::number, &src_rect, &dst_rect);
     }
 
-    sprintf(buf, "%d", this->player->getGraze());
+    snprintf(buf, 10, "%d", this->player->getGraze());
     dst_rect.y = 344;
     char* ch = buf;
     while(*ch) {
@@ -142,7 +142,7 @@ ScreenID GameScreen::Render(GameWindow *game_window) {
         ch++;
     }
 
-    sprintf(buf, "%d", this->player->getPoint());
+    snprintf(buf, 10, "%d", this->player->getPoint());
     dst_rect.y = 390;
     ch = buf;
     while(*ch) {
@@ -153,7 +153,7 @@ ScreenID GameScreen::Render(GameWindow *game_window) {
     }
 
     if(this->player->getPower() != 128) {
-        sprintf(buf, "%d", this->player->getPower());
+        snprintf(buf, 10, "%d", this->player->getPower());
         dst_rect.y = 296;
         ch = buf;
         while(*ch) {
