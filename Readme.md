@@ -2,9 +2,9 @@
 東方紅魔塔とは、有志の``SNIT SOFT``による東方紅魔郷のリメイク作品です。
 
 ## 依存ライブラリ
-* SDL 2.24.0
-* SDL_image 2.6.2
-* SDL_mixer 2.6.2
+* SDL 2.26.3
+* SDL_image 2.6.3
+* SDL_mixer 2.6.3
 
 ## HowToBuild
 ### 環境構築
@@ -21,9 +21,17 @@
     * [SDL_mixer](https://github.com/libsdl-org/SDL_mixer)
 
     からインストールしてください。
+* macOS環境  
+    Homebrewなどを用い
+    + g++
+    + git
+    + sdl2
+    + sdl2_image
+    + sdl2_mixer
+
+    をインストールしてください。
 
 * Linux環境  
-    + gcc
     + g++
     + git
 
@@ -36,17 +44,9 @@
 ```sh
 git clone https://github.com/Takotsubo9/ToHoToNIT.git
 cd ToHoToNIT
-./create-makefile.sh
-make
+mkdir build && cd build
+cmake -DSDL2_INCLUDE_DIR=<SDL2のヘッダのディレクトリ> -DSDL2_LIBRARY_DIR=<SDL2のライブラリのディレクトリ> ..
+cmake --build .
 ```
-上記のことを実行した場合、binフォルダに実行ファイルが作成されているはずです。
-
-Windows環境で
-```sh
-make
-```
-が失敗した場合
-```sh
-mingw32-make
-```
-を代わりに実行すると、成功するかもしれません。
+上記を実行した場合、build/binフォルダに実行ファイルが作成されているはずです。
+<>内は適切なパスに置き換えてください。

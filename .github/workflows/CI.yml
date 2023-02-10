@@ -15,11 +15,9 @@ jobs:
         sudo apt update
         sudo apt install build-essential libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev
 
-    - name: Create makefile
-      run: |
-        cd ${{ github.workspace }}
-        sudo chmod +x ./create-makefile.sh
-        ./create-makefile.sh
-
     - name: Build
-      run : make -j$(nproc)
+      run : |
+        mkdir ${{ github.workspace }}/build
+        cd ${{ github.workspace }}/build
+        cmake ..
+        cmake --build .
