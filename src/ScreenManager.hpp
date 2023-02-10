@@ -10,11 +10,11 @@
 #else
 #include <SDL2/SDL.h>
 #endif
-#include "Screens/Screen.hpp"
 #include "Const/ScreenID.hpp"
 #include "FPS.hpp"
 
 class GameWindow;
+class Screen;
 
 //すべての画面を管理し、画面遷移などを司るクラス
 class ScreenManager {

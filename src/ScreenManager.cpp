@@ -1,4 +1,5 @@
 #include "ScreenManager.hpp"
+#include "Screens/Screen.hpp"
 #include "Screens/TitleScreen.hpp"
 #include "Screens/GameScreen.hpp"
 #include "Screens/MusicRoomScreen.hpp"

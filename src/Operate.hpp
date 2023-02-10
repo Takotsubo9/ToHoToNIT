@@ -1,12 +1,13 @@
 #ifndef _OPERATE_H_
 #define _OPERATE_H_
 
-#include "InputManager/JoystickManager.hpp"
-#include "InputManager/KeyboardManager.hpp"
-#include "InputManager/TouchManager.hpp"
 #include "Const/Buttons.hpp"
-#include "Config.hpp"
 #include <map>
+
+class KeyboardManager;
+class JoystickManager;
+class TouchManager;
+class Config;
 
 //入力を管理するクラス
 class Operate {

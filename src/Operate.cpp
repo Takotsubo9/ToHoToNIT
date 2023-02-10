@@ -3,6 +3,8 @@
 #include "Const/TouchRect.hpp"
 #include "InputManager/KeyboardManager.hpp"
 #include "InputManager/JoystickManager.hpp"
+#include "InputManager/TouchManager.hpp"
+#include "Config.hpp"
 #include <cmath>
 #include <iostream>
 
