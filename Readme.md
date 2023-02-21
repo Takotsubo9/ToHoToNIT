@@ -1,47 +1,15 @@
 # Touhou-Koumatou
 東方紅魔塔とは、有志の``SNIT SOFT``による東方紅魔郷のリメイク作品です。
 
-## 依存ライブラリ
-* SDL 2.26.3
-* SDL_image 2.6.3
-* SDL_mixer 2.6.3
-
 ## HowToBuild
 ### 環境構築
-* Windows環境  
-    + MinGW  
-    + Git for Windows
-    + CMake
-
-    をインストールしてください。
-    
-    SDL関係については、
-
-    * [SDL](https://github.com/libsdl-org/SDL)
-    * [SDL_image](https://github.com/libsdl-org/SDL_image)
-    * [SDL_mixer](https://github.com/libsdl-org/SDL_mixer)
-
-    からインストールしてください。
-* macOS環境  
-    Homebrewなどを用い
-    + g++
-    + git
-    + sdl2
-    + sdl2_image
-    + sdl2_mixer
-    + cmake
-
-    をインストールしてください。
-
-* Linux環境  
-    + g++
-    + git
-    + cmake
-
-    をインストールしてください。
-
-    SDL関係については、各ディストリビューションのインストール方法に従ってください。
-
++ C++20に対応したコンパイラ群
++ Git
++ CMake
++ SDL2 2.26.3
++ SDL2_image 2.6.3
++ SDL2_mixer 2.6.3
+をインストールしてください。
 
 ### ビルド
 ```sh
