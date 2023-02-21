@@ -11,6 +11,7 @@
 * Windows環境  
     + MinGW  
     + Git for Windows
+    + CMake
 
     をインストールしてください。
     
@@ -28,12 +29,14 @@
     + sdl2
     + sdl2_image
     + sdl2_mixer
+    + cmake
 
     をインストールしてください。
 
 * Linux環境  
     + g++
     + git
+    + cmake
 
     をインストールしてください。
 
