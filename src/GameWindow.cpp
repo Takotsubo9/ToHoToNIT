@@ -75,31 +75,21 @@ GameWindow::GameWindow(std::string window_title, unsigned int width, unsigned in
     SDL_RenderSetLogicalSize(renderer_handle, width, height);
 
     //InputManager系のインスタンス生成
-    keyboard_manager = new KeyboardManager();
-    joystick_manager = new JoystickManager();
-    touch_manager = new TouchManager();
-    sound_manager = new SoundManager(application_path);
+    keyboard_manager = std::make_unique<KeyboardManager>();
+    joystick_manager = std::make_unique<JoystickManager>();
+    touch_manager = std::make_unique<TouchManager>();
+    sound_manager = std::make_unique<SoundManager>(application_path);
     //コンフィグから読み込んだボリュームの設定
     sound_manager->SetBGMVolume(config.getBGMVolume());
     sound_manager->SetSEVolume(config.getSEVolume());
 
-    operate = new Operate(width, height);
+    operate = std::make_unique<Operate>(width, height);
     SDL_SetRenderDrawBlendMode(renderer_handle, SDL_BLENDMODE_BLEND);
     is_active = false;
 }
 
 GameWindow::~GameWindow() {
     config.Export(application_path);
-    if(operate)
-        delete operate;
-    if(sound_manager)
-        delete sound_manager;
-    if(touch_manager)
-        delete touch_manager;
-    if(joystick_manager)
-        delete joystick_manager;
-    if(keyboard_manager)
-        delete keyboard_manager;
     if(renderer_handle)
         SDL_DestroyRenderer(renderer_handle);
     if(window_handle)
@@ -143,7 +133,7 @@ void GameWindow::Run() {
     SDL_FreeSurface(bootsur);
 
     //画像/音声のロード処理
-    image_manager = new ImageManager(renderer_handle, application_path);
+    image_manager = std::make_unique<ImageManager>(renderer_handle, application_path);
 
     quit = false;
     while (!quit) {
@@ -182,7 +172,7 @@ void GameWindow::Run() {
         {
             uint64_t Ticks = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
             if (Ticks - PrevTicks > 1000000 / main_fps) {
-                operate->Polling(keyboard_manager, joystick_manager, touch_manager, &config);
+                operate->Polling(keyboard_manager.get(), joystick_manager.get(), touch_manager.get(), &config);
                 SDL_SetRenderDrawColor( renderer_handle, 0x00, 0x00, 0x00, 0xFF );
                 SDL_RenderClear(renderer_handle);
 
@@ -207,8 +197,6 @@ void GameWindow::Run() {
         }
     }
     
-    
-    delete image_manager;
     image_manager = nullptr;
 
     SDL_HideWindow(this->window_handle);

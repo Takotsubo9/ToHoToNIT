@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 #if defined(__ANDROID__) && !defined(__TERMUX__)
 #include <SDL.h>
 #else
@@ -25,12 +26,12 @@ class GameWindow {
 private:
     unsigned int main_fps;
     bool is_active;
-    KeyboardManager* keyboard_manager;
-    JoystickManager* joystick_manager;
-    TouchManager* touch_manager;
-    Operate* operate;
-    ImageManager* image_manager;
-    SoundManager* sound_manager;
+    std::unique_ptr<KeyboardManager> keyboard_manager;
+    std::unique_ptr<JoystickManager> joystick_manager;
+    std::unique_ptr<TouchManager> touch_manager;
+    std::unique_ptr<Operate> operate;
+    std::unique_ptr<ImageManager> image_manager;
+    std::unique_ptr<SoundManager> sound_manager;
     SDL_Window* window_handle;
     SDL_Renderer* renderer_handle;
     std::string application_path;
