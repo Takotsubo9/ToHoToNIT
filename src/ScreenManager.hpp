@@ -5,6 +5,7 @@
 #include <iostream>
 #include <chrono>
 #include <cmath>
+#include <memory>
 #if defined(__ANDROID__) && !defined(__TERMUX__)
 #include <SDL.h>
 #else
@@ -19,7 +20,7 @@ class Screen;
 //すべての画面を管理し、画面遷移などを司るクラス
 class ScreenManager {
 private:
-    Screen* screen; //Screenクラスを継承したものを回す。
+    std::unique_ptr<Screen> screen; //Screenクラスを継承したものを回す。
     FPS fps;
 public:
     ScreenManager();

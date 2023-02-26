@@ -7,30 +7,28 @@
 #include "GameWindow.hpp"
 
 ScreenManager::ScreenManager() {
-    this->screen = new TitleScreen();
+    this->screen = std::make_unique<TitleScreen>();
 }
 
 ScreenManager::~ScreenManager() {
-    delete this->screen;
 }
 
 void ScreenManager::Render(GameWindow* game_window) {
     ScreenID id = screen->Render(game_window);
     if(screen->getScreenID() != id) {
-        delete this->screen;
         //Screenを追加した場合には、ここにIDとScreenを追加
         switch(id) {
             case ScreenID::Title:
-                this->screen = new TitleScreen();
+                this->screen = std::make_unique<TitleScreen>();
                 break;
             case ScreenID::Game:
-                this->screen = new GameScreen(game_window->config);
+                this->screen = std::make_unique<GameScreen>(game_window->config);
                 break;
             case ScreenID::MusicRoom:
-                this->screen = new MusicRoomScreen();
+                this->screen = std::make_unique<MusicRoomScreen>();
                 break;
             case ScreenID::ModeSelect:
-                this->screen = new ModeSelectScreen();
+                this->screen = std::make_unique<ModeSelectScreen>();
                 break;
             default:
                 break;
