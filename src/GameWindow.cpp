@@ -90,6 +90,11 @@ GameWindow::GameWindow(std::string window_title, unsigned int width, unsigned in
 
 GameWindow::~GameWindow() {
     config.Export(application_path);
+    operate.reset();
+    sound_manager.reset();
+    touch_manager.reset();
+    joystick_manager.reset();
+    keyboard_manager.reset();
     if(renderer_handle)
         SDL_DestroyRenderer(renderer_handle);
     if(window_handle)
