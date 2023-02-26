@@ -13,15 +13,15 @@ SoundManager::SoundManager(std::string base_path) {
     //SEFilePathListに記載されたSEをすべて読み込む
     for(const auto& it : SEFilePathList) {
         Mix_Chunk* cnk = Mix_LoadWAV((base_path + it.second).c_str());
-        if(cnk == NULL)
-            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING, "Touhou-Koumatou", (std::string("Failed to open sound file\n") + it.second).c_str(), NULL);
+        if(cnk == nullptr)
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING, "Touhou-Koumatou", (std::string("Failed to open sound file\n") + it.second).c_str(), nullptr);
         this->se_map[it.first] = cnk;
     }
     //BGMFilePathListに記載されたBGMをすべて読み込む
     for(const auto& it : BGMFilePathList) {
         Mix_Music* mus = Mix_LoadMUS((base_path + it.second).c_str());
-        if(mus == NULL)
-            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING, "Touhou-Koumatou", (std::string("Failed to open music file\n") + it.second).c_str(), NULL);
+        if(mus == nullptr)
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING, "Touhou-Koumatou", (std::string("Failed to open music file\n") + it.second).c_str(), nullptr);
         this->bgm_map[it.first] = mus;
     }
 }
@@ -46,7 +46,7 @@ void SoundManager::SetSEVolume(int se_volume) {
     //読み込まれたすべてのSEに対してボリュームの割当をする
     //se_volumeの値は0~100
     for(const auto& it : this->se_map) {
-        if (it.second != NULL)
+        if (it.second != nullptr)
             Mix_VolumeChunk(it.second, se_volume * 128.0 / 100.0);
     }
 }

@@ -14,8 +14,8 @@ ImageManager::ImageManager(SDL_Renderer* renderer_handle, std::string base_path)
     for(const auto& it : FilePathList) {
         SDL_Surface* sur = IMG_Load((base_path + it.second).c_str());
         SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer_handle , sur);
-        if(sur == NULL || tex == NULL)
-            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING, "Touhou-Koumatou", (std::string("Failed to open texture file\n") + it.second).c_str(), NULL);
+        if(sur == nullptr || tex == nullptr)
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING, "Touhou-Koumatou", (std::string("Failed to open texture file\n") + it.second).c_str(), nullptr);
         SDL_FreeSurface(sur);
         this->texture_map[it.first] = tex;
     }
@@ -32,5 +32,5 @@ ImageManager::~ImageManager() {
 void ImageManager::Render(SDL_Renderer* renderer_handle, ImageID image_id, const SDL_Rect* srcrect, const SDL_Rect* dstrect, uint8_t alpha, double angle, SDL_RendererFlip flip) {
     SDL_Texture* tmp = this->texture_map[image_id];
     SDL_SetTextureAlphaMod(tmp, alpha);
-    SDL_RenderCopyEx(renderer_handle, tmp, srcrect, dstrect , angle, NULL, flip);
+    SDL_RenderCopyEx(renderer_handle, tmp, srcrect, dstrect , angle, nullptr, flip);
 }

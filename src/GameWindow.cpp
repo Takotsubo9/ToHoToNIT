@@ -26,13 +26,13 @@ GameWindow::GameWindow(std::string window_title, unsigned int width, unsigned in
     SDL_free(application_path_char);
 #endif
 
-    this->window_handle = NULL;
-    this->renderer_handle = NULL;
-    this->keyboard_manager = NULL;
-    this->joystick_manager = NULL;
-    this->touch_manager = NULL;
-    this->sound_manager = NULL;
-    this->operate = NULL;
+    this->window_handle = nullptr;
+    this->renderer_handle = nullptr;
+    this->keyboard_manager = nullptr;
+    this->joystick_manager = nullptr;
+    this->touch_manager = nullptr;
+    this->sound_manager = nullptr;
+    this->operate = nullptr;
 
     //起動前にコンフィグを読み込んでおく
     this->config.Import(application_path);
@@ -40,24 +40,24 @@ GameWindow::GameWindow(std::string window_title, unsigned int width, unsigned in
     main_fps = 60;
     //SDLの初期化
     if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO|SDL_INIT_JOYSTICK) != 0) {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to initialize SDL2", NULL);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to initialize SDL2", nullptr);
         return;
     }
     //SDL_imageの初期化
     int flags = IMG_INIT_PNG;
     if((IMG_Init(flags) & flags) != flags) {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to initialize SDL2_image", NULL);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to initialize SDL2_image", nullptr);
         return;
     }
     //SDL_mixerの初期化
     flags = MIX_INIT_MP3;
     if((Mix_Init(flags) & flags) != flags) {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to initialize SDL2_mixer", NULL);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to initialize SDL2_mixer", nullptr);
         return;
     }
     //音声出力の開始
     if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) == -1) {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to open audio device", NULL);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to open audio device", nullptr);
         return;
     }
     //ウィンドウを作成する
@@ -138,7 +138,7 @@ void GameWindow::Run() {
 
     SDL_Surface* bootsur = IMG_Load((this->application_path+"image/booting/booting.png").c_str());
     SDL_RenderClear(renderer_handle);
-    SDL_BlitSurface( bootsur, NULL, SDL_GetWindowSurface(window_handle), NULL );
+    SDL_BlitSurface( bootsur, nullptr, SDL_GetWindowSurface(window_handle), nullptr);
     SDL_UpdateWindowSurface(window_handle);
     SDL_FreeSurface(bootsur);
 

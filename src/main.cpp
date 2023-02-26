@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
         GameWindow gw("Touhou-Koumatou", 960, 720);
         gw.Run();
     } catch (std::exception& e) {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", (std::string("An error has occurred.\n") + std::string(e.what())).c_str(), NULL);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", (std::string("An error has occurred.\n") + std::string(e.what())).c_str(), nullptr);
     }
     
     return 0;

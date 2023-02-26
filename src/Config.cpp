@@ -92,7 +92,7 @@ void Config::Import(std::string base_path) {
         joystick_buttons_map[Buttons::Skip] = SDL_ReadLE32(rw);
     } else {
         //コンフィグファイルのバージョンが違った際に警告を表示し、読み込まないようにする
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING, "Touhou-Koumatou", "The version of the configuration file is different.\nThe configuration file will not be loaded.", NULL);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING, "Touhou-Koumatou", "The version of the configuration file is different.\nThe configuration file will not be loaded.", nullptr);
     }
 
     SDL_RWclose(rw);
