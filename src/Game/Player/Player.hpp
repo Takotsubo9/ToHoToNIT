@@ -12,10 +12,11 @@
 #include "Chara/SatsukiKaze.hpp"
 #include "Chara/TestChara.hpp"
 #include <cmath>
+#include <memory>
 
 class Player {
 private:
-    Character* chara;
+    std::unique_ptr<Character> chara;
     unsigned long AllPoint;
     unsigned int DefaultPlayerCount;
     unsigned int DefaultBombCount;
@@ -28,7 +29,7 @@ public:
     Player(Config& config);
     virtual ~Player();
     Character * getCharacter(){
-        return this->chara;
+        return this->chara.get();
     }
     unsigned long getAllPoint() {
         return this->AllPoint;

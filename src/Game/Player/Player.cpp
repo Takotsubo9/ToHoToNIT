@@ -3,25 +3,25 @@
 Player::Player(Config& config) {
     switch(config.getSelectedCharacterID()) {
         case CharacterID::MarisaMa:
-            this->chara = new MarisaMa();
+            this->chara = std::make_unique<MarisaMa>();
             break;
         case CharacterID::MarisaKoi:
-            this->chara = new MarisaKoi();
+            this->chara = std::make_unique<MarisaKoi>();
             break;
         case CharacterID::ReimuRei:
-            this->chara = new ReimuRei();
+            this->chara = std::make_unique<ReimuRei>();
             break;
         case CharacterID::ReimuYume:
-            this->chara = new ReimuYume();
+            this->chara = std::make_unique<ReimuYume>();
             break;
         case CharacterID::SatsukiHana:
-            this->chara = new SatsukiHana();
+            this->chara = std::make_unique<SatsukiHana>();
             break;
         case CharacterID::SatsukiKaze:
-            this->chara = new SatsukiKaze();
+            this->chara = std::make_unique<SatsukiKaze>();
             break;
         default:
-            this->chara = new TestChara();
+            this->chara = std::make_unique<TestChara>();
             break;
     }
     this->AllPoint = 0;
@@ -35,5 +35,5 @@ Player::Player(Config& config) {
 }
 
 Player::~Player() {
-    delete this->chara;
+    
 }
