@@ -15,12 +15,5 @@ EnemyBarrage::EnemyBarrage( Enemy * enemy, int barrageID )
 
 EnemyBarrage::~EnemyBarrage()
 {
-    for( size_t i = 0; i < this->ebullets.size(); i++ )
-    {
-        if( ebullets[i] != nullptr )
-        {
-            delete ebullets[i];
-            ebullets[i] = nullptr;
-        }
-    }
+    
 }

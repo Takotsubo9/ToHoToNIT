@@ -13,10 +13,9 @@ TestBarrage::~TestBarrage()
 
 void TestBarrage::apperBullet( int quantity )
 {
-    EnemyBullet * ebullet;
     for( int i = 0; i < quantity; i++ )
     {
-        ebullet = new BigEnemyBullet( i, getEnemy()->getX() - 10, getEnemy()->getY(), 270 );
+        EnemyBullet ebullet( i, getEnemy()->getX() - 10, getEnemy()->getY(), 270 );
         setEBullet( ebullet );
     }
 }

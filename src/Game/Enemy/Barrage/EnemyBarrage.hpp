@@ -14,7 +14,7 @@ private:
     int barrageID;
     Enemy * enemy;
     dPlayer * dplayer;
-    std::vector<EnemyBullet *> ebullets;
+    std::vector<EnemyBullet> ebullets;
 public:
     EnemyBarrage( void );
     EnemyBarrage( Enemy * enemy, int barrageID );
@@ -27,8 +27,8 @@ public:
     void setdPlayer( dPlayer * dplayer ){ this->dplayer = dplayer; }
     dPlayer * getdPlayer( void ){ return dplayer; }
 
-    void setEBullet( EnemyBullet * ebullet ){ this->ebullets.push_back( ebullet ); }
-    EnemyBullet * getEBullet( int num ){ return ebullets[num]; }
+    void setEBullet( EnemyBullet ebullet ){ this->ebullets.push_back( ebullet ); }
+    EnemyBullet * getEBullet( int num ){ return &ebullets[num]; }
     int getEBulletSize( void ){ return ebullets.size(); }
 };
 
