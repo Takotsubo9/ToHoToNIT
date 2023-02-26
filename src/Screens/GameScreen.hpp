@@ -2,6 +2,7 @@
 #define _GAME_SCREEN_H_
 
 #include <string>
+#include <memory>
 #if defined(__ANDROID__) && !defined(__TERMUX__)
 #include <SDL.h>
 #else
@@ -28,8 +29,8 @@ enum : int {
 class GameScreen : public Screen {
 private:
     long frames;
-    Stage * stage;
-    Player * player;
+    std::unique_ptr<Stage> stage;
+    std::unique_ptr<Player> player;
     bool paused;
     int pause_counter;
     int selected_row_pause;
