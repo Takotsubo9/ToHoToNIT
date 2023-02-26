@@ -14,8 +14,11 @@ ScreenManager::~ScreenManager() {
 }
 
 void ScreenManager::Render(GameWindow* game_window) {
-    ScreenID id = screen->Render(game_window);
-    if(screen->getScreenID() != id) {
+    if(!this->screen)
+        this->screen = std::make_unique<TitleScreen>();
+
+    ScreenID id = this->screen->Render(game_window);
+    if(this->screen->getScreenID() != id) {
         //Screenを追加した場合には、ここにIDとScreenを追加
         switch(id) {
             case ScreenID::Title:
