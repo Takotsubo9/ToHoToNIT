@@ -25,10 +25,8 @@ short JoystickManager::getAxis(int num) {
     if(SDL_JoystickGetAttached(joystick))
         if(SDL_JoystickNumAxes(joystick) > num)
             return SDL_JoystickGetAxis(joystick, num);
-        else
-            return 0;
-    else 
-        return 0;
+
+    return 0;
 }
 
 void JoystickManager::Polling(SDL_Event e) {
