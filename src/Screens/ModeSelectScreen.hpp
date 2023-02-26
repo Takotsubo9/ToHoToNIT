@@ -2,11 +2,6 @@
 #define _MODE_SELECT_SCREEN_HPP_
 
 #include <string>
-#if defined(__ANDROID__) && !defined(__TERMUX__)
-#include <SDL.h>
-#else
-#include <SDL2/SDL.h>
-#endif
 
 #include "Screen.hpp"
 #include "../Const/CharacterID.hpp"

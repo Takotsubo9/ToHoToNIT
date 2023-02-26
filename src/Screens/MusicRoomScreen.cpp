@@ -1,10 +1,4 @@
 #include <string>
-#if defined(__ANDROID__) && !defined(__TERMUX__)
-#include <SDL.h>
-#else
-#include <SDL2/SDL.h>
-#endif
-
 #include "MusicRoomScreen.hpp"
 #include "../GameWindow.hpp"
 #include "../Const/RefPoint.hpp"

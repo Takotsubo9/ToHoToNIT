@@ -3,12 +3,6 @@
 
 #include <string>
 #include <memory>
-#if defined(__ANDROID__) && !defined(__TERMUX__)
-#include <SDL.h>
-#else
-#include <SDL2/SDL.h>
-#endif
-
 #include "Screen.hpp"
 #include "../Const/ScreenID.hpp"
 #include "../Const/CharacterID.hpp"
