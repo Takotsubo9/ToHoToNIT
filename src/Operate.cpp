@@ -45,12 +45,6 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
         this->NowAxis[0] += -1;
     } 
 
-    //斜めだった場合、sqrt(2)で割る
-    if(this->NowAxis[0] != 0 && this->NowAxis[1] != 0) {
-        this->NowAxis[0] /= 1.41;
-        this->NowAxis[1] /= 1.41;
-    }
-
     {
         //タブレットやスマホ用のタッチ操作での方向やボタンを取得
         std::vector<SDL_FingerID> finger_list = touch_manager->GetFingerIDList();
@@ -74,10 +68,8 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
                     tmpPressing[Buttons::Up] |= true;
                 }
 
-                double angle = std::atan2(-dy, dx);
-                
-                this->NowAxis[0] = std::cos(angle) * std::min(std::abs(dx / 0.1), 1.0);
-                this->NowAxis[1] = -std::sin(angle) * std::min(std::abs(dy / 0.1), 1.0);
+                this->NowAxis[0] = std::min(std::abs(dx / 0.1), 1.0);
+                this->NowAxis[1] = std::min(std::abs(dy / 0.1), 1.0);
             }
             if(first_point.x >= 0.5 && now_point.x >= 0.5) {
                 //ショットやボムなどのボタン
@@ -113,11 +105,14 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
             tmpPressing[Buttons::Up] |= (joystick_manager->getAxis(1) < -24576);
 
             //以下Axis
-            double angle = std::atan2(-joystick_manager->getAxis(1), joystick_manager->getAxis(0));
-            this->NowAxis[0] = std::cos(angle) * std::abs(joystick_manager->getAxis(0) / 32768.0);
-            this->NowAxis[1] = -std::sin(angle) * std::abs(joystick_manager->getAxis(1) / 32768.0);
+            this->NowAxis[0] = joystick_manager->getAxis(0) / 32768.0;
+            this->NowAxis[1] = joystick_manager->getAxis(1) / 32768.0;
         }
     }
+
+    double angle = std::atan2(-this->NowAxis[1], this->NowAxis[0]);
+    this->NowAxis[0] = std::cos(angle) * std::abs(this->NowAxis[0]);
+    this->NowAxis[1] = -std::sin(angle) * std::abs(this->NowAxis[1]);
 
     //前回押されていなくて、今回押されていた場合は、初回なのでPressedに格納
     for(int i=0;i<8;i++) {
