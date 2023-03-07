@@ -110,9 +110,22 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
         }
     }
 
+    //遊び
+    if(this->NowAxis[0] < 0)
+        this->NowAxis[0] = (std::min(this->NowAxis[0] + 0.1, 0.0) / 0.9);
+    else
+        this->NowAxis[0] = (std::max(this->NowAxis[0] - 0.1, 0.0) / 0.9);
+    
+    if(this->NowAxis[1] < 0)
+        this->NowAxis[1] = (std::min(this->NowAxis[1] + 0.1, 0.0) / 0.9);
+    else
+        this->NowAxis[1] = (std::max(this->NowAxis[1] - 0.1, 0.0) / 0.9);
+
     double angle = std::atan2(-this->NowAxis[1], this->NowAxis[0]);
     this->NowAxis[0] = std::cos(angle) * std::abs(this->NowAxis[0]);
     this->NowAxis[1] = -std::sin(angle) * std::abs(this->NowAxis[1]);
+
+    std::cout << this->NowAxis[0] << "," << this->NowAxis[1] << std::endl;
 
     //前回押されていなくて、今回押されていた場合は、初回なのでPressedに格納
     for(int i=0;i<8;i++) {
