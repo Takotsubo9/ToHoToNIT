@@ -125,8 +125,6 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
     this->NowAxis[0] = std::cos(angle) * std::abs(this->NowAxis[0]);
     this->NowAxis[1] = -std::sin(angle) * std::abs(this->NowAxis[1]);
 
-    std::cout << this->NowAxis[0] << "," << this->NowAxis[1] << std::endl;
-
     //前回押されていなくて、今回押されていた場合は、初回なのでPressedに格納
     for(int i=0;i<8;i++) {
         if((!Pressing[static_cast<Buttons>(i)] && tmpPressing[static_cast<Buttons>(i)])) {
