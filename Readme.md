@@ -15,9 +15,8 @@
 ```sh
 git clone https://github.com/Takotsubo9/ToHoToNIT.git
 cd ToHoToNIT
-mkdir build && cd build
-cmake -DSDL2_INCLUDE_DIR=<SDL2のヘッダのディレクトリ> -DSDL2_LIBRARY_DIR=<SDL2のライブラリのディレクトリ> ..
-cmake --build .
+cmake -B build -DSDL2_INCLUDE_DIR=<SDL2のヘッダのディレクトリ> -DSDL2_LIBRARY_DIR=<SDL2のライブラリのディレクトリ> .
+cmake --build build
 ```
 上記を実行した場合、build/binフォルダに実行ファイルが作成されているはずです。
 <>内は適切なパスに置き換えてください。
