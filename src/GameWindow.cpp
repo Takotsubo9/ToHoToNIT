@@ -61,7 +61,7 @@ GameWindow::GameWindow(std::string window_title, unsigned int width, unsigned in
         return;
     }
     //ウィンドウを作成する
-    window_handle = SDL_CreateWindow(window_title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_HIDDEN|SDL_WINDOW_RESIZABLE);
+    window_handle = SDL_CreateWindow(window_title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_HIDDEN|SDL_WINDOW_RESIZABLE|SDL_WINDOW_ALLOW_HIGHDPI);
     //.cfgから読み込んだフルスクリーンモードをセット
     this->setFullScreenMode(config.getFullScreenMode());
     //レンダラーの作成(できるだけHWアクセラレーションを有効化する)
