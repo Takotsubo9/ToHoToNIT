@@ -6,7 +6,6 @@
 #include "InputManager/TouchManager.hpp"
 #include "Config.hpp"
 #include <cmath>
-#include <iostream>
 
 Operate::Operate(unsigned int width, unsigned int height) {
     this->width = width;

@@ -2,7 +2,6 @@
 #define _SCREEN_MANAGER_H_
 
 
-#include <iostream>
 #include <chrono>
 #include <cmath>
 #include <memory>
