@@ -11,6 +11,7 @@ FPS::FPS() {
     this->first = 0;
     this->second = getNowTime();
     this->frames = 0;
+    this->fps = 0;
 }
 
 //FPS値のアップデートを行う
@@ -18,6 +19,10 @@ void FPS::Update() {
     if(frames == this->update_frame) {
         this->first = this->second;
         this->second = getNowTime();
+        if(this->second - this->first != 0)
+            this->fps = 1000 / ((this->second - this->first) / this->update_frame);
+        else
+            this->fps = 0;
         frames = 0;
     }
     frames++;
@@ -68,8 +73,5 @@ void FPS::DrawFPS(GameWindow* game_window) {
 }
 
 double FPS::GetFPS() {
-    if (this->second - this->first == 0)
-        return 0;
-
-    return 1000.0 / ((this->second - this->first) / this->update_frame);
+    return fps;
 }

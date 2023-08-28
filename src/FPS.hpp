@@ -11,6 +11,7 @@ private:
     uint64_t first;
     uint64_t second;
     uint16_t frames;
+    double fps;
 public:
     FPS();
     void Update();
