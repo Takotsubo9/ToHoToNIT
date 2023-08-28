@@ -37,7 +37,6 @@ GameWindow::GameWindow(std::string window_title, unsigned int width, unsigned in
     //起動前にコンフィグを読み込んでおく
     this->config.Import(application_path);
 
-    main_fps = 60;
     //SDLの初期化
     if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO|SDL_INIT_JOYSTICK) != 0) {
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Touhou-Koumatou", "Failed to initialize SDL2", nullptr);
@@ -66,7 +65,7 @@ GameWindow::GameWindow(std::string window_title, unsigned int width, unsigned in
     this->setFullScreenMode(config.getFullScreenMode());
     //レンダラーの作成(できるだけHWアクセラレーションを有効化する)
     renderer_handle = SDL_CreateRenderer(window_handle, -1, SDL_RENDERER_ACCELERATED);
-    
+
     //スケーリングアルゴリズムをlinearに
     //nearestより重くなるかもしれないが、きれいを優先
     //あとでconfigなどで設定できるようにするのもいいかも
@@ -127,7 +126,7 @@ void GameWindow::Run() {
 
     SDL_Event pollevent;
 
-    uint64_t PrevTicks = 0;
+    auto next_frame_time = std::chrono::system_clock::now();
 
     SDL_ShowWindow(this->window_handle);
 
@@ -175,33 +174,34 @@ void GameWindow::Run() {
         }
         if(this->is_active)
         {
-            uint64_t Ticks = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-            if (Ticks - PrevTicks > 1000000 / main_fps) {
+            auto now_time = std::chrono::system_clock::now();
+            if (now_time >= next_frame_time) {
                 operate->Polling(keyboard_manager.get(), joystick_manager.get(), touch_manager.get(), &config);
-                SDL_SetRenderDrawColor( renderer_handle, 0x00, 0x00, 0x00, 0xFF );
+                SDL_SetRenderDrawColor(renderer_handle, 0x00, 0x00, 0x00, 0xFF);
                 SDL_RenderClear(renderer_handle);
 
                 screen_manager.Render(this);
-                
+
 #if defined(__ANDROID__)
                 this->TouchGuide();
 #endif
 
                 SDL_SetRenderDrawColor(renderer_handle, 0, 0, 0, 0xff);
                 SDL_RenderPresent(renderer_handle);
-                
-                PrevTicks = Ticks;
+
+                next_frame_time += std::chrono::microseconds(this->frame_duration_micro);
                 keyboard_manager->ClearKeyEvent();
                 joystick_manager->ClearKeyEvent();
                 touch_manager->ClearKeyEvent();
-            } else if (Ticks - PrevTicks + 1 < 1000000 / main_fps) {
+            } else {
                 SDL_Delay(1);
             }
         } else {
-            SDL_Delay(50);
+            SDL_Delay(this->inactive_delay_milli);
+            next_frame_time = std::chrono::system_clock::now();
         }
     }
-    
+
     image_manager = nullptr;
 
     SDL_HideWindow(this->window_handle);
