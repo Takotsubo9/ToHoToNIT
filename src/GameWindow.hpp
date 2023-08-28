@@ -25,7 +25,7 @@
 class GameWindow {
 private:
     static constexpr uint16_t main_fps = 60;
-    static constexpr uint32_t frame_duration_micro = 1000000 / main_fps;
+    static constexpr std::chrono::microseconds frame_duration_micro = std::chrono::microseconds(1000000 / main_fps);
     static constexpr uint16_t inactive_delay_milli = 50;
 
     bool is_active;

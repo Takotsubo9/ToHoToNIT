@@ -64,7 +64,7 @@ GameWindow::GameWindow(std::string window_title, unsigned int width, unsigned in
     //.cfgから読み込んだフルスクリーンモードをセット
     this->setFullScreenMode(config.getFullScreenMode());
     //レンダラーの作成(できるだけHWアクセラレーションを有効化する)
-    renderer_handle = SDL_CreateRenderer(window_handle, -1, SDL_RENDERER_ACCELERATED);
+    renderer_handle = SDL_CreateRenderer(window_handle, -1, SDL_RENDERER_ACCELERATED|SDL_RENDERER_PRESENTVSYNC);
 
     //スケーリングアルゴリズムをlinearに
     //nearestより重くなるかもしれないが、きれいを優先
@@ -189,7 +189,7 @@ void GameWindow::Run() {
                 SDL_SetRenderDrawColor(renderer_handle, 0, 0, 0, 0xff);
                 SDL_RenderPresent(renderer_handle);
 
-                next_frame_time += std::chrono::microseconds(this->frame_duration_micro);
+                next_frame_time += this->frame_duration_micro;
                 keyboard_manager->ClearKeyEvent();
                 joystick_manager->ClearKeyEvent();
                 touch_manager->ClearKeyEvent();
