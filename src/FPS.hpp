@@ -7,7 +7,7 @@ class GameWindow;
 
 class FPS {
 private:
-    static const double update_frame;
+    static constexpr double update_frame = 60;
     uint64_t first;
     uint64_t second;
     uint16_t frames;
