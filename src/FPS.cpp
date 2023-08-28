@@ -51,14 +51,13 @@ void FPS::DrawFPS(GameWindow* game_window) {
     }
     //fps整数側表示
     {
-        int digit = 0;
-        int num = this->fps;
+        //fps==0の場合でも表示させたいため、digitは1から計算
+        int digit = 1;
+        int num = this->fps / 10;
         while(num != 0){
             num /= 10;
             digit++;
         }
-        if(digit == 0)
-            digit++;
         for(int i = 0; i < digit; i++) {
             int Deg = (static_cast<int>(this->fps / pow(10, i)) % 10);
             const SDL_Rect srcrect = {32*Deg,0,32,48};
