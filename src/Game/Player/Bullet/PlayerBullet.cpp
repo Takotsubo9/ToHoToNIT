@@ -1,5 +1,4 @@
 #include <cmath>
-#include <numbers>
 #include "PlayerBullet.hpp"
 
 PlayerBullet::PlayerBullet(int playerBulletID, float x, float y, float angle)
@@ -25,6 +24,6 @@ void PlayerBullet::updatePlace(float dx, float dy, float dAngle)
 void PlayerBullet::updatePlaceWithVector(float displacement, float dAngle)
 {
     setAngle(getAngle() + dAngle);
-    setX(getX() - displacement * std::sin((360 - getAngle()) * std::numbers::pi / 180.0));
-    setY(getY() - displacement * std::cos((360 - getAngle()) * std::numbers::pi / 180.0));
+    setX(getX() - displacement * std::sin((360 - getAngle()) * M_PI / 180.0));
+    setY(getY() - displacement * std::cos((360 - getAngle()) * M_PI / 180.0));
 }

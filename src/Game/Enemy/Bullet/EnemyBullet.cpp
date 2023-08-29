@@ -1,5 +1,4 @@
 #include <cmath>
-#include <numbers>
 #include"EnemyBullet.hpp"
 
 EnemyBullet::EnemyBullet(void)
@@ -37,6 +36,6 @@ void EnemyBullet::updatePlace(float dx, float dy, float dAngle)
 void EnemyBullet::updatePlaceWithVector(float displacement, float dAngle)
 {
     setAngle(getAngle() + dAngle);
-    setX(getX() - displacement * std::sin((360 - getAngle()) * std::numbers::pi / 180.0));
-    setY(getY() - displacement * std::cos((360 - getAngle()) * std::numbers::pi / 180.0));
+    setX(getX() - displacement * std::sin((360 - getAngle()) * M_PI / 180.0));
+    setY(getY() - displacement * std::cos((360 - getAngle()) * M_PI / 180.0));
 }
