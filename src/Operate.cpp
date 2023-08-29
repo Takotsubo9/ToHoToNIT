@@ -42,7 +42,7 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
     }
     if(tmpPressing[Buttons::Left]) {
         this->NowAxis[0] += -1;
-    } 
+    }
 
     {
         //タブレットやスマホ用のタッチ操作での方向やボタンを取得
@@ -67,8 +67,8 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
                     tmpPressing[Buttons::Up] |= true;
                 }
 
-                this->NowAxis[0] = std::min(std::abs(dx / 0.1), 1.0);
-                this->NowAxis[1] = std::min(std::abs(dy / 0.1), 1.0);
+                this->NowAxis[0] = std::clamp(dx / 0.1, -1.0, 1.0);
+                this->NowAxis[1] = std::clamp(dy / 0.1, -1.0, 1.0);
             }
             if(first_point.x >= 0.5 && now_point.x >= 0.5) {
                 //ショットやボムなどのボタン
@@ -114,7 +114,7 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
         this->NowAxis[0] = (std::min(this->NowAxis[0] + 0.1, 0.0) / 0.9);
     else
         this->NowAxis[0] = (std::max(this->NowAxis[0] - 0.1, 0.0) / 0.9);
-    
+
     if(this->NowAxis[1] < 0)
         this->NowAxis[1] = (std::min(this->NowAxis[1] + 0.1, 0.0) / 0.9);
     else
