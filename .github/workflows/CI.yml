@@ -5,15 +5,28 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform:
+          - macos
+          - ubuntu
+
+    runs-on: ${{ matrix.platform }}-latest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Install dependent libraries
+    - name: Install dependent libraries (ubuntu)
+      if: ${{ matrix.platform == 'ubuntu' }}
       run: |
         sudo apt update
         sudo apt install build-essential ninja-build libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev
+
+    - name: Install dependent libraries (macos)
+      if: ${{ matrix.platform == 'macos' }}
+      run: |
+        brew update
+        brew install ninja sdl2 sdl2_image sdl2_mixer
 
     - name: Build
       run : |
