@@ -8,27 +8,27 @@ jobs:
     strategy:
       matrix:
         platform:
-          - macos
-          - ubuntu
+          - { name: macos, flags: "-DSDL2_INCLUDE_DIR=/usr/local/include -DSDL2_LIBRARY_DIR=/usr/local/lib" }
+          - { name: ubuntu, flags: "" }
 
-    runs-on: ${{ matrix.platform }}-latest
+    runs-on: ${{ matrix.platform.name }}-latest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
 
     - name: Install dependent libraries (ubuntu)
-      if: ${{ matrix.platform == 'ubuntu' }}
+      if: ${{ matrix.platform.name == 'ubuntu' }}
       run: |
         sudo apt update
         sudo apt install build-essential ninja-build libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev
 
     - name: Install dependent libraries (macos)
-      if: ${{ matrix.platform == 'macos' }}
+      if: ${{ matrix.platform.name == 'macos' }}
       run: |
         brew update
         brew install ninja sdl2 sdl2_image sdl2_mixer
 
     - name: Build
       run : |
-        cmake -B build -G Ninja .
+        cmake -B build -G Ninja ${{ matrix.platform.flags }} .
         cmake --build build
