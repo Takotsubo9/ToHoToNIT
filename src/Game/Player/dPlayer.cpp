@@ -9,12 +9,12 @@ dPlayer::dPlayer() {
 }
 
 dPlayer::~dPlayer() {
-    
+
 }
 
 void dPlayer::Update(GameWindow* game_window) {
     float x, y;
-    game_window->getMovement(&x, &y);
+    game_window->getMovement(x, y);
     float speed = game_window->getIsButtonDown(Buttons::Slow) ? this->player->getCharacter()->getLowFSpeed() : this->player->getCharacter()->getHighFSpeed();
     this->x += x * 1.5 * speed;
     this->y += y * 1.5 * speed;

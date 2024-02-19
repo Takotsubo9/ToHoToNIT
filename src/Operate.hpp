@@ -28,7 +28,7 @@ public:
     bool IsDown(Buttons button) {
         return this->Pressing[button];
     }
-    void GetSelfMovements(float* x, float* y);
+    void GetSelfMovements(float& x, float& y);
 };
 
 #endif /* _OPERATE_H_ */

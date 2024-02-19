@@ -149,7 +149,7 @@ void Operate::Polling(KeyboardManager* keyboard_manager, JoystickManager* joysti
 }
 
 //自機の動きを返す
-void Operate::GetSelfMovements(float* x, float* y) {
-    *x = this->NowAxis[0];
-    *y = this->NowAxis[1];
+void Operate::GetSelfMovements(float& x, float& y) {
+    x = this->NowAxis[0];
+    y = this->NowAxis[1];
 }

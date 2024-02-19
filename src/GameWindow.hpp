@@ -60,7 +60,7 @@ public:
         return this->operate->IsDown(button);
     }
     //自機の動きを返す関数
-    void getMovement(float* x, float* y) {
+    void getMovement(float& x, float& y) {
         this->operate->GetSelfMovements(x, y);
     }
     std::string& getApplicationPath() {
