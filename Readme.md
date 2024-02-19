@@ -6,9 +6,9 @@
 + C++20に対応したコンパイラ群
 + Git
 + CMake
-+ SDL2 2.28.4
-+ SDL2_image 2.6.3
-+ SDL2_mixer 2.6.3
++ SDL2 2.30.0
++ SDL2_image 2.8.2
++ SDL2_mixer 2.8.0
 
 をインストールしてください。
 
