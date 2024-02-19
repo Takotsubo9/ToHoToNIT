@@ -14,7 +14,7 @@ jobs:
     runs-on: ${{ matrix.platform.name }}-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Install dependent libraries (ubuntu)
       if: ${{ matrix.platform.name == 'ubuntu' }}
