@@ -6,7 +6,7 @@
 + C++20に対応したコンパイラ群
 + Git
 + CMake
-+ SDL2 2.30.0
++ SDL2 2.30.6
 + SDL2_image 2.8.2
 + SDL2_mixer 2.8.0
 
