@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         platform:
-          - { name: macos, flags: "-DSDL2_INCLUDE_DIR=/usr/local/include -DSDL2_LIBRARY_DIR=/usr/local/lib" }
+          - { name: macos, flags: "-DSDL2_INCLUDE_DIR=/opt/homebrew/include -DSDL2_LIBRARY_DIR=/opt/homebrew/lib" }
           - { name: ubuntu, flags: "" }
 
     runs-on: ${{ matrix.platform.name }}-latest
