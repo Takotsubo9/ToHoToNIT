@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <unordered_map>
 #include <string>
+#include <cstdint>
 #include "Const/Buttons.hpp"
 #include "Const/FullScreenMode.hpp"
 #include "Const/CharacterID.hpp"
@@ -25,7 +26,7 @@ public:
     void setPlayerCount(int player_count) {
         this->player_count = ((player_count - 1 + 5) % 5) + 1;
     }
-    
+
     void setBombCount(int bomb_count) {
         this->bomb_count = (bomb_count + 4) % 4;
     }
@@ -33,7 +34,7 @@ public:
     void setBGMVolume(int bgm_volume) {
         this->bgm_volume = std::max(0, std::min(100, bgm_volume));
     }
-    
+
     void setSEVolume(int se_volume) {
         this->se_volume = std::max(0, std::min(100, se_volume));
     }
@@ -49,7 +50,7 @@ public:
     int getPlayerCount() {
         return player_count;
     }
-    
+
     int getBombCount() {
         return bomb_count;
     }
@@ -57,7 +58,7 @@ public:
     int getBGMVolume() {
         return bgm_volume;
     }
-    
+
     int getSEVolume() {
         return se_volume;
     }
