@@ -30,4 +30,8 @@ else()
     target_link_directories(${PROJECT_NAME} PRIVATE ${SDL2_LIBRARY_DIR})
     target_link_libraries(${PROJECT_NAME} PRIVATE SDL2 SDL2_image SDL2_mixer)
 
+    if("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU")
+        target_link_options(${PROJECT_NAME} PRIVATE -static-libstdc++ -static-libgcc)
+    endif()
+
 endif()
