@@ -6,9 +6,9 @@
 + C++20に対応したコンパイラ群
 + Git
 + CMake
-+ SDL2 2.30.7
-+ SDL2_image 2.8.2
-+ SDL2_mixer 2.8.0
++ SDL2 2.32.6
++ SDL2_image 2.8.8
++ SDL2_mixer 2.8.1
 
 をインストールしてください。
 
@@ -28,9 +28,9 @@ cmake --build build
 ```sh
 # clone
 git clone https://github.com/Takotsubo9/ToHoToNIT.git -b develop --depth 1
-git clone https://github.com/libsdl-org/SDL.git -b release-2.30.7 --depth 1
-git clone https://github.com/libsdl-org/SDL_image.git -b release-2.8.2 --recursive --depth 1
-git clone https://github.com/libsdl-org/SDL_mixer.git -b release-2.8.0 --recursive --depth 1
+git clone https://github.com/libsdl-org/SDL.git -b release-2.32.6 --depth 1
+git clone https://github.com/libsdl-org/SDL_image.git -b release-2.8.8 --recursive --depth 1
+git clone https://github.com/libsdl-org/SDL_mixer.git -b release-2.8.1 --recursive --depth 1
 # 依存ライブラリの配置
 mv SDL/android-project .
 mv SDL android-project/app/jni
