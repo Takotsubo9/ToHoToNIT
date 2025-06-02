@@ -24,7 +24,7 @@ GameScreen::~GameScreen() {
 ScreenID GameScreen::Render(GameWindow *game_window) {
 
     //ポーズのアニメーション用にカウンターをいろいろ
-    if(this->paused) 
+    if(this->paused)
         pause_counter = std::min(pause_counter + 1, PAUSE_COUNTER_MAX);
     else
         pause_counter = std::max(pause_counter - 1, 0);

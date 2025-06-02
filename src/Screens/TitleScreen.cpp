@@ -43,7 +43,7 @@ TitleScreen::TitleScreen() {
 }
 
 TitleScreen::~TitleScreen() {
-    
+
 }
 
 ScreenID TitleScreen::Render(GameWindow* game_window) {
@@ -101,7 +101,7 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
             game_window->PlaySE(SoundEffectID::decide);
             switch(selected_row_title) {
                 case TitleScreenItem::START:
-                    return ScreenID::Game;
+                    return ScreenID::ModeSelect;
                 case TitleScreenItem::OPTION:
                     this->phase = TitleScreenPhase::Option;
                     this->selected_row_option = OptionScreenItem::PLAYER;
@@ -142,7 +142,7 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
             } else {
                 game_window->DrawImage(ImageID::option_items, &srcrect, &dstrect, RefPoint::LeftTop, 0xC0);
             }
-            
+
             switch(static_cast<OptionScreenItem>(i)) {
                 case OptionScreenItem::PLAYER:
                     for(int j=0;j<5;j++) {
@@ -228,7 +228,7 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                     for(int j=0;j<3;j++) {
                         SDL_Rect src_rect = {0,j*48,200,48};
                         SDL_Rect dst_rect = {200*j+x+210,y,200,48};
-                        
+
                         if(i==static_cast<int>(selected_row_option)) {
                             dst_rect.x -= 2;
                             dst_rect.y -= 2;
@@ -317,7 +317,7 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
             }
             game_window->PlaySE(SoundEffectID::move);
         }
-        
+
         if(game_window->getIsButtonPressed(Buttons::Bomb) || game_window->getIsButtonPressed(Buttons::Pause)) {
             this->selected_row_option = OptionScreenItem::QUIT;
             game_window->PlaySE(SoundEffectID::cancel);
@@ -370,7 +370,7 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
             else
                 game_window->DrawImage(ImageID::keyconfig_items, &src_rect, &dst_rect, RefPoint::LeftTop);
 
-                
+
             if (i != static_cast<int>(KeyConfigScreenItem::QUIT) && i != static_cast<int>(KeyConfigScreenItem::RESET)) {
                 if(game_window->config.joystick_buttons_map[static_cast<Buttons>(i)]!=-1) {
                     src_rect.y = static_cast<int>(KeyConfigScreenItem::COUNT) * 48;
@@ -388,7 +388,7 @@ ScreenID TitleScreen::Render(GameWindow* game_window) {
                         int num = (static_cast<int>(game_window->config.joystick_buttons_map[static_cast<Buttons>(i)] / pow(10, j)) % 10);
                         src_rect = {32*num,0,32,48};
                         dst_rect = {dst_rect.x-32*j,dst_rect.y,32,48};
-                        if(i==this->selected_row_keyconfig) {    
+                        if(i==this->selected_row_keyconfig) {
                             game_window->DrawImage(ImageID::number_selected, &src_rect, &dst_rect, RefPoint::LeftTop);
                         } else {
                             game_window->DrawImage(ImageID::number, &src_rect, &dst_rect, RefPoint::LeftTop);
